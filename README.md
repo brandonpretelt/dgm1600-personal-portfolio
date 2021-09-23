@@ -1,1 +1,3 @@
-# dgm1600-personal-portfolio
+# Personal Portfolio Project
+
+This is the repo for the portfolio project.
