@@ -1,3 +1,25 @@
 # Personal Portfolio Project
 
-This is the repo for the portfolio project.
+## Requirements for the Portfolio Project.
+
+
+### User stories 
+
+### Portfolio Section
+
+[] Portfolio Section
+    [] Welcome section with id of welcome-section
+    [] Welcome section has an h1 element
+    [] Portfolio should have a project section with id of projects
+    [] Projects section should contain at least one element with id of project-title
+    [] Projects should contain at least one link to a project
+
+[] Navbar Section
+    [] Portfolio should have navbar with id of navbar
+    [] Navbar should contain at least one link to navigate to different sections
+    [] Should have a link of profile-link that links to github or FCC profile
+
+[] Misc
+    [] Portfolio should have at least one media query
+    [] height of the welcome section should be equal to viewport
+    [] navbar should always be at the top of the viewport
