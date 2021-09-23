@@ -6,7 +6,7 @@
 
 ### Portfolio Section
 
-- [] Portfolio Section
+- [ ] Portfolio Section
     - [x] Welcome section with id of welcome-section
     - [x] Welcome section has an h1 element
     - [x] Portfolio should have a project section with id of projects
