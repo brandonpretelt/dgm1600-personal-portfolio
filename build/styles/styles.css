@@ -1,0 +1,106 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/** Housekeeping Stuff **/
+
+:root {
+    --bg-clr: hsl(0, 0%, 13%);
+    --accent-clr: hsl(175, 50%, 48%);
+    --accent-clr-500: hsl(195, 50%, 48%);
+    --font-clr: hsl(0, 0%, 96%);
+}
+
+body {
+    background-color: var(--bg-clr, hsl(0, 0%, 13%));
+    color: var(--font-clr);
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1,
+h2 {
+    font-family: 'Gemunu Libre', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-clr-500);
+}
+
+img {
+    max-width: 100%;
+}
+
+/** End Housekeeping Stuff **/
+
+/** util classes **/
+.active {
+    color: var(--accent-clr);
+}
+
+/** End util classes **/
+
+/** Header & Nav Section **/
+
+#navbar {
+    display: flex;
+    padding: 2em;
+    font-family: 'Gemunu Libre';
+}
+
+#navbar div a {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-top: 0.25em;
+    margin-bottom: 1em;
+}
+
+#navbar :not(div a) {
+    display: flex;
+    margin-right: auto;
+    flex-direction: column;
+    margin-top: 0;
+}
+
+
+.nav-link {
+    font-size: 1.4rem;
+}
+
+.nav-link-img {
+    display: block;
+    width: 50px;
+    text-align: center;
+    margin: 0.5em auto;
+}
+
+/** End Header & Nav Section **/
+
+/** **/
+
+/** **/
+/** use for desktop 
+
+#navbar {
+    display: flex;
+    padding: 2em;
+}
+
+#navbar div a {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+#navbar :not(div a) {
+    display: flex;
+    color: purple;
+    border: solid 2px;
+    margin-right: auto;
+}
+**/
