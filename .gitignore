@@ -1,3 +1,4 @@
 .prettierignore
+bs-config.js
 design/
 imgs/
