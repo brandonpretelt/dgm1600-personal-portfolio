@@ -23,4 +23,4 @@
 - [ ] Misc
     - [ ] Portfolio should have at least one media query
     - [x] height of the welcome section should be equal to viewport
-    - [ ] navbar should always be at the top of the viewport
+    - [x] navbar should always be at the top of the viewport
