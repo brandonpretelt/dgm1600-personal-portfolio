@@ -10,6 +10,7 @@
 
 :root {
     --bg-clr: hsl(0, 0%, 13%);
+    --bg-clr-300: hsl(0, 0%, 20%);
     --accent-clr: hsl(175, 50%, 48%);
     --accent-clr-500: hsl(195, 50%, 48%);
     --font-clr: hsl(0, 0%, 96%);
@@ -23,6 +24,7 @@ body {
     background-color: var(--bg-clr, hsl(0, 0%, 13%));
     color: var(--font-clr);
     font-family: 'Open Sans', sans-serif;
+    line-height: 1.25;
 }
 
 h1,
@@ -49,6 +51,16 @@ img {
 /** End util classes **/
 
 /** Header & Nav Section **/
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    isolation: isolate;
+    background-color: var(--bg-clr-300);
+    opacity: 0.98;
+    box-shadow: 0px 5px 15px hsl(0 0% 13% / 0.75)
+}
 
 #navbar {
     display: flex;
@@ -88,9 +100,42 @@ img {
 /** SECTIONS **/
 section {
     height: 100vh;
+    padding: 1.5em;
 }
 
-/** **/
+/** End Sections **/
+
+/** welcome section **/
+
+#welcome-section h1 {
+    text-align: center;
+    font-size: 3.3rem;
+    color: var(--accent-clr);
+    margin-bottom: 0.5em;
+}
+
+#welcome-section .welcome-text {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+#pfp-container {
+    width: 300px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+#pfp-container .pfp {
+    clip-path: circle(140px at center);
+}
+
+#pfp-container img[alt] {
+    font-family: 'Gemunu Libre', sans-serif;
+    padding: 0.25em;
+    display: block;
+}
+
+/** end welcme section **/
 /** use for desktop 
 
 #navbar {
