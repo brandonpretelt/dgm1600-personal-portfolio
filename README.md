@@ -14,9 +14,9 @@
     - [ ] Projects should contain at least one link to a project
 
 ### Navbar Section
-- [ ] Navbar Section
+- [x] Navbar Section
     - [x] Portfolio should have navbar with id of navbar
-    - [ ] Navbar should contain at least one link to navigate to different sections
+    - [x] Navbar should contain at least one link to navigate to different sections
     - [x] Should have a link of profile-link that links to github or FCC profile
 
 ### Misc Section
