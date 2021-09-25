@@ -20,7 +20,7 @@
     - [x] Should have a link of profile-link that links to github or FCC profile
 
 ### Misc Section
-- [ ] Misc
-    - [ ] Portfolio should have at least one media query
+- [x] Misc
+    - [x] Portfolio should have at least one media query
     - [x] height of the welcome section should be equal to viewport
     - [x] navbar should always be at the top of the viewport
