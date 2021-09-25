@@ -6,12 +6,12 @@
 
 ### Portfolio Section
 
-- [ ] Portfolio Section
+- [x] Portfolio Section
     - [x] Welcome section with id of welcome-section
     - [x] Welcome section has an h1 element
     - [x] Portfolio should have a project section with id of projects
     - [x] Projects section should contain at least one element with id of project-tile
-    - [ ] Projects should contain at least one link to a project
+    - [x] Projects should contain at least one link to a project
 
 ### Navbar Section
 - [x] Navbar Section
