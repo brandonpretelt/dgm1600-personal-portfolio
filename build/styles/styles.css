@@ -96,7 +96,8 @@ header {
     margin: 0.5em auto;
 }
 
-.profile-link {
+.profile-link,
+#profile-link {
     margin-top: 0.25em;
 }
 
@@ -109,7 +110,6 @@ header {
 section {
     height: 100vh;
     padding-top: 10rem;
-    /* padding: 1.5em; */
 }
 
 #welcome-section .welcome-text,
@@ -258,14 +258,11 @@ section {
     section {
         display: flex;
         flex-direction: column;
-        /* padding-top: 124px; */
     }
 
     #welcome-section {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-        /* align-items: flex-start; */
-        /* justify-content: center; */
         width: 90%;
         margin: 0 auto;
     }
@@ -298,7 +295,6 @@ section {
         display: flex;
         flex-direction: row;
         align-self: flex-start;
-        /* align-items: center; */
     }
 
     #pfp-container .pfp {
@@ -325,24 +321,3 @@ section {
 
     }
 }
-
-/** use for desktop 
-
-#navbar {
-    display: flex;
-    padding: 2em;
-}
-
-#navbar div a {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-}
-
-#navbar :not(div a) {
-    display: flex;
-    color: purple;
-    border: solid 2px;
-    margin-right: auto;
-}
-**/
