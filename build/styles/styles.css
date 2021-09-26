@@ -110,6 +110,8 @@ header {
 section {
     height: 100vh;
     padding-top: 10rem;
+    padding-right: 1em;
+    padding-left: 1em;
 }
 
 #welcome-section .welcome-text,
@@ -219,6 +221,7 @@ section {
     background-color: var(--bg-clr-300);
     padding: 2em;
     border-radius: 1em;
+    margin: 2em 0;
 }
 
 .project-tile-header {
@@ -229,9 +232,17 @@ section {
     text-decoration: underline;
 }
 
+.project-tile .project-tile-img {
+    display: block;
+    border-radius: 1em;
+    margin: 0.5em auto;
+    width: 100%;
+    padding: 0.5em;
+}
+
 /** end projects section **/
 
-@media (min-width: 900px) {
+@media (min-width: 800px) {
 
     #navbar a {
         font-size: xx-large;
@@ -250,6 +261,15 @@ section {
         margin-right: auto;
         flex-direction: row;
         margin-top: 0;
+    }
+
+    .project-tile-container {
+        display: grid;
+        margin: 0 auto;
+        grid-template-columns: repeat(3, 0.5fr);
+        justify-content: center;
+        align-self: center;
+        gap: 1.5em;
     }
 
 }
@@ -301,23 +321,33 @@ section {
         clip-path: circle(140px at center);
     }
 
+    #pfp-container,
+    #welcome-section div {
+        transform: translateY(105px);
+    }
+
     #projects {
         width: 90vw;
         margin: 0 auto;
     }
 
     .project-tile-container {
-        display: grid;
-        margin: 0 auto;
-        grid-template-columns: repeat(5, 0.5fr);
-        justify-content: center;
-        align-self: center;
+        grid-template-columns: repeat(12, 1fr);
         gap: 1em;
     }
 
     .project-tile:nth-child(1) {
-        grid-column: 2 / 3;
+        grid-column: 1 / 5;
         padding: 0 2em;
+    }
 
+    .project-tile:nth-child(2) {
+        grid-column: 5/ 9;
+        padding: 0 2em;
+    }
+
+    .project-tile:nth-child(3) {
+        grid-column: 9 / 13;
+        padding: 0 2em;
     }
 }
