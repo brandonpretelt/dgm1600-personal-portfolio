@@ -136,6 +136,10 @@ section {
 
 /** welcome section **/
 
+#welcome-section {
+    transform: translateY(-100px);
+}
+
 #welcome-section h1 {
     text-align: center;
     font-size: 3.3rem;
@@ -160,7 +164,7 @@ section {
 }
 
 #pfp-container .pfp {
-    clip-path: circle(140px at center);
+    clip-path: circle(134px at center);
 }
 
 #pfp-container img[alt] {
@@ -212,6 +216,10 @@ section {
 /** end welcome section **/
 
 /** projects section **/
+
+#projects {
+    transform: translateY(-50px);
+}
 
 #projects h2 {
     margin-bottom: 0.5em;
@@ -280,6 +288,12 @@ section {
         flex-direction: column;
     }
 
+    #welcome-section,
+    #projects {
+        transform: initial;
+    }
+
+
     #welcome-section {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -311,6 +325,7 @@ section {
     }
 
     #pfp-container {
+        width: 400px;
         margin: unset;
         display: flex;
         flex-direction: row;
@@ -318,12 +333,21 @@ section {
     }
 
     #pfp-container .pfp {
-        clip-path: circle(140px at center);
+        width: 300px;
+        clip-path: circle(149px at center);
     }
 
-    #pfp-container,
-    #welcome-section div {
+
+    #welcome-section #welcome-grid {
         transform: translateY(105px);
+    }
+
+    #welcome-section #pfp-container {
+        transform: translateY(85px);
+    }
+
+    #welcome-section :not(#pfp-container) {
+        grid-column: 3/5;
     }
 
     #projects {
@@ -351,3 +375,6 @@ section {
         padding: 0 2em;
     }
 }
+
+/* pfp container 400px */
+/* pfp width: 300px; */
