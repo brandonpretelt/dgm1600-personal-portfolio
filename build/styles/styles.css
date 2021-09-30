@@ -357,6 +357,12 @@ section {
         gap: 1em;
     }
 
+    .project-tile .project-text {
+        text-align: left;
+        padding-block: 1em;
+        line-height: 1.7;
+    }
+
     .project-tile:nth-child(1) {
         grid-column: 1 / 5;
         padding: 0 2em;
