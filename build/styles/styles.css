@@ -16,6 +16,10 @@
     --font-clr: hsl(0, 0%, 96%);
 }
 
+html {
+    height: 100%;
+}
+
 body {
 
     background-color: var(--bg-clr, hsl(0, 0%, 13%));
@@ -152,6 +156,7 @@ section {
 
 #welcome-section .welcome-text {
     font-size: 1.5rem;
+    text-align: left;
 }
 
 #welcome-section h2 {
@@ -422,5 +427,9 @@ section {
 
     #welcome-section #pfp-container {
         transform: translateY(145px);
+    }
+
+    #navbar .nav-link:hover {
+        text-decoration: underline;
     }
 }
