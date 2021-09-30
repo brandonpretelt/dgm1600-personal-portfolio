@@ -84,7 +84,6 @@ header {
     margin-top: 0;
 }
 
-
 .nav-link {
     font-size: 1.4rem;
 }
@@ -103,9 +102,7 @@ header {
 
 /** End Header & Nav Section **/
 
-/** SECTIONS **/
-
-
+/** SECTIONS with DRY Styles **/
 
 section {
     height: 100vh;
@@ -250,7 +247,7 @@ section {
 
 /** end projects section **/
 
-@media (min-width: 800px) {
+@media screen and (min-width: 800px) {
 
     #navbar a {
         font-size: xx-large;
@@ -282,7 +279,7 @@ section {
 
 }
 
-@media (min-width: 1218px) {
+@media screen and (min-width: 1218px) {
     section {
         display: flex;
         flex-direction: column;
@@ -375,6 +372,3 @@ section {
         padding: 0 2em;
     }
 }
-
-/* pfp container 400px */
-/* pfp width: 300px; */
