@@ -172,7 +172,6 @@ section {
 
 #pfp-container .pfp {
     clip-path: circle(134px at center);
-    background-color: purple;
 }
 
 #pfp-container img[alt] {
