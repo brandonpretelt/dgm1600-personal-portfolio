@@ -425,8 +425,14 @@ section {
         margin: 0.5em 3.5em;
     }
 
+    #welcome-section #welcome-grid {
+        transform: translateY(5px);
+
+    }
+
     #welcome-section #pfp-container {
-        transform: translateY(145px);
+        /* transform: translateY(145px); */
+        transform: translateY(5px);
     }
 
     #navbar .nav-link:hover {
