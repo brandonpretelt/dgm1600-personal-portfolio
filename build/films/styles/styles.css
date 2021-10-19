@@ -49,6 +49,10 @@ h3 {
     align-items: center;
 }
 
+.films-container div img {
+    padding: 1rem;
+}
+
 a {
     text-decoration: none;
     color: var(--accent-clr-500);
@@ -56,6 +60,7 @@ a {
 
 img {
     max-width: 100%;
+    width: 300px;
 }
 
 h1 {
