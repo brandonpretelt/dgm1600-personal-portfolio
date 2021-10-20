@@ -67,6 +67,24 @@ h1 {
     font-size: 2rem;
 }
 
+main {
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/** iPhone 5, iOS and other fallbacks **/
+
 @media screen and (device-aspect-ratio: 40/71) {
     html {
         height: -webkit-fill-available;
@@ -87,22 +105,4 @@ h1 {
     html {
         scroll-behavior: smooth;
     }
-}
-
-@media screen and (min-width: 800px) {
-    .films-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media screen and (min-width: 1329px) {
-
-    .films-container {
-        display: grid;
-        margin: 4em;
-        grid-template-columns: repeat(3, 1fr);
-        padding: 2em;
-        gap: 8em;
-    }
-
 }
