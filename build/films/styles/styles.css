@@ -31,28 +31,6 @@ h3 {
     font-family: 'Gemunu Libre', sans-serif;
 }
 
-/* .films-container {
-    display: grid;
-    margin: 4em;
-    grid-template-columns: auto;
-    padding: 2em;
-    gap: 8em;
-}
-
-.films-container h1 {
-    margin-block-end: 1em;
-}
-
-.films-container div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.films-container div img {
-    padding: 1rem;
-} */
-
 a {
     text-decoration: none;
     color: var(--accent-clr-500);
@@ -72,6 +50,11 @@ h1 {
     width: 90vw;
     margin: 0 auto;
     grid-template-columns: auto;
+}
+
+.main-heading {
+    text-align: center;
+    margin-block: 2em;
 }
 
 .card {
