@@ -31,7 +31,7 @@ h3 {
     font-family: 'Gemunu Libre', sans-serif;
 }
 
-.films-container {
+/* .films-container {
     display: grid;
     margin: 4em;
     grid-template-columns: auto;
@@ -51,7 +51,7 @@ h3 {
 
 .films-container div img {
     padding: 1rem;
-}
+} */
 
 a {
     text-decoration: none;
@@ -60,17 +60,61 @@ a {
 
 img {
     max-width: 100%;
-    width: 300px;
+    object-fit: cover;
 }
 
 h1 {
     font-size: 2rem;
 }
 
-main {
-    width: 90%;
+.container {
+    display: grid;
+    width: 90vw;
     margin: 0 auto;
+    grid-template-columns: auto;
 }
+
+.card {
+    margin: 2em;
+    border-radius: 10px;
+    background-color: var(--bg-clr-300);
+    /* width: min(40ch, 90%); */
+    box-shadow: 0px 0px 10px hsl(0 100% 100% / 0.4);
+}
+
+.card-title,
+.card-content {
+    padding-block: 0.5em;
+    padding-inline: 1em;
+
+}
+
+.card img {
+    width: 100%;
+    height: 300px;
+}
+
+
+@media (min-width: 700px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+}
+
+@media (min-width: 1300px) {
+    .container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card {
+        width: min(40ch, 90%);
+
+    }
+}
+
+
 
 
 
