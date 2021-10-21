@@ -1,4 +1,4 @@
-import { people } from '../data/people.js';
+import {people} from '../data/people.js';
 
 const createElements = (theElement) => {
     const container = document.createElement(theElement);
@@ -20,9 +20,9 @@ const app = (data) => {
         const divInfoElement = document.createElement('div');
         const pInfoElement = document.createElement('p');
         const imgElement = document.createElement('img');
-        homeworlds.push({ world_url: person.homeworld });
-        //      const newWorlds = homeworlds.sort();
+        homeworlds.push({world_url: person.homeworld});
         //        console.log(newWorlds, ': sorted?');
+        //      const newWorlds = homeworlds.sort();
 
         // const homeworldsSort = homeworlds.sort((a, b) => {
         //     console.log(a.slice(0, -1) - b.slice(0, -1));
@@ -40,6 +40,7 @@ const app = (data) => {
         } else {
             newId = id.slice(0, -1);
         }
+        console.log(newId);
         imgElement.src = `https://starwars-visualguide.com/assets/img/characters/${newId}.jpg`;
         // if (person.url.length - 2 > 1) {
         //     id = person.url.slice(person.url.length - 3);
@@ -87,7 +88,7 @@ const app = (data) => {
 app(people);
 
 /**
- * 
+ *
  *     const loadPlanetData = async () => {
         const res = await fetch('https://swapi.dev/api/planets');
         const planet_data = await res.json();
@@ -145,5 +146,5 @@ app(people);
     // loadPlanetData().catch((e) => {
     //     console.log(e);
     // });
- * 
+ *
  */
