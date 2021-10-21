@@ -71,8 +71,13 @@ const app = (data) => {
         //     console.log(world.world_url.substring(world.world_url.length - 3));
         // }
     });
+
+/*
+ TODO:  create an object with world_ids and characters/residents 
+ */
+
     // world_ids.sort((a, b) => a - b);
-    let worlds = [...new Set(world_ids)];
+    let worlds = [...new Set(world_ids)]; // create set to filter into unique values
     console.log(worlds.sort((a, b) => a - b));
     const worldResidents = Object.assign({}, worlds);
     console.log(worldResidents);
