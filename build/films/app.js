@@ -51,7 +51,8 @@ const app = (data) => {
 
         crawlPElement.textContent = film.opening_crawl;
         h1Element.textContent = film.title;
-        const id = film.url.slice(film.url.length - 1).substr(0, 1);
+        // const id = film.url.slice(film.url.length - 1).substr(0, 1);
+        const id = film.url.slice(film.url.length - 2).slice(0, -1);
         imgElement.src = `https://starwars-visualguide.com/assets/img/films/${id}.jpg`;
 
         headerElement.append(h1Element);
