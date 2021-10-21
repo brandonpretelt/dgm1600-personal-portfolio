@@ -40,7 +40,6 @@ const app = (data) => {
         } else {
             newId = id.slice(0, -1);
         }
-        console.log(newId, ': for the imgs');
         imgElement.src = `https://starwars-visualguide.com/assets/img/characters/${newId}.jpg`;
         // if (person.url.length - 2 > 1) {
         //     id = person.url.slice(person.url.length - 3);
