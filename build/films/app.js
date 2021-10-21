@@ -7,12 +7,26 @@ const app = (data) => {
     const mainHeaderHeading = document.createElement('h1');
     let orderedFilms = [];
 
-    orderedFilms = films
-        .sort((a, b) => {
-            return a.episode_id - b.episode_id;
-        });
+    orderedFilms = films.sort((a, b) => {
+        return a.episode_id - b.episode_id;
+    });
 
     console.log(orderedFilms);
+
+    let orderedFilms2 = [];
+    let prequels = [],
+        ot = [],
+        st = [];
+    orderedFilms2 = films.filter((a) => {
+        if (a.episode_id < 4) {
+            prequels.push(a);
+        }
+        if (a.episode_id <= 6 && a.episode_id > 3) {
+            ot.push(a);
+        }
+    });
+    console.log(prequels);
+    console.log(ot);
 
     orderedFilms.forEach((film) => {
         const headerElement = document.createElement('header');
@@ -48,10 +62,7 @@ const app = (data) => {
     mainHeader.append(mainHeaderHeading);
     container.classList.add('container');
 
-
-
     rootApp.append(mainHeader, container);
 };
-
 
 app(films);
