@@ -12,7 +12,7 @@ import { films } from '../data/films.js';
 // };
 
 const app = (data) => {
-    const rootApp = document.getElementById('App');
+    const rootApp = document.querySelector('#App');
     const container = document.createElement('div');
     const mainHeader = document.createElement('header');
     const mainHeaderHeading = document.createElement('h1');

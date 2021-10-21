@@ -7,7 +7,7 @@ const createElements = (theElement) => {
 };
 
 const app = (data) => {
-    const rootApp = document.getElementById('App');
+    const rootApp = document.querySelector('#App');
     const container = createElements('div');
     const mainHeader = document.createElement('header');
     const mainHeaderHeading = document.createElement('h1');
