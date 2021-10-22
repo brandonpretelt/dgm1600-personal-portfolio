@@ -1,4 +1,4 @@
-import {people} from '../data/people.js';
+import { people } from '../data/people.js';
 
 const createElements = (theElement) => {
     const container = document.createElement(theElement);
@@ -20,7 +20,7 @@ const app = (data) => {
         const divInfoElement = document.createElement('div');
         const pInfoElement = document.createElement('p');
         const imgElement = document.createElement('img');
-        homeworlds.push({world_url: person.homeworld});
+        homeworlds.push({ world_url: person.homeworld });
         //        console.log(newWorlds, ': sorted?');
         //      const newWorlds = homeworlds.sort();
 
@@ -72,7 +72,7 @@ const app = (data) => {
         // }
     });
 
-/*
+    /*
  TODO:  create an object with world_ids and characters/residents 
  */
 
