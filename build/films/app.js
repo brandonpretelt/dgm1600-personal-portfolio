@@ -1,5 +1,7 @@
 import {films} from '../data/films.js';
-//* TODO: fix the layout  *//
+// TODO: fix the layout
+// ~~ TODO: set default film cover
+// TODO: set default film crawl
 const app = (data) => {
     const rootApp = document.querySelector('#App');
     const container = document.createElement('div');
@@ -90,6 +92,13 @@ const app = (data) => {
         featured.append(featuredImg);
         // let div;
         const p = document.createElement('p');
+        // const text = document.createTextNode(openings[0].opening_crawl);
+        // featuredImg.src = item.src;
+        // alert(item[item.length]);
+        featuredImg.src = `https://starwars-visualguide.com/assets/img/films/4.jpg`;
+        // p.innerHTML = `${openings[0].opening_crawl}`;
+        // p.append(text);
+        // alert(openings[0].opening_crawl);
         item.addEventListener('click', () => {
             // div = document.querySelector('.bleh');
             // p;
