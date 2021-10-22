@@ -1,5 +1,5 @@
-import { films } from '../data/films.js';
-
+import {films} from '../data/films.js';
+//* TODO: fix the layout  *//
 const app = (data) => {
     const rootApp = document.querySelector('#App');
     const container = document.createElement('div');
