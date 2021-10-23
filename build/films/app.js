@@ -1,10 +1,9 @@
 import { films } from '../data/films.js';
-import { people } from '../data/people.js';
+// TODO: break stuff up into functions
 // TODO: fix the layout
 // ~~ TODO: set default film cover
 // ~~ TODO: set default film crawl
-// TODO: Clean up comments
-// TODO: break stuff up into functions
+// ~~ TODO: Clean up comments
 
 const app = (data) => {
     const rootApp = document.querySelector('#App');
@@ -14,12 +13,17 @@ const app = (data) => {
 
     let orderedFilms = [];
 
+    let imgArr = [];
+    let containerDiv;
+
+    let featured;
+    let featuredImg;
+    const openings = [];
+
     orderedFilms = data.sort((a, b) => {
         return a.episode_id - b.episode_id;
     });
 
-    let imgArr = [];
-    let containerDiv;
     orderedFilms.forEach((film) => {
         const headerElement = document.createElement('header');
         const h1Element = document.createElement('h1');
@@ -45,9 +49,6 @@ const app = (data) => {
         container.append(divElement);
     });
 
-    let featured;
-    let featuredImg;
-    const openings = [];
     data.forEach((x) => openings.push(x));
 
     const orderedImgs = imgArr.sort((a, b) => {
@@ -99,5 +100,6 @@ const app = (data) => {
     rootApp.append(container);
     rootApp.insertBefore(featured, container);
 };
-
+console.time('test 1');
 app(films);
+console.timeEnd('test 1');
