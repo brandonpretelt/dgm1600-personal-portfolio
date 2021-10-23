@@ -11,7 +11,7 @@ const app = (data) => {
     const container = createElements('div');
     const mainHeader = document.createElement('header');
     const mainHeaderHeading = document.createElement('h1');
-    createElements('div', 'header', 'h1');
+    // createElements('div', 'header', 'h1');
     let homeworlds = [];
     data.forEach((person) => {
         const headerElement = document.createElement('header');
@@ -21,17 +21,17 @@ const app = (data) => {
         const pInfoElement = document.createElement('p');
         const imgElement = document.createElement('img');
         homeworlds.push({ world_url: person.homeworld });
-        //        console.log(newWorlds, ': sorted?');
+        //        // console.log(newWorlds, ': sorted?');
         //      const newWorlds = homeworlds.sort();
 
         // const homeworldsSort = homeworlds.sort((a, b) => {
-        //     console.log(a.slice(0, -1) - b.slice(0, -1));
+        //     // console.log(a.slice(0, -1) - b.slice(0, -1));
         // });
         divElement.classList.add('card');
         headerElement.classList.add('card-title');
         divInfoElement.classList.add('card-content');
-        h1Element.textContent = person.name;
-        pInfoElement.textContent = `${person.name} was born on ${person.birth_year}.`;
+        h1Element.innerHTML = person.name;
+        pInfoElement.innerHTML = `${person.name} was born on ${person.birth_year}.`;
         let id;
         id = person.url.slice(person.url.length - 3);
         let newId = id.slice(0, -1);
@@ -40,7 +40,7 @@ const app = (data) => {
         } else {
             newId = id.slice(0, -1);
         }
-        console.log(newId);
+        // console.log(newId);
         imgElement.src = `https://starwars-visualguide.com/assets/img/characters/${newId}.jpg`;
         // if (person.url.length - 2 > 1) {
         //     id = person.url.slice(person.url.length - 3);
@@ -68,7 +68,7 @@ const app = (data) => {
         world_ids.push(newId);
 
         // if (world.world_url.length - 2 > 1) {
-        //     console.log(world.world_url.substring(world.world_url.length - 3));
+        //     // console.log(world.world_url.substring(world.world_url.length - 3));
         // }
     });
 
@@ -78,9 +78,9 @@ const app = (data) => {
 
     // world_ids.sort((a, b) => a - b);
     let worlds = [...new Set(world_ids)]; // create set to filter into unique values
-    console.log(worlds.sort((a, b) => a - b));
+    // console.log(worlds.sort((a, b) => a - b));
     const worldResidents = Object.assign({}, worlds);
-    console.log(worldResidents);
+    // console.log(worldResidents);
 
     mainHeaderHeading.textContent = 'Star Wars Characters';
     mainHeader.classList.add('main-heading');
@@ -104,7 +104,7 @@ app(people);
         //         }
         //     });
         // });
-        // console.log(planet_data.results.residents[0]);
+        // // console.log(planet_data.results.residents[0]);
         let planetPeople = [];
         people.forEach((person) => {
             planetPeople.push({
@@ -114,42 +114,42 @@ app(people);
             });
         });
         let planetsResidents = [];
-        // console.log(planetPeople);
+        // // console.log(planetPeople);
 
-        // console.log(planetsResidents);
-        // console.log(planet_data.results);
+        // // console.log(planetsResidents);
+        // // console.log(planet_data.results);
         const { results } = planet_data;
-        console.log(results);
+        // console.log(results);
         const residents = results.filter((x) => {
             if (x.url.includes(planetPeople.homeworld)) {
-                console.log('hlelo thre');
+                // console.log('hlelo thre');
             }
             // if (x.residents.includes('1')) return x.residents;
             // if (x.residents.includes(1)) {
-            //     console.log('Use the force, Luke!');
+            //     // console.log('Use the force, Luke!');
             // }
         });
-        // console.log(residents);
-        // console.log(planetPeople, ' I am planet people');
+        // // console.log(residents);
+        // // console.log(planetPeople, ' I am planet people');
         // const { residents } = planet_data.results[];
         // residents.forEach((resident) => {
-        //     console.log(resident);
+        //     // console.log(resident);
         // });
-        // console.log(residents, ' i am residents');
+        // // console.log(residents, ' i am residents');
         // if (residents[0].includes(11)) {
-        //     console.log('hi');
+        //     // console.log('hi');
         // }
-        // console.log(planet_data.results[0].residents);
+        // // console.log(planet_data.results[0].residents);
         // const tatooineResidents = residents.filter((x) => {
         //     if (x.includes(planetPeople[0])) {
-        //         console.log('hi');
+        //         // console.log('hi');
         //     }
         // });
-        // console.log(tatooineResidents);
+        // // console.log(tatooineResidents);
     };
 
     // loadPlanetData().catch((e) => {
-    //     console.log(e);
+    //     // console.log(e);
     // });
  *
  */
