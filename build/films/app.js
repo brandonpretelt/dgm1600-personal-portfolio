@@ -1,5 +1,4 @@
 import { films } from '../data/films.js';
-// TODO: break stuff up into functions
 // TODO: fix the layout
 // ~~ TODO: set default film cover
 // ~~ TODO: set default film crawl
