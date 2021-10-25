@@ -79,7 +79,6 @@ const app = (data) => {
         item.addEventListener('click', () => {
             const p = document.createElement('p');
             const newH1 = document.createElement('h1');
-
             featured.innerHTML = `
             <img src=${(featuredImg.src = item.src)}>
             <h1>${openings[index].title}</h1>
