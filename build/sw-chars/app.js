@@ -8,10 +8,10 @@ const createElements = (theElement) => {
 
 const app = (data) => {
     const rootApp = document.querySelector('#App');
-    const container = createElements('div');
+    const container = document.createElement('div');
     const mainHeader = document.createElement('header');
     const mainHeaderHeading = document.createElement('h1');
-    // createElements('div', 'header', 'h1');
+
     let homeworlds = [];
     data.forEach((person) => {
         const headerElement = document.createElement('header');
@@ -21,17 +21,13 @@ const app = (data) => {
         const pInfoElement = document.createElement('p');
         const imgElement = document.createElement('img');
         homeworlds.push({ world_url: person.homeworld });
-        //        // console.log(newWorlds, ': sorted?');
-        //      const newWorlds = homeworlds.sort();
 
-        // const homeworldsSort = homeworlds.sort((a, b) => {
-        //     // console.log(a.slice(0, -1) - b.slice(0, -1));
-        // });
         divElement.classList.add('card');
         headerElement.classList.add('card-title');
         divInfoElement.classList.add('card-content');
         h1Element.innerHTML = person.name;
         pInfoElement.innerHTML = `${person.name} was born on ${person.birth_year}.`;
+        pInfoElement.innerHTML = `${person.homeworld}`;
         let id;
         id = person.url.slice(person.url.length - 3);
         let newId = id.slice(0, -1);
@@ -40,13 +36,7 @@ const app = (data) => {
         } else {
             newId = id.slice(0, -1);
         }
-        // console.log(newId);
         imgElement.src = `https://starwars-visualguide.com/assets/img/characters/${newId}.jpg`;
-        // if (person.url.length - 2 > 1) {
-        //     id = person.url.slice(person.url.length - 3);
-        //     let newId = id.slice(0, -1);
-        //     imgElement.src = `https://starwars-visualguide.com/assets/img/characters/${newId}.jpg`;
-        // }
 
         headerElement.append(h1Element);
         divElement.append(headerElement);
@@ -56,7 +46,8 @@ const app = (data) => {
         container.append(divElement);
     });
 
-    const world_ids = [];
+    let world_ids = [];
+    let url;
     homeworlds.forEach((world) => {
         const id = world.world_url.slice(world.world_url.length - 3);
         let newId = id.slice(0, -1);
@@ -67,20 +58,45 @@ const app = (data) => {
         }
         world_ids.push(newId);
 
-        // if (world.world_url.length - 2 > 1) {
-        //     // console.log(world.world_url.substring(world.world_url.length - 3));
-        // }
+        // console.log(world.world_url.length);
+        if (world.world_url.length === 32) {
+            url = world.world_url.slice(0, world.world_url.length - 3);
+        } else {
+            url = world.world_url.slice(0, world.world_url.length - 2);
+        }
+        console.log(url);
+        // world_ids.push({
+        //     homeworld_url: `${url}`,
+        //     homeworld_id: parseInt(newId)
+        // });
     });
+    console.log(url, 'outside the loop');
+    console.log(world_ids);
 
     /*
- TODO:  create an object with world_ids and characters/residents 
+ TODO:  create an object with world_ids and characters/residents
  */
 
-    // world_ids.sort((a, b) => a - b);
+    world_ids.sort((a, b) => a - b);
     let worlds = [...new Set(world_ids)]; // create set to filter into unique values
     // console.log(worlds.sort((a, b) => a - b));
     const worldResidents = Object.assign({}, worlds);
     // console.log(worldResidents);
+    const newWorld = [];
+    for (let id in worldResidents) {
+        newWorld.push(`${url}${parseInt(id)}`);
+    }
+    console.log(newWorld);
+    let homeworldFinder = [];
+    homeworldFinder = people.find((person) => {
+        if (person.homeworld.includes(newWorld)) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+
+    console.log(homeworldFinder);
 
     mainHeaderHeading.textContent = 'Star Wars Characters';
     mainHeader.classList.add('main-heading');
