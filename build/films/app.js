@@ -1,5 +1,4 @@
 import { films } from '../data/films.js';
-// TODO: fix the layout
 // ~~ TODO: set default film cover
 // ~~ TODO: set default film crawl
 // ~~ TODO: Clean up comments
@@ -8,7 +7,6 @@ const app = (data) => {
     const rootApp = document.querySelector('#App');
     const container = document.createElement('div');
     const mainHeader = document.createElement('header');
-    const mainHeaderHeading = document.createElement('h1');
 
     let orderedFilms = [];
 
@@ -18,6 +16,18 @@ const app = (data) => {
     let featured;
     let featuredImg;
     const openings = [];
+
+    const sortArr = (arr) => {
+        return arr.sort((a, b) => {
+            if (a > b) {
+                return -1;
+            }
+            if (b > a) {
+                return 1;
+            }
+            return 0;
+        });
+    };
 
     orderedFilms = data.sort((a, b) => {
         return a.episode_id - b.episode_id;
@@ -50,15 +60,7 @@ const app = (data) => {
 
     data.forEach((x) => openings.push(x));
 
-    const orderedImgs = imgArr.sort((a, b) => {
-        if (a > b) {
-            return -1;
-        }
-        if (b > a) {
-            return 1;
-        }
-        return 0;
-    });
+    const orderedImgs = sortArr(imgArr);
 
     orderedImgs.forEach((item, index) => {
         featured = document.createElement('div');
@@ -74,17 +76,19 @@ const app = (data) => {
         p.innerHTML = openings[3].opening_crawl;
         newH1.innerHTML = openings[3].title;
 
-        featured.append(newH1);
-        featured.append(p);
-        item.addEventListener('click', () => {
-            const p = document.createElement('p');
-            const newH1 = document.createElement('h1');
-            featured.innerHTML = `
+        const displayUI = () => {
+            return `
             <img src=${(featuredImg.src = item.src)}>
             <h1>${openings[index].title}</h1>
             <p>${openings[index].opening_crawl}</p>
             `;
+        };
+
+        item.addEventListener('mouseover', () => {
+            featured.innerHTML = displayUI();
         });
+
+        featured.append(newH1);
         featured.append(p);
     });
 
@@ -98,6 +102,4 @@ const app = (data) => {
     rootApp.append(container);
     rootApp.insertBefore(featured, container);
 };
-console.time('test 1');
 app(films);
-console.timeEnd('test 1');
