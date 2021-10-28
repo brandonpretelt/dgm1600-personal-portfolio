@@ -1,8 +1,6 @@
 import { people } from '../data/people.js';
 
-const app = (data) => {
-    // TODO: FIX LAYOUT?
-
+const populateDOM = (arr) => {
     const rootApp = document.querySelector('#App');
     const container = document.createElement('div');
     const mainHeader = document.createElement('header');
@@ -55,7 +53,7 @@ const app = (data) => {
     // searchMaleFemale('male');
     // searchMaleFemale('female');
 
-    data.forEach((person) => {
+    arr.forEach((person) => {
         // rewrite as a function, characters as param
         const headerElement = document.createElement('header');
         const divElement = document.createElement('div');
@@ -89,4 +87,9 @@ const app = (data) => {
     rootApp.append(mainHeader, container);
 };
 
-app(people);
+const app = () => {
+    // TODO: FIX LAYOUT?
+    populateDOM(people);
+};
+
+app();
