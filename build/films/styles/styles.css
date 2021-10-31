@@ -68,6 +68,24 @@ h1 {
     /* transform: translateX(90px); */
 }
 
+#navbar {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+    background-color: #000;
+}
+
+#navbar a {
+    display: inline-block;
+    font-size: 1.1rem;
+    padding: 1em;
+    margin-inline: 2em;
+}
+
+#navbar a:hover {
+    text-decoration: underline;
+}
+
 .container {
     display: flex;
     flex-direction: row;

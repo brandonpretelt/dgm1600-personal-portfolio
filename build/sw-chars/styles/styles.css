@@ -59,6 +59,24 @@ button {
     grid-template-columns: auto;
 }
 
+#navbar {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+    background-color: #000;
+}
+
+#navbar a {
+    display: inline-block;
+    font-size: 1.1rem;
+    padding: 1em;
+    margin-inline: 2em;
+}
+
+#navbar a:hover {
+    text-decoration: underline;
+}
+
 .main-heading {
     text-align: center;
     margin-block: 2em;
