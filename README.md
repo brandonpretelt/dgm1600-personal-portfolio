@@ -3,9 +3,9 @@
 
 - [x] One or more JS files from http://swapi.dev
     - [x] Extract 2 different arrays of data
-- [ ] Use querySelector or querySelectorAll
-- [ ] Push to git
-- [ ] Netlify it
+- [x] Use querySelector or querySelectorAll
+- [x] Push to git
+- [x] Netlify it
 
 
 
