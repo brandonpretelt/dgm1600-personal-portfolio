@@ -15,6 +15,8 @@ otherBtn.textContent = 'Other Characters';
 allBtn.textContent = 'All Characters';
 heading.textContent = 'Star Wars Characters';
 
+// TODO: use visual guide to get more data...?
+
 const grabLast = (item) => {
     return item.url.slice(item.url.length - 3);
 };
