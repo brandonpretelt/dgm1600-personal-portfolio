@@ -1,4 +1,10 @@
 import { films } from '../data/films.js';
+import {
+    addListeners,
+    sortStringArr,
+    grabLast,
+    isolateID
+} from '../utils/utils.js';
 // ~~ TODO: set default film cover
 // ~~ TODO: set default film crawl
 // ~~ TODO: Clean up comments
@@ -16,18 +22,6 @@ const app = (data) => {
     let featured;
     let featuredImg;
     const openings = [];
-
-    const sortArr = (arr) => {
-        return arr.sort((a, b) => {
-            if (a > b) {
-                return -1;
-            }
-            if (b > a) {
-                return 1;
-            }
-            return 0;
-        });
-    };
 
     orderedFilms = data.sort((a, b) => {
         return a.episode_id - b.episode_id;
@@ -49,8 +43,8 @@ const app = (data) => {
 
         crawlPElement.textContent = film.opening_crawl;
         h1Element.textContent = film.title;
-        const id = film.url.slice(film.url.length - 2).slice(0, -1);
-
+        // const id = film.url.slice(film.url.length - 2).slice(0, -1);
+        const id = isolateID(film);
         imgElement.src = `https://starwars-visualguide.com/assets/img/films/${id}.jpg`;
         imgArr.push(imgElement);
 
@@ -60,7 +54,7 @@ const app = (data) => {
 
     data.forEach((x) => openings.push(x));
 
-    const orderedImgs = sortArr(imgArr);
+    const orderedImgs = sortStringArr(imgArr);
 
     orderedImgs.forEach((item, index) => {
         featured = document.createElement('div');
@@ -68,6 +62,8 @@ const app = (data) => {
 
         featuredImg.setAttribute('data-main', 'main');
         featured.append(featuredImg);
+
+        console.log('hello there');
 
         const p = document.createElement('p');
         const newH1 = document.createElement('h1');
@@ -83,10 +79,11 @@ const app = (data) => {
             <p>${openings[index].opening_crawl}</p>
             `;
         };
-
-        item.addEventListener('mouseover', () => {
-            featured.innerHTML = displayUI();
-        });
+        addListeners(
+            item,
+            'mouseover',
+            () => (featured.innerHTML = displayUI())
+        );
 
         featured.append(newH1);
         featured.append(p);
