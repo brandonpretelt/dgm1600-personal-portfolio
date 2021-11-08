@@ -19,6 +19,15 @@
 .featured, .container, .card, .card-title, .card-content, .main-heading
 */
 
+/* glass effect */
+/*
+ background-color: #ffffff10
+ backdrop-filter: blur(12px)
+ -webkit-backgdrop-filter: blur(12px)
+
+**/
+
+
 
 html {
     height: 100%;
@@ -62,9 +71,12 @@ h1 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     padding: 3em;
-    margin: 0 auto;
+    margin: 2em auto;
     justify-content: center;
     width: 90%;
+    background-color: hsla(0, 0%, 79%, 0.521);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.9);
     /* transform: translateX(90px); */
 }
 
