@@ -2,8 +2,6 @@ const grabLast = (item, length) => {
     return item.url.slice(item.url.length - length);
 };
 
-// film.url.slice(film.url.length - 2).slice(0, -1);
-
 const isolateID = (item) => {
     let id;
     id = grabLast(item, 3);

@@ -1,10 +1,5 @@
 import { films } from '../data/films.js';
-import {
-    addListeners,
-    sortStringArr,
-    grabLast,
-    isolateID
-} from '../utils/utils.js';
+import { addListeners, sortStringArr, isolateID } from '../utils/utils.js';
 // ~~ TODO: set default film cover
 // ~~ TODO: set default film crawl
 // ~~ TODO: Clean up comments
@@ -27,7 +22,7 @@ const app = (data) => {
         return a.episode_id - b.episode_id;
     });
 
-    orderedFilms.forEach((film) => {
+    const createCard = (arr1, arr2) => {
         const headerElement = document.createElement('header');
         const h1Element = document.createElement('h1');
         const divElement = document.createElement('div');
@@ -41,29 +36,30 @@ const app = (data) => {
         headerElement.classList.add('card-title');
         divCrawlElement.classList.add('card-content');
 
-        crawlPElement.textContent = film.opening_crawl;
-        h1Element.textContent = film.title;
-        // const id = film.url.slice(film.url.length - 2).slice(0, -1);
-        const id = isolateID(film);
+        crawlPElement.textContent = arr1.opening_crawl;
+        h1Element.textContent = arr1.title;
+        const id = isolateID(arr1);
         imgElement.src = `https://starwars-visualguide.com/assets/img/films/${id}.jpg`;
-        imgArr.push(imgElement);
+        arr2.push(imgElement);
 
         divElement.append(imgElement);
         container.append(divElement);
+    };
+
+    orderedFilms.forEach((film) => {
+        createCard(film, imgArr);
     });
 
     data.forEach((x) => openings.push(x));
 
     const orderedImgs = sortStringArr(imgArr);
 
-    orderedImgs.forEach((item, index) => {
+    const displayFeatured = (arrItem1, theIndex) => {
         featured = document.createElement('div');
         featuredImg = document.createElement('img');
 
         featuredImg.setAttribute('data-main', 'main');
         featured.append(featuredImg);
-
-        console.log('hello there');
 
         const p = document.createElement('p');
         const newH1 = document.createElement('h1');
@@ -74,19 +70,24 @@ const app = (data) => {
 
         const displayUI = () => {
             return `
-            <img src=${(featuredImg.src = item.src)}>
-            <h1>${openings[index].title}</h1>
-            <p>${openings[index].opening_crawl}</p>
+            <img src=${(featuredImg.src = arrItem1.src)}>
+            <h1>${openings[theIndex].title}</h1>
+            <p>${openings[theIndex].opening_crawl}</p>
             `;
         };
+
         addListeners(
-            item,
-            'mouseover',
+            arrItem1,
+            'click',
             () => (featured.innerHTML = displayUI())
         );
 
         featured.append(newH1);
         featured.append(p);
+    };
+
+    orderedImgs.forEach((item, index) => {
+        displayFeatured(item, index);
     });
 
     featured.classList.add('featured');
@@ -94,7 +95,6 @@ const app = (data) => {
     container.classList.add('container');
 
     container.prepend(featured);
-    containerDiv.classList.add('test-test');
 
     rootApp.append(container);
     rootApp.insertBefore(featured, container);
