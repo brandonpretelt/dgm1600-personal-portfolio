@@ -16,6 +16,7 @@
     overflow: hidden;
     flex-direction: row;
     background-color: #222;
+    cursor: pointer;
 }
 
 .films,
@@ -24,6 +25,7 @@
     width: 33vw;
     height: 100vh;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .container .link-item {
@@ -76,6 +78,7 @@
     display: inline-block;
     margin: 0 auto;
     transition: opacity 600ms ease-in-out;
+    cursor: pointer;
 }
 
 .link-item a img {
@@ -84,4 +87,5 @@
 
 .link-item a:hover {
     opacity: 1;
+    cursor: pointer;
 }
