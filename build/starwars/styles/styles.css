@@ -4,6 +4,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: initial;
 }
 
 .container {
@@ -16,7 +17,6 @@
     overflow: hidden;
     flex-direction: row;
     background-color: #222;
-    cursor: pointer;
 }
 
 .films,
@@ -25,7 +25,6 @@
     width: 33vw;
     height: 100vh;
     object-fit: cover;
-    cursor: pointer;
 }
 
 .container .link-item {
@@ -37,7 +36,6 @@
     transform: scale(1);
     transition: opacity 300ms ease-in-out,
         transform 300ms ease-in-out;
-    cursor: pointer;
 }
 
 .link-item .link-title,
@@ -78,14 +76,37 @@
     display: inline-block;
     margin: 0 auto;
     transition: opacity 600ms ease-in-out;
-    cursor: pointer;
+}
+
+.link-item-transition {
+    opacity: 1;
+    transition: opacity 600ms ease-in-out;
+
 }
 
 .link-item a img {
     transition: opacity 300ms ease-in-out;
 }
 
-.link-item a:hover {
+/* .link-item a:hover,
+.show {
     opacity: 1;
+
+} */
+
+/* .link-item a:hover {
     cursor: pointer;
+} */
+
+.link-title,
+.link-title-inner {
+    cursor: pointer;
+}
+
+.link-item-test .link-item-test-films {
+    opacity: 0 !important;
+}
+
+.link-item-test .link-title {
+    opacity: 1;
 }
