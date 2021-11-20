@@ -28,6 +28,8 @@ body {
     text-align: center;
 }
 
+
+
 #search-form button {
     display: block;
     margin: 1em auto;
@@ -40,8 +42,21 @@ body {
     cursor: pointer;
 }
 
+.congress-card {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-flow: column nowrap;
+    border-radius: 20px;
+    padding: 0.5em;
+    margin: 0 auto;
+    width: min-content;
+    align-items: center;
+}
+
 #search-form input {
     padding: 0.5em;
+    width: 100%;
     border-radius: 5px;
     border: 1px currentColor solid;
     font-size: 1.125rem;
