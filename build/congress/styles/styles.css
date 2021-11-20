@@ -1,0 +1,48 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #ffe;
+    font-family: sans-serif;
+    line-height: 1.75;
+    letter-spacing: 0.125ch;
+}
+
+.container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    transform: translateY(200px);
+}
+
+.container h1 {
+    font-size: 3rem;
+}
+
+#search-form label {
+    display: block;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#search-form button {
+    display: block;
+    margin: 1em auto;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 1em;
+    font-size: 1.2rem;
+    letter-spacing: 0.15ch;
+    cursor: pointer;
+}
+
+#search-form input {
+    padding: 0.5em;
+    border-radius: 5px;
+    border: 1px currentColor solid;
+    font-size: 1.125rem;
+}
