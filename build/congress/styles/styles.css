@@ -28,7 +28,9 @@ body {
     text-align: center;
 }
 
-
+.hide {
+    display: none;
+}
 
 #search-form button {
     display: block;
