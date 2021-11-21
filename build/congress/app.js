@@ -2,11 +2,12 @@ import { senators } from '../data/senators.js';
 import { representatives } from '../data/representatives.js';
 
 const searchInput = document.querySelector('#search-input');
-document.querySelector('.congress-card').className = 'hide';
+// document.querySelector('.congress-card').className = 'hide';
 // senators.forEach((senator) => console.log(senator));
 const members = [...senators, ...representatives];
 
 const simpleCongress = members.map((member) => {
+    const fullURL = `https://www.govtrack.us/static/legislator-photos/${member.govtrack_id}-100px.jpeg`;
     const fullName = !member.middle_name
         ? `${member.first_name} ${member.last_name}`
         : `${member.first_name} ${member.middle_name} ${member.last_name}`;
@@ -17,7 +18,8 @@ const simpleCongress = members.map((member) => {
         party: member.party,
         chamber: member.title,
         short_chamber: member.short_title,
-        id: member.govtrack_id
+        id: member.govtrack_id,
+        fullURL
     };
 });
 
@@ -110,9 +112,9 @@ const searchParty = () => {
 
 document.querySelector('button').addEventListener('click', (e) => {
     e.preventDefault();
-    document.querySelector('.congress-card').classList.remove('hide');
+    // document.querySelector('.congress-card').classList.remove('hide');
     const render = (member) => {
-        const main = document.querySelector('main');
+        const cardContainer = document.querySelector('.card-container');
         // const congressCard = document.createElement('div');
         // const congressCardHeading = document.createElement('div');
         // const congressCardH1 = document.createElement('h1');
@@ -123,17 +125,36 @@ document.querySelector('button').addEventListener('click', (e) => {
         // const congressCardHeading = document.querySelector(
         //     '.congress-card-heading'
         // );
-        const congressCardH1 = document.querySelector(
-            '.congress-card-heading h1'
-        );
+        // const congressCardH1 = document.querySelector(
+        //     '.congress-card-heading h1'
+        // );
         // const congressCardInfo = document.querySelector('.congress-card-info');
         // const congressCardText = document.querySelector(
         //     '.congress-card-info .congress-card.text'
         // );
-        const congressCardH3 = document.querySelector('.congress-card-text h3');
+        // const congressCardH3 = document.querySelector('.congress-card-text h3');
 
-        congressCardH3.innerHTML = `${member.party}`;
-        congressCardH1.innerHTML = `${member.fullName}`;
+        // congressCardH3.innerHTML = `${member.party}`;
+        // congressCardH1.innerHTML = `${member.fullName}`;
+        cardContainer.innerHTML = `
+        <div class="congress-card">
+        <div class="card-info">
+        <figure class="card-img">
+            <img src="${member.fullURL}">
+        </figure>
+
+    </div>
+        <div class="congress-card-heading">
+            <h1>${member.fullName}</h1>
+        </div>
+        <div class="congress-card-info">
+            <div class="congress-card-text">
+                <h3 class="congress-party">${member.party}</h3>
+            </div>
+ 
+        </div>
+        </div>
+        `;
         // congressCardH1.innerHTML = `${member.first_name} ${member.last_name}`;
 
         // Congress Card Text, Info and h3
@@ -224,13 +245,13 @@ document.querySelector('button').addEventListener('click', (e) => {
 //             <div class="card-heading">
 //                 <h1>${member.first_name}</h1>
 //             </div>
-//             <div class="card-info">
-//                 <figure class="card-img">
-//                     <img src="">
-//                 </figure>
-//                 <div class="card-text">
-//                 </div>
-//             </div>
+// <div class="card-info">
+//     <figure class="card-img">
+//         <img src="">
+//     </figure>
+//     <div class="card-text">
+//     </div>
+// </div>
 //         </div>
 //         `;
 // };

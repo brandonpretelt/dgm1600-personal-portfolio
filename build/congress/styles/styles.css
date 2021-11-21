@@ -22,6 +22,13 @@ body {
     font-size: 3rem;
 }
 
+#search-form,
+#search-form button {
+    margin: 0 auto;
+    width: 400px;
+    max-width: 100%;
+}
+
 #search-form label {
     display: block;
     font-size: 1.5rem;
@@ -35,7 +42,7 @@ body {
 #search-form button {
     display: block;
     margin: 1em auto;
-    width: 100%;
+    /* width: 100%; */
     border: none;
     border-radius: 10px;
     padding: 1em;
@@ -52,8 +59,28 @@ body {
     border-radius: 20px;
     padding: 0.5em;
     margin: 0 auto;
-    width: min-content;
-    align-items: center;
+    width: 500px;
+    /* align-items: center; */
+}
+
+/* .congress-info {
+    align-self: flex-start;
+    justify-self: flex-start;
+} */
+
+.congress-card-heading {
+    display: block;
+    float: right;
+    /* flex-direction: row !important; */
+}
+
+.congress-card h1 {
+    font-size: 1.1em;
+}
+
+.congress-card .congress-card-text h3 {
+    margin: 0;
+    padding: 0;
 }
 
 #search-form input {
