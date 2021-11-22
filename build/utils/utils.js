@@ -1,3 +1,9 @@
+const PolicticalParty = {
+    D: 'Democrat',
+    R: 'Republican',
+    ID: 'Independent'
+};
+
 const grabLast = (item, length) => {
     return item.url.slice(item.url.length - length);
 };
@@ -48,4 +54,11 @@ const sortStringArr = (arr) => {
     });
 };
 
-export { grabLast, isolateID, renderDOM, addListeners, sortStringArr };
+export {
+    grabLast,
+    isolateID,
+    renderDOM,
+    addListeners,
+    sortStringArr,
+    PolicticalParty
+};
