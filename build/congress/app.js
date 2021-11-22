@@ -1,267 +1,200 @@
 import { senators } from '../data/senators.js';
 import { representatives } from '../data/representatives.js';
+import { PolicticalParty } from '../utils/utils.js';
 
 const searchInput = document.querySelector('#search-input');
-// document.querySelector('.congress-card').className = 'hide';
-// senators.forEach((senator) => console.log(senator));
+document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+});
+
+// document.querySelector('.container main').style.display = 'flex';
+
 const members = [...senators, ...representatives];
 
 const simpleCongress = members.map((member) => {
     const fullURL = `https://www.govtrack.us/static/legislator-photos/${member.govtrack_id}-100px.jpeg`;
-    const fullName = !member.middle_name
-        ? `${member.first_name} ${member.last_name}`
-        : `${member.first_name} ${member.middle_name} ${member.last_name}`;
+
+    const congressParty = member.party;
+
+    const party = !PolicticalParty[congressParty]
+        ? undefined
+        : PolicticalParty[congressParty];
+
+    const chamber = member.title,
+        short_chamber = member.short_title;
+
+    const id = member.govtrack_id;
+    const facebook = !member.facebook_account ? '' : member.facebook_account;
+    // const facebook = member.facebook_account;
+
+    const firstName = member.first_name,
+        middleName = member.middle_name,
+        lastName = member.last_name;
+
+    const fullName = !middleName
+        ? `${firstName} ${lastName}`
+        : `${firstName} ${middleName} ${lastName}`;
+
     return {
-        firstName: member.first_name,
-        lastName: member.last_name,
+        firstName,
+        lastName,
+        middleName,
         fullName,
-        party: member.party,
-        chamber: member.title,
-        short_chamber: member.short_title,
-        id: member.govtrack_id,
+        party,
+        facebook,
+        chamber,
+        short_chamber,
+        id,
         fullURL
     };
 });
 
-// simpleCongress.forEach((member) => {
-//     console.log(member.fullName);
-// });
+// document.querySelector('button').addEventListener('click', (e) => {
+//     e.preventDefault();
 
-const getChamber = (chamber) => {
-    const membersOfCongress = simpleCongress.filter((congress) => {
-        if (congress.short_chamber.includes(chamber)) {
-            return congress;
-        }
-    });
-    return membersOfCongress;
-};
+//     // document.querySelector('.congress-card').classList.remove('hide');
+//     const render = (member) => {
+//         const cardContainer = document.querySelector('.card-container');
+//         while (cardContainer.firstChild) {
+//             cardContainer.removeChild(cardContainer.firstChild);
+//         }
 
-const getParty = (party) => {
-    const membersOfCongress = simpleCongress.filter((congress) => {
-        if (congress.party.includes(party)) {
-            return congress;
-        }
-    });
-    return membersOfCongress;
-};
+//         cardContainer.innerHTML += `
+//         <div class="congress-card">
+//         <div class="card-info">
+//         <figure class="card-img">
+//             <img src="${member.fullURL}">
+//         </figure>
 
-console.log(getChamber('Sen'));
-console.log(getParty('D'));
-// console.log(simpleCongress);
-// const senate = members.filter((member) =>
-//     member.short_title.includes('Sen') ? member : false
-// );
-// const house = members.filter((member) =>
-//     member.short_title.includes('Rep') ? member : false
-// );
+//     </div>
+//         <div class="congress-card-heading">
+//             <h1>${member.fullName}</h1>
+//         </div>
+//         <div class="congress-card-info">
+//             <div class="congress-card-text">
+//                 <h3 class="congress-party">${member.party}</h3>
+//                 <h3>${member.chamber}</h3>
+//             </div>
 
-// console.log(senate);
-
-//const getCongress = (congress) => {
-// const senate = members.filter((member) => {
-//     let senators = {};
-//     if (member.short_title.includes('Sen')) {
-//         const firstName = member.first_name;
-//         const middleName = member.middle_name;
-//         const lastName = member.last_name;
-//         const fullName = !middleName
-//             ? `${firstName} ${lastName}`
-//             : `${firstName} ${middleName} ${lastName}`;
-//     }
-// });
-
-// const house = members.filter((member) => {
-//     if (member.short_title.includes('Rep')) {
-//         return member;
-//     }
-// });
-
-// console.log(senate.firstName);
-// console.log(house);
-// const filterHouse = (chamberHouse) => {
-//     console.log(chamberHouse);
-// };
-// const congress = members.map((member) => {
-//     return {
-//         party: member.party
+//         </div>
+//         </div>
+//         `;
 //     };
-// });
-// };
 
-// getCongress();
+//     let userText = searchInput.value.toLowerCase();
+//     let memberFirstName;
+//     let memberLastName;
+//     let memberFullName;
+//     if (!userText !== '') {
+//         simpleCongress.forEach((member) => {
+//             memberFirstName = member.firstName.toLowerCase();
+//             memberLastName = member.lastName.toLowerCase();
+//             memberFullName = member.fullName.toLowerCase();
+//             if (
+//                 memberFirstName === userText ||
+//                 memberLastName === userText ||
+//                 memberFullName === userText
+//             ) {
+//                 render(member);
+//                 console.log(member);
+//             }
+//         });
+//         // members.forEach((member) => {
+//         //     memberFirstName = member.first_name.toLowerCase();
+//         //     memberLastName = member.last_name.toLowerCase();
+//         //     memberFullName = `${memberFirstName} ${memberLastName}`;
+//         //     if (
+//         //         memberFirstName === userText ||
+//         //         memberLastName === userText ||
+//         //         memberFullName === userText
+//         //     ) {
+//         //         render(member);
+//         //         console.log(member);
+//         //     }
+//         // });
+//         searchInput.value = '';
+//     }
 
-// console.log(congress);
-
-// const republicans = members.map((member) => {
-//     if (member.party === 'R') {
-//         return member.party;
+//     const congressParty = document.querySelector('.congress-party');
+//     switch (congressParty.innerHTML) {
+//         case 'Republican':
+//             congressParty.classList.add('republican');
+//             break;
+//         case 'Democrat':
+//             congressParty.classList.add('democrat');
+//             break;
+//         default:
+//             congressParty.classList.add('independent');
 //     }
 // });
 
-// console.log(republicans);
+const render = (member) => {
+    const cardContainer = document.querySelector('.card-container');
+    while (cardContainer.firstChild) {
+        cardContainer.removeChild(cardContainer.firstChild);
+    }
 
-// const democrats = members.filter((member) => {
-//     if (member.party === 'D') {
-//         return member;
-//     }
-// });
+    cardContainer.innerHTML = `
+        <div class="congress-card">
+            <div class="card-info">
+                <figure class="card-img">
+                    <img src="${member.fullURL}">
+                </figure>
 
-const searchParty = () => {
-    return;
+            </div>
+            <div class="congress-card-heading">
+                <h1>${member.fullName}</h1>
+            </div>
+            <div class="congress-card-info">
+                <div class="congress-card-text">
+                    <h3 class="congress-party">${member.party}</h3>
+                    <h3>${member.chamber}</h3>
+                    <a href="https://facebook.com/${member.facebook}" target="_blank">${member.facebook}</a>
+                
+                </div>
+
+            </div>
+        </div>
+    `;
+    {
+        /* <a href="https://facebook.com/${member.facebook}" target="_blank">${member.facebook}</a> */
+    }
+    const congressParty = document.querySelector('.congress-party');
+    switch (congressParty.innerHTML) {
+        case 'Republican':
+            congressParty.classList.add('republican');
+            break;
+        case 'Democrat':
+            congressParty.classList.add('democrat');
+            break;
+        default:
+            congressParty.classList.add('independent');
+    }
 };
 
-document.querySelector('button').addEventListener('click', (e) => {
-    e.preventDefault();
-    // document.querySelector('.congress-card').classList.remove('hide');
-    const render = (member) => {
-        const cardContainer = document.querySelector('.card-container');
-        // const congressCard = document.createElement('div');
-        // const congressCardHeading = document.createElement('div');
-        // const congressCardH1 = document.createElement('h1');
-        // const congressCardInfo = document.createElement('div');
-        // const congressCardText = document.createElement('div');
-        // const congressCardH3 = document.createElement('h3');
-        // const congressCard = document.querySelector('.congress-card');
-        // const congressCardHeading = document.querySelector(
-        //     '.congress-card-heading'
-        // );
-        // const congressCardH1 = document.querySelector(
-        //     '.congress-card-heading h1'
-        // );
-        // const congressCardInfo = document.querySelector('.congress-card-info');
-        // const congressCardText = document.querySelector(
-        //     '.congress-card-info .congress-card.text'
-        // );
-        // const congressCardH3 = document.querySelector('.congress-card-text h3');
+searchInput.addEventListener('keyup', (e) => {
+    const cardContainer = document.querySelector('.card-container');
 
-        // congressCardH3.innerHTML = `${member.party}`;
-        // congressCardH1.innerHTML = `${member.fullName}`;
-        cardContainer.innerHTML = `
-        <div class="congress-card">
-        <div class="card-info">
-        <figure class="card-img">
-            <img src="${member.fullURL}">
-        </figure>
-
-    </div>
-        <div class="congress-card-heading">
-            <h1>${member.fullName}</h1>
-        </div>
-        <div class="congress-card-info">
-            <div class="congress-card-text">
-                <h3 class="congress-party">${member.party}</h3>
-            </div>
- 
-        </div>
-        </div>
-        `;
-        // congressCardH1.innerHTML = `${member.first_name} ${member.last_name}`;
-
-        // Congress Card Text, Info and h3
-        // congressCardText.append(congressCardH3);
-        // congressCardInfo.append(congressCardText);
-        // Congress Card heading
-        // congressCardHeading.append(congressCardH1);
-        // congressCard.append(congressCardHeading, congressCardInfo);
-
-        // main & congresscard
-
-        // main.append(congressCard);
-        // main.innerHTML += `${congressCard}`;
-        // main.innerHTML += `
-        // <div class="congress-card">
-        //     <div class="congress-card-heading">
-        //         <h1>${member.first_name} ${member.last_name}</h1>
-        //     </div>
-        //     <div class="congress-card-info">
-        //         <div class="congress-card-text">
-        //             <h3 class="congress-party">${member.party}</h3>
-        //         </div>
-
-        //     </div>
-        // </div>
-
-        // `;
-    };
-    // render(members.first_name);
-    let userText = searchInput.value.toLowerCase();
+    let userText = e.target.value.toLowerCase();
     let memberFirstName;
     let memberLastName;
     let memberFullName;
     if (!userText !== '') {
         simpleCongress.forEach((member) => {
-            // console.log(member);
             memberFirstName = member.firstName.toLowerCase();
             memberLastName = member.lastName.toLowerCase();
             memberFullName = member.fullName.toLowerCase();
-            // let firstName = firstName.toLowerCase();
-            // let lastName = member.lastName.toLowerCase();
-            // let fullName = member.fullName.toLowerCase();
             if (
                 memberFirstName === userText ||
                 memberLastName === userText ||
                 memberFullName === userText
             ) {
                 render(member);
-                console.log(member);
             }
         });
-        // members.forEach((member) => {
-        //     memberFirstName = member.first_name.toLowerCase();
-        //     memberLastName = member.last_name.toLowerCase();
-        //     memberFullName = `${memberFirstName} ${memberLastName}`;
-        //     if (
-        //         memberFirstName === userText ||
-        //         memberLastName === userText ||
-        //         memberFullName === userText
-        //     ) {
-        //         render(member);
-        //         console.log(member);
-        //     }
-        // });
-        searchInput.value = '';
+    }
+
+    if (userText === '') {
+        cardContainer.innerHTML = '';
     }
 });
-
-// console.log(republicans);
-// console.log(democrats);
-
-// const allChambers = () => {};
-
-// const fullName = () => {
-//     const name = members.map((member) => {
-//         let memFullName = !member.middle_name
-//             ? `${member.first_name} ${member.last_name}`
-//             : `${member.first_name} ${member.middle_name} ${member.last_name}`;
-//         return memFullName;
-//     });
-//     return name;
-// };
-
-// const render = (member) => {
-//     const main = document.querySelector('main');
-//     main.innerHTML = `
-//         <div class="card">
-//             <div class="card-heading">
-//                 <h1>${member.first_name}</h1>
-//             </div>
-// <div class="card-info">
-//     <figure class="card-img">
-//         <img src="">
-//     </figure>
-//     <div class="card-text">
-//     </div>
-// </div>
-//         </div>
-//         `;
-// };
-
-// render(members.first_name);
-
-// console.log(members.forEach((member) => console.log(member.first_name)));
-
-// congressInfo(senators);
-
-// searchInput.addEventListener('keyup', (e) => {
-//     console.log(congressInfo(e.target.value));
-// });
