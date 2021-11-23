@@ -151,17 +151,24 @@ const render = (member) => {
                 <div class="congress-card-text">
                     <h3 class="congress-party">${member.party}</h3>
                     <h3>${member.chamber}</h3>
-                    <hr>
-                    <a href="https://facebook.com/${member.facebook}" target="_blank">Facebook Account</a>
+                    
+                    ${
+                        // conditionally add in HTML block
+                        member.facebook === null
+                            ? ''
+                            : `<hr> <a href="https://facebook.com/${member.facebook}" target="_blank">${member.facebook}</a>`
+                    }
+                    
                 
                 </div>
 
             </div>
         </div>
     `;
-    {
-        /* <a href="https://facebook.com/${member.facebook}" target="_blank">${member.facebook}</a> */
-    }
+
+    // <a href="https://facebook.com/${member.facebook}" target="_blank">Facebook Account</a>
+    /* <a href="https://facebook.com/${member.facebook}" target="_blank">${member.facebook}</a> */
+
     const congressParty = document.querySelector('.congress-party');
     switch (congressParty.innerHTML) {
         case 'Republican':
