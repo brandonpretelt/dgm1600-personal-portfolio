@@ -67,6 +67,24 @@ body {
     align-items: center;
 }
 
+.congress-card a {
+    display: flex;
+    padding: 0.5em 1em;
+    margin-block: 0.5em;
+    justify-content: center;
+    text-decoration: underline;
+    font-size: 1.35rem;
+    font-weight: bold;
+    color: hsl(200, 50%, 50%)
+}
+
+.congress-card a:hover {
+    text-decoration: underline;
+    font-style: oblique;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
 .democrat {
     color: blue;
 }

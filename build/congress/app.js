@@ -24,7 +24,7 @@ const simpleCongress = members.map((member) => {
         short_chamber = member.short_title;
 
     const id = member.govtrack_id;
-    const facebook = !member.facebook_account ? '' : member.facebook_account;
+    const facebook = !member.facebook_account ? null : member.facebook_account;
     // const facebook = member.facebook_account;
 
     const firstName = member.first_name,
@@ -34,6 +34,8 @@ const simpleCongress = members.map((member) => {
     const fullName = !middleName
         ? `${firstName} ${lastName}`
         : `${firstName} ${middleName} ${lastName}`;
+
+    console.log(facebook);
 
     return {
         firstName,
@@ -149,7 +151,8 @@ const render = (member) => {
                 <div class="congress-card-text">
                     <h3 class="congress-party">${member.party}</h3>
                     <h3>${member.chamber}</h3>
-                    <a href="https://facebook.com/${member.facebook}" target="_blank">${member.facebook}</a>
+                    <hr>
+                    <a href="https://facebook.com/${member.facebook}" target="_blank">Facebook Account</a>
                 
                 </div>
 
