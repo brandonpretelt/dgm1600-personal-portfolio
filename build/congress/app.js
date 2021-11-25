@@ -130,14 +130,15 @@ const simpleCongress = members.map((member) => {
 //     }
 // });
 
-const render = (member) => {
-    const cardContainer = document.querySelector('.card-container');
-    console.log(member.short_chamber);
-    while (cardContainer.firstChild) {
-        cardContainer.removeChild(cardContainer.firstChild);
-    }
+const render = (member, container) => {
+    // container = document.querySelector('.card-container');
+    // const cardContainer = document.querySelector('.card-container');
+    // console.log(member.short_chamber);
+    // while (container.firstChild) {
+    //     container.removeChild(container.firstChild);
+    // }
 
-    cardContainer.innerHTML = `
+    container.innerHTML += `
         <div class="congress-card">
             <div class="card-info">
                 <figure class="card-img">
@@ -181,6 +182,7 @@ const render = (member) => {
 };
 
 const getChamber = (shortChamber) => {
+    const cardContainer = document.querySelector('.card-container');
     if (shortChamber === 'All') {
         simpleCongress.forEach((member) => console.log(member));
     }
@@ -193,8 +195,13 @@ const getChamber = (shortChamber) => {
     }
 
     if (shortChamber === 'Rep.') {
-        const reps = simpleCongress.filter((member) =>
-            member.short_chamber === 'Rep.' ? member.fullName : null
+        const reps = simpleCongress.filter(
+            (member) => {
+                if (member.short_chamber === 'Rep.') {
+                    render(member, cardContainer);
+                }
+            }
+            // member.short_chamber === 'Rep.' ? member.fullName : null
         );
         console.log(reps);
     }
@@ -244,7 +251,7 @@ addListeners(searchInput, 'keyup', (e) => {
                 memberLastName === userText ||
                 memberFullName === userText
             ) {
-                render(member);
+                render(member, cardContainer);
             }
         });
     }
