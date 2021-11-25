@@ -1,13 +1,13 @@
 import { senators } from '../data/senators.js';
 import { representatives } from '../data/representatives.js';
-import { PolicticalParty } from '../utils/utils.js';
+import { PolicticalParty, addListeners } from '../utils/utils.js';
 
 const searchInput = document.querySelector('#search-input');
-document.querySelector('form').addEventListener('submit', (e) => {
+const btns = document.querySelectorAll('button');
+
+addListeners(document.querySelector('form'), 'submit', (e) => {
     e.preventDefault();
 });
-
-// document.querySelector('.container main').style.display = 'flex';
 
 const members = [...senators, ...representatives];
 
@@ -35,7 +35,7 @@ const simpleCongress = members.map((member) => {
         ? `${firstName} ${lastName}`
         : `${firstName} ${middleName} ${lastName}`;
 
-    console.log(facebook);
+    // console.log(facebook);
 
     return {
         firstName,
@@ -132,6 +132,7 @@ const simpleCongress = members.map((member) => {
 
 const render = (member) => {
     const cardContainer = document.querySelector('.card-container');
+    console.log(member.short_chamber);
     while (cardContainer.firstChild) {
         cardContainer.removeChild(cardContainer.firstChild);
     }
@@ -166,9 +167,6 @@ const render = (member) => {
         </div>
     `;
 
-    // <a href="https://facebook.com/${member.facebook}" target="_blank">Facebook Account</a>
-    /* <a href="https://facebook.com/${member.facebook}" target="_blank">${member.facebook}</a> */
-
     const congressParty = document.querySelector('.congress-party');
     switch (congressParty.innerHTML) {
         case 'Republican':
@@ -182,7 +180,54 @@ const render = (member) => {
     }
 };
 
-searchInput.addEventListener('keyup', (e) => {
+const getChamber = (shortChamber) => {
+    if (shortChamber === 'All') {
+        simpleCongress.forEach((member) => console.log(member));
+    }
+
+    if (shortChamber === 'Sen.') {
+        const senators = simpleCongress.filter((member) =>
+            member.short_chamber === 'Sen.' ? member : null
+        );
+        console.log(senators);
+    }
+
+    if (shortChamber === 'Rep.') {
+        const reps = simpleCongress.filter((member) =>
+            member.short_chamber === 'Rep.' ? member.fullName : null
+        );
+        console.log(reps);
+    }
+
+    //(shortChamber === 'members') ?
+    //simpleCongress.forEach((member) => console.log(member[shortChamber]));
+};
+// document.querySelector('.container main').style.display = 'flex';
+
+btns.forEach((btn) => {
+    addListeners(btn, 'click', (e) => {
+        // console.log(e.target.className);
+        if (e.target.className === 'btn btn-senators') {
+            getChamber('Sen.');
+        }
+        if (e.target.className === 'btn btn-reps') {
+            getChamber('Rep.');
+        } else if (e.target.className === 'btn btn-congress') {
+            getChamber('All');
+        }
+        // if (e.target.classList.contains('btn-congress')) {
+        //     renderAllCongress();
+        // }
+        // if (e.target.classList.contains('btn-senators')) {
+        //     renderAllCongress('Sen.');
+        // }
+        // if (e.target.classList.contains('btn-reps')) {
+        //     renderAllCongress('Rep.');
+        // }
+    });
+});
+
+addListeners(searchInput, 'keyup', (e) => {
     const cardContainer = document.querySelector('.card-container');
 
     let userText = e.target.value.toLowerCase();
