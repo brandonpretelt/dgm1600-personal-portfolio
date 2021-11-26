@@ -18,6 +18,57 @@ const isolateID = (item) => {
     return newId;
 };
 
+const congressCard = (member, container) => {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+    const card = document.createElement('div');
+    card.className = 'congress-card';
+
+    const cardInfo = document.createElement('div');
+    cardInfo.className = 'card-info';
+
+    const figure = document.createElement('figure');
+    figure.className = 'card-img';
+    cardInfo.append(figure);
+
+    const img = document.createElement('img');
+    img.src = `${member.fullURL}`;
+    figure.append(img);
+
+    const congressCardHeading = document.createElement('div');
+    congressCardHeading.className = 'congress-card-heading';
+
+    const congressH1 = document.createElement('h1');
+    congressH1.textContent = `${member.fullName}`;
+    congressCardHeading.append(congressH1);
+
+    const congressInfo = document.createElement('div');
+    congressInfo.className = 'congress-card-info';
+
+    const congressText = document.createElement('div');
+    congressText.className = 'congress-card-text';
+    congressInfo.append(congressText);
+
+    const congressH3 = document.createElement('h3');
+    const congressH3Chamber = document.createElement('h3');
+    congressH3.className = 'congress-party';
+    congressH3.textContent = `${member.party}`;
+    congressH3Chamber.textContent = `${member.chamber}`;
+    congressText.append(congressH3, congressH3Chamber);
+
+    const congressFacebook = document.createElement('a');
+    congressFacebook.href = `https://facebook.com/${member.facebook}`;
+    congressFacebook.setAttribute('target', '_blank');
+    congressFacebook.textContent = `${member.firstName}'s Facebook`;
+
+    if (member.facebook !== null) {
+        congressText.append(congressFacebook);
+    }
+    card.append(cardInfo, congressCardHeading, congressInfo);
+    container.append(card);
+};
+
 const renderDOM = (arr, container) => {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
@@ -60,5 +111,6 @@ export {
     renderDOM,
     addListeners,
     sortStringArr,
-    PolicticalParty
+    PolicticalParty,
+    congressCard
 };
