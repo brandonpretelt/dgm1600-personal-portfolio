@@ -1,6 +1,6 @@
 import { senators } from '../data/senators.js';
 import { representatives } from '../data/representatives.js';
-import { PolicticalParty, addListeners } from '../utils/utils.js';
+import { PolicticalParty, addListeners, congressCard } from '../utils/utils.js';
 
 const searchInput = document.querySelector('#search-input');
 const btns = document.querySelectorAll('button');
@@ -25,6 +25,8 @@ const simpleCongress = members.map((member) => {
 
     const id = member.govtrack_id;
     const facebook = !member.facebook_account ? null : member.facebook_account;
+    const twitter = !member.twitter_account ? null : member.twitter_account;
+    const youtube = !member.youtube_account ? null : member.youtube_account;
     // const facebook = member.facebook_account;
 
     const firstName = member.first_name,
@@ -37,6 +39,8 @@ const simpleCongress = members.map((member) => {
 
     // console.log(facebook);
 
+    console.log(party);
+
     return {
         firstName,
         lastName,
@@ -44,6 +48,8 @@ const simpleCongress = members.map((member) => {
         fullName,
         party,
         facebook,
+        twitter,
+        youtube,
         chamber,
         short_chamber,
         id,
@@ -134,11 +140,11 @@ const render = (member, container) => {
     // container = document.querySelector('.card-container');
     // const cardContainer = document.querySelector('.card-container');
     // console.log(member.short_chamber);
-    // while (container.firstChild) {
-    //     container.removeChild(container.firstChild);
-    // }
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
 
-    container.innerHTML += `
+    container.innerHTML = `
         <div class="congress-card">
             <div class="card-info">
                 <figure class="card-img">
@@ -181,6 +187,51 @@ const render = (member, container) => {
     }
 };
 
+// const getSocials = (social) => {
+//     simpleCongress.reduce((acc, member) => {
+//         if (social === member[social]) {
+//             acc.push({
+//                 social: member[social]
+//             });
+//         }
+//         return acc;
+//     }, []);
+// };
+const getSocials = (arr) => {
+    const socials = arr.reduce((acc, member) => {
+        acc.push({
+            name: member.fullName,
+            youtube: !member.youtube ? '' : member.youtube,
+            facebook: !member.facebook ? '' : member.facebook,
+            twitter: !member.twitter ? '' : member.twitter
+        });
+        // if (member.youtube || member.facebook || member.twitter)
+        //     acc.push({
+        //         name: member.fullName,
+        //         youtube: !member.youtube ? '' : member.youtube,
+        //         facebook: member.facebook,
+        //         twitter: member.twitter
+        //     });
+        return acc;
+    }, []);
+    return socials;
+};
+
+// console.log(getSocials(simpleCongress)[0]);
+
+for (let i = 0; i < getSocials(simpleCongress).length; i += 1) {
+    const youtube = getSocials(simpleCongress)[i].youtube;
+    const facebook = getSocials(simpleCongress)[i].facebook;
+    const twitter = getSocials(simpleCongress)[i].twitter;
+    console.log(
+        `${
+            getSocials(simpleCongress)[i].name
+        } has these accounts \nYoutube: ${youtube}\n Facebook: ${facebook}\n Twitter: ${twitter}`
+    );
+}
+
+// console.log(getSocials('facebook'));
+
 const getChamber = (shortChamber) => {
     const cardContainer = document.querySelector('.card-container');
     if (shortChamber === 'All') {
@@ -189,16 +240,17 @@ const getChamber = (shortChamber) => {
 
     if (shortChamber === 'Sen.') {
         const senators = simpleCongress.filter((member) =>
-            member.short_chamber === 'Sen.' ? member : null
+            member.short_chamber === 'Sen.'
+                ? congressCard(member, cardContainer)
+                : null
         );
-        console.log(senators);
     }
 
     if (shortChamber === 'Rep.') {
         const reps = simpleCongress.filter(
             (member) => {
                 if (member.short_chamber === 'Rep.') {
-                    render(member, cardContainer);
+                    congressCard(member, cardContainer);
                 }
             }
             // member.short_chamber === 'Rep.' ? member.fullName : null

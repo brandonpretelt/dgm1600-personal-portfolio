@@ -29,6 +29,12 @@ body {
     align-items: center;
 }
 
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 90vw;
+}
+
 .btn {
     border: none;
     padding: 1em;
