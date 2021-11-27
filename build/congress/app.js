@@ -4,6 +4,19 @@ import { PolicticalParty, addListeners, congressCard } from '../utils/utils.js';
 
 const searchInput = document.querySelector('#search-input');
 const btns = document.querySelectorAll('button');
+const navBtn = document.querySelector('nav a:not(.links-container a)');
+
+addListeners(navBtn, 'click', (e) => {
+    const icon = document.querySelector('.material-icons');
+    const politicianNav = document.querySelector('.politicians-nav-list');
+    if (icon.textContent === 'apps') {
+        icon.textContent = 'close';
+    } else {
+        icon.textContent = 'apps';
+    }
+    icon.classList.toggle('active');
+    politicianNav.classList.toggle('hide');
+});
 
 addListeners(document.querySelector('form'), 'submit', (e) => {
     e.preventDefault();
