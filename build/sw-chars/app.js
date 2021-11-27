@@ -10,6 +10,7 @@ import {
 
 const rootApp = document.querySelector('#App');
 const container = document.createElement('div');
+const imageURL = `https://starwars-visualguide.com/assets/img/characters/`;
 
 const btnContainer = document.createElement('div');
 const maleBtn = document.createElement('button');
@@ -31,14 +32,18 @@ const getCharGender = (arr, gender) => {
 };
 
 const app = () => {
-    renderDOM(people, container);
+    renderDOM(people, container, imageURL);
 
     const theGents = getCharGender(people, 'male');
     const theLadies = getCharGender(people, 'female');
 
-    addListeners(allBtn, 'click', () => renderDOM(people, container));
-    addListeners(maleBtn, 'click', () => renderDOM(theGents, container));
-    addListeners(femaleBtn, 'click', () => renderDOM(theLadies, container));
+    addListeners(allBtn, 'click', () => renderDOM(people, container, imageURL));
+    addListeners(maleBtn, 'click', () =>
+        renderDOM(theGents, container, imageURL)
+    );
+    addListeners(femaleBtn, 'click', () =>
+        renderDOM(theLadies, container, imageURL)
+    );
 
     addListeners(otherBtn, 'click', () => {
         const others = people.filter((person) => {
@@ -46,7 +51,7 @@ const app = () => {
                 return person;
             }
         });
-        renderDOM(others, container);
+        renderDOM(others, container, imageURL);
     });
 
     rootApp.append(container);
