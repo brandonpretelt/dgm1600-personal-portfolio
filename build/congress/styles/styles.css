@@ -8,8 +8,6 @@ html {
     overflow: hidden;
 }
 
-
-
 body {
     background-color: #ffe !important;
     font-family: sans-serif;
@@ -21,7 +19,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    /* transform: translateY(200px); */
+    margin-block-start: 2em;
     height: 100vh;
     background-color: #ffe !important;
 
