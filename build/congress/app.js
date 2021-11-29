@@ -1,10 +1,7 @@
 import { senators } from '../data/senators.js';
 import { representatives } from '../data/representatives.js';
 
-// !! TODO: Rewrite to make more generic
 // ~~ TODO: Erase commented out code
-// TODO: Check for repeated code
-// TODO: Break up into smaller files, maybe?
 // ~~ TODO: Look for an idea for reduce function... mine ain't working :P
 
 // generic utils
@@ -21,6 +18,14 @@ const ul = document.createElement('ul');
 
 searchInput.value = '';
 
+addListeners(searchInput, 'focus', () => {
+    searchInput.value = '';
+});
+
+addListeners(searchInput, 'blur', () => {
+    searchInput.value = '';
+});
+
 function openModal() {
     modal.classList.add('is-active');
 }
@@ -28,13 +33,13 @@ function closeModal() {
     modal.classList.remove('is-active');
 }
 
-document.addEventListener('click', (e) => {
+addListeners(document, 'click', (e) => {
     if (e.target.className === 'modal-close is-large') {
         modal.classList.remove('is-active');
     }
 });
 
-document.addEventListener('click', (e) => {
+addListeners(document, 'click', (e) => {
     if (e.target.id === 'modal-open') {
         openModal();
     }

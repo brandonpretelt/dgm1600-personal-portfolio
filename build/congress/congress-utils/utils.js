@@ -56,7 +56,7 @@ const congressCard = (member, container) => {
 };
 
 const render = (member, container) => {
-    const button = `<button id="modal-open" class="modal-open is-large" aria-label="open">Check Socials Info</button>`;
+    const button = `<button id="modal-open" class="button modal-open" aria-label="open">Check Socials Info</button>`;
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
