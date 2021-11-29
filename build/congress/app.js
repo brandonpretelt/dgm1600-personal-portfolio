@@ -26,22 +26,26 @@ addListeners(searchInput, 'blur', () => {
     searchInput.value = '';
 });
 
-function openModal() {
+const openModal = () => {
     modal.classList.add('is-active');
-}
-function closeModal() {
+};
+
+const closeModal = () => {
     modal.classList.remove('is-active');
-}
+};
 
 addListeners(document, 'click', (e) => {
     if (e.target.className === 'modal-close is-large') {
-        modal.classList.remove('is-active');
+        closeModal();
     }
 });
 
 addListeners(document, 'click', (e) => {
     if (e.target.id === 'modal-open') {
         openModal();
+    }
+    if (e.target.className === 'btn') {
+        e.preventDefault();
     }
 });
 
@@ -106,7 +110,15 @@ const partyVotePercent = simpleCongress.reduce((acc, memberOfCongress) => {
 }, []);
 
 partyVotePercent.forEach((member) => {
-    ul.innerHTML += `<li>${member.fullName}</li>`;
+    ul.innerHTML += `<li class=${
+        member.party === 'Republican'
+            ? 'republican'
+            : 'null' || member.party === 'Democrat'
+            ? 'democrat'
+            : ''
+    } style="font-weight: bold;">${member.short_chamber} ${member.fullName}, ${
+        member.party
+    }</li>`;
     partyVoteBox.append(ul);
 });
 

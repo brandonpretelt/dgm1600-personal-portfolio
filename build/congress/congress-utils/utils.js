@@ -56,7 +56,7 @@ const congressCard = (member, container) => {
 };
 
 const render = (member, container) => {
-    const button = `<button id="modal-open" class="button modal-open" aria-label="open">Check Socials Info</button>`;
+    const button = `<button id="modal-open" class="button modal-open" aria-label="open">View Social Media</button>`;
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
@@ -87,17 +87,17 @@ const render = (member, container) => {
         ${
             member.socialMedia.twitter === null
                 ? `<div class='box'> ${member.fullName} doesn\'t have a Twitter account </div>`
-                : `<a href="${member.socialMedia.twitter} target="_blank"><span class='box' style='margin-block-end: 1em;'> ${member.socialMedia.twitter}</span></a>`
+                : `<a href="https://www.twitter.com/${member.socialMedia.twitter}" target="_blank"><span class='box' style='margin-block-end: 1em;'>${member.socialMedia.twitter}</span></a>`
         }
         ${
             member.socialMedia.youtube === null
                 ? `<div class='box'> ${member.fullName} doesn\'t have a YouTube account </div>`
-                : `<a href="${member.socialMedia.youtube} target="_blank"><span class='box' style='margin-block-end: 1em;'>${member.socialMedia.youtube}</span></a>`
+                : `<a href="https://www.youtube.com/${member.socialMedia.youtube}" target="_blank"><span class='box' style='margin-block-end: 1em;'>${member.socialMedia.youtube}</span></a>`
         }
         ${
             member.socialMedia.facebook === null
                 ? `<div class='box'> ${member.fullName} doesn\'t have a Facebook account </div>`
-                : `<a href="${member.socialMedia.facebook} target="_blank"><span class='box' style='margin-block-end: 1em;'> ${member.socialMedia.facebook}</span></a>`
+                : `<a href="https://www.facebook.com/${member.socialMedia.facebook}" target="_blank"><span class='box' style='margin-block-end: 1em;'> ${member.socialMedia.facebook}</span></a>`
         }
     `;
 
