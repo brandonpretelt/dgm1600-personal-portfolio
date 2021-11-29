@@ -55,6 +55,8 @@ const congressCard = (member, container) => {
     container.append(card);
 };
 
+// console.log(getSocials(member));
+
 const render = (member, container) => {
     // container = document.querySelector('.card-container');
     // const cardContainer = document.querySelector('.card-container');
@@ -70,21 +72,38 @@ const render = (member, container) => {
                     <img src="${member.fullURL}">
                 </figure>
 
-            </div>
-            <div class="congress-card-heading">
-                <h1>${member.fullName}</h1>
+   
             </div>
             <div class="congress-card-info">
                 <div class="congress-card-text">
+                <div class="congress-card-heading">
+                <h1>${member.fullName}</h1>
+            </div>
                     <h3 class="congress-party">${member.party}</h3>
                     <h3>${member.chamber}</h3>
                     
+                    
                     ${
                         // conditionally add in HTML block
-                        member.facebook === null
+                        member.socialMedia.facebook === null
                             ? ''
-                            : `<hr> <a href="https://facebook.com/${member.facebook}" target="_blank">${member.facebook}</a>`
+                            : `<hr> <a href="https://facebook.com/${member.socialMedia.facebook}" target="_blank">${member.socialMedia.facebook}</a>`
                     }
+                    
+                    ${
+                        // conditionally add in HTML block
+                        member.socialMedia.twitter === null
+                            ? ''
+                            : `<hr> <a href="https://twitter.com/${member.socialMedia.twitter}" target="_blank">${member.socialMedia.twitter}</a>`
+                    }
+                    
+                    ${
+                        // conditionally add in HTML block
+                        member.socialMedia.youtube === null
+                            ? ''
+                            : `<hr> <a href="https://youtube.com/${member.socialMedia.youtube}" target="_blank">${member.socialMedia.youtube}</a>`
+                    }
+                    
                     
                 
                 </div>

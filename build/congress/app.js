@@ -16,6 +16,13 @@ const searchInput = document.querySelector('#search-input');
 const btns = document.querySelectorAll('button');
 const navBtn = document.querySelector('nav a:not(.links-container a)');
 const representativesContainer = document.getElementById('representatives');
+const members = [...senators, ...representatives];
+
+searchInput.value = '';
+
+addListeners(document.querySelector('form'), 'submit', (e) => {
+    e.preventDefault();
+});
 
 // addListeners(navBtn, 'click', (e) => {
 //     const icon = document.querySelector('.material-icons');
@@ -29,11 +36,27 @@ const representativesContainer = document.getElementById('representatives');
 //     politicianNav.classList.toggle('hide');
 // });
 
-addListeners(document.querySelector('form'), 'submit', (e) => {
-    e.preventDefault();
-});
+// let socialMedia;
 
-const members = [...senators, ...representatives];
+// const getSocials = (arr) => {
+//     const socials = arr.reduce((acc, member) => {
+//         const socialMedia = {
+//             name: !member.middle_name
+//                 ? `${member.first_name} ${member.last_name}`
+//                 : `${member.first_name} ${member.middle_name} ${member.last_name}`,
+//             youtube: !member.youtube_account ? '' : member.youtube_account,
+//             facebook: !member.facebook_account ? '' : member.facebook_account,
+//             twitter: !member.twitter_account ? '' : member.twitter_account
+//         };
+//         acc.push(socialMedia);
+//         return acc;
+//     }, []);
+//     return socials;
+// };
+
+// socialMedia = [...getSocials(members)];
+
+// console.log(socialMedia);
 
 const simpleCongress = members.map((member) => {
     const fullURL = `https://www.govtrack.us/static/legislator-photos/${member.govtrack_id}-100px.jpeg`;
@@ -52,6 +75,15 @@ const simpleCongress = members.map((member) => {
     const twitter = !member.twitter_account ? null : member.twitter_account;
     const youtube = !member.youtube_account ? null : member.youtube_account;
 
+    // const socialMedia = member.forEach((m) => console.log(m));
+    // const socialMedia = getSocials(this);
+    // console.log(socialMedia);
+    const socialMedia = {
+        facebook,
+        twitter,
+        youtube
+    };
+
     const firstName = member.first_name,
         middleName = member.middle_name,
         lastName = member.last_name;
@@ -65,6 +97,7 @@ const simpleCongress = members.map((member) => {
         lastName,
         middleName,
         fullName,
+        socialMedia,
         party,
         facebook,
         twitter,
@@ -76,18 +109,10 @@ const simpleCongress = members.map((member) => {
     };
 });
 
-const getSocials = (arr) => {
-    const socials = arr.reduce((acc, member) => {
-        acc.push({
-            name: member.fullName,
-            youtube: !member.youtube ? '' : member.youtube,
-            facebook: !member.facebook ? '' : member.facebook,
-            twitter: !member.twitter ? '' : member.twitter
-        });
-        return acc;
-    }, []);
-    return socials;
-};
+// simpleCongress.forEach((member) => console.log(member.socialMedia.facebook));
+
+// console.log(simpleCongress);
+// console.log(getSocials(simpleCongress));
 
 // for (let i = 0; i < getSocials(simpleCongress).length; i += 1) {
 //     const youtube = getSocials(simpleCongress)[i].youtube;
@@ -161,12 +186,9 @@ addListeners(searchInput, 'keyup', (e) => {
                 memberLastName === userText ||
                 memberFullName === userText
             ) {
+                console.log(member);
                 render(member, cardContainer);
             }
         });
-    }
-
-    if (userText === '') {
-        cardContainer.innerHTML = '';
     }
 });

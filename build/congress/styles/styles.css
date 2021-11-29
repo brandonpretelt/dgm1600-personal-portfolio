@@ -177,6 +177,31 @@ body {
 }
 
 .congress-card {
+    width: min(100%, 1000px);
+    position: relative;
+    background-color: #000;
+    padding: 1em;
+    border-radius: 10px;
+    margin-block: 1em;
+
+}
+
+.congress-card .card-info {
+    display: flex;
+    flex-flow: row;
+    float: left;
+    color: #fff;
+    transform: translateX(-15px);
+}
+
+.congress-card .congress-card-info {
+    display: flex;
+    flex-flow: row;
+    color: #fff;
+}
+
+
+/* .congress-card {
     background-color: #000;
     color: #fff;
     display: flex;
@@ -184,9 +209,15 @@ body {
     border-radius: 20px;
     padding: 1em;
     margin: 1em auto;
-    width: max-content;
+    width: min(90%, 100vw);
     align-items: center;
 }
+
+.congress-card .card-info,
+.congress-card .congress-card-heading {
+    display: flex;
+}
+
 
 .congress-card a {
     display: flex;
@@ -204,7 +235,7 @@ body {
     font-style: oblique;
     border-radius: 4px;
     background-color: #fff;
-}
+} */
 
 .democrat {
     color: blue;
@@ -225,12 +256,12 @@ body {
 
 .congress-card-heading {
     display: block;
-    float: right;
+    /* float: right; */
     /* flex-direction: row !important; */
 }
 
 .congress-card h1 {
-    font-size: 1.1em;
+    font-size: 1.25em;
 }
 
 .congress-card .congress-card-text h3 {
