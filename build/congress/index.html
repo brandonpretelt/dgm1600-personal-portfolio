@@ -7,67 +7,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Congress Search</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 
 <body>
-    <!-- <nav>
-        <div class="links-container">
-            <a href="#">All Senators</a>
-            <a href="reps.html" target="_blank">All Reps</a>
-        </div>
-        <a href="#">
-            <span class="material-icons">apps</span>
-        </a>
-        <div class="politicians-nav-list hide">
-            <a href="#">
-                <img src="https://www.govtrack.us/static/legislator-photos/400357-100px.jpeg">
-                View Independents
-            </a>
-            <a href="#">
-                <img src="https://www.govtrack.us/static/legislator-photos/412804-100px.jpeg">
-                View Democrats </a>
-            <a href="#">
-                <img src="https://www.govtrack.us/static/legislator-photos/412841-100px.jpeg" alt="">
-                View Republicans </a>
-        </div>
-    </nav> -->
+
     <div class="container">
         <header>
             <h1> Congress Search </h1>
         </header>
-        <main>
-            <form id="search-form" name="search">
-                <label for="search-input" aria-label="senator-search"></label>
-                <input type="text" id="search-input" name="search-input" class="search-input"
-                    placeholder="Search for a politician by full, first or last name....">
-                <!-- <button type="submit">Search!</button> -->
-            </form>
-            <div class="card-container">
-                <!-- <div class="congress-card">
-                    <div class="card-info">
-                        <figure class="card-img">
-                            <img src="https://www.govtrack.us/static/legislator-photos/400357-100px.jpeg" alt="">
-                        </figure>
+        <div class="columns">
+            <div class="column">
+                <main>
+                    <form id="search-form" name="search">
+                        <label for="search-input" aria-label="senator-search"></label>
+                        <input type="text" id="search-input" name="search-input" class="search-input"
+                            placeholder="Search for a politician by full, first or last name....">
+                    </form>
+                    <div class="card-container">
 
-                        <div class="congress-card-heading">
-                            <h1>Bernard Sanders</h1>
-                        </div>
-                    </div>
-                    <div class="congress-card-info">
-                        <div class="congress-card-text">
-                            <h3 class="congress-party">Independent</h3>
-                            <h3>Senator, 1st Class</h3>
-                            <hr>
-                            <a href="https://facebook.com/senatorsanders" target="_blank">senatorsanders</a>
-                        </div>
                     </div>
 
-                </div> -->
+
+                    <div class="modal">
+                        <div class="modal-background"></div>
+                        <div class="modal-content">
+                        </div>
+                        <button class="modal-close is-large" aria-label="close"></button>
+                    </div>
+                </main>
             </div>
-        </main>
+            <div class="column">
+                <aside>
+
+                    <div class="box">
+                        <p> These members of Congress voted 100% with their party: </p>
+                        <div class="party-vote"></div>
+                    </div>
+
+                </aside>
+            </div>
+        </div>
     </div>
 </body>
-<script src="app.js" type="module"></script>
+<script src="app.js" type="module" async></script>
 
 </html>

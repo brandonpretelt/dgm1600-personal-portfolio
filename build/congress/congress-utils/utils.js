@@ -55,15 +55,13 @@ const congressCard = (member, container) => {
     container.append(card);
 };
 
-// console.log(getSocials(member));
-
 const render = (member, container) => {
-    // container = document.querySelector('.card-container');
-    // const cardContainer = document.querySelector('.card-container');
-    // console.log(member.short_chamber);
+    const button = `<button id="modal-open" class="modal-open is-large" aria-label="open">Check Socials Info</button>`;
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
+
+    const modalContent = document.querySelector('.modal-content');
 
     container.innerHTML = `
         <div class="congress-card">
@@ -71,45 +69,36 @@ const render = (member, container) => {
                 <figure class="card-img">
                     <img src="${member.fullURL}">
                 </figure>
-
-   
             </div>
             <div class="congress-card-info">
                 <div class="congress-card-text">
-                <div class="congress-card-heading">
-                <h1>${member.fullName}</h1>
-            </div>
+                    <div class="congress-card-heading">
+                        <h1>${member.fullName}</h1>
+                    </div>
                     <h3 class="congress-party">${member.party}</h3>
                     <h3>${member.chamber}</h3>
-                    
-                    
-                    ${
-                        // conditionally add in HTML block
-                        member.socialMedia.facebook === null
-                            ? ''
-                            : `<hr> <a href="https://facebook.com/${member.socialMedia.facebook}" target="_blank">${member.socialMedia.facebook}</a>`
-                    }
-                    
-                    ${
-                        // conditionally add in HTML block
-                        member.socialMedia.twitter === null
-                            ? ''
-                            : `<hr> <a href="https://twitter.com/${member.socialMedia.twitter}" target="_blank">${member.socialMedia.twitter}</a>`
-                    }
-                    
-                    ${
-                        // conditionally add in HTML block
-                        member.socialMedia.youtube === null
-                            ? ''
-                            : `<hr> <a href="https://youtube.com/${member.socialMedia.youtube}" target="_blank">${member.socialMedia.youtube}</a>`
-                    }
-                    
-                    
-                
+                    ${button}
                 </div>
-
             </div>
         </div>
+    `;
+
+    modalContent.innerHTML = `
+        ${
+            member.socialMedia.twitter === null
+                ? `<div class='box'> ${member.fullName} doesn\'t have a Twitter account </div>`
+                : `<a href="${member.socialMedia.twitter} target="_blank"><span class='box' style='margin-block-end: 1em;'> ${member.socialMedia.twitter}</span></a>`
+        }
+        ${
+            member.socialMedia.youtube === null
+                ? `<div class='box'> ${member.fullName} doesn\'t have a YouTube account </div>`
+                : `<a href="${member.socialMedia.youtube} target="_blank"><span class='box' style='margin-block-end: 1em;'>${member.socialMedia.youtube}</span></a>`
+        }
+        ${
+            member.socialMedia.facebook === null
+                ? `<div class='box'> ${member.fullName} doesn\'t have a Facebook account </div>`
+                : `<a href="${member.socialMedia.facebook} target="_blank"><span class='box' style='margin-block-end: 1em;'> ${member.socialMedia.facebook}</span></a>`
+        }
     `;
 
     const congressParty = document.querySelector('.congress-party');

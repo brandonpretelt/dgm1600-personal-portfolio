@@ -1,67 +1,48 @@
 import { senators } from '../data/senators.js';
 import { representatives } from '../data/representatives.js';
 
-// TODO: Rewrite to make more generic
-// TODO: Erase commented out code
+// !! TODO: Rewrite to make more generic
+// ~~ TODO: Erase commented out code
 // TODO: Check for repeated code
 // TODO: Break up into smaller files, maybe?
-// TODO: Look for an idea for reduce function... mine ain't working :P
+// ~~ TODO: Look for an idea for reduce function... mine ain't working :P
 
 // generic utils
-import { addListeners, renderDOM } from '../utils/utils.js';
+import { addListeners } from '../utils/utils.js';
 
 // congress specific utilities
-import {
-    congressCard,
-    PolicticalParty,
-    render
-} from './congress-utils/utils.js';
+import { PolicticalParty, render } from './congress-utils/utils.js';
 
 const searchInput = document.querySelector('#search-input');
-const btns = document.querySelectorAll('button');
-const navBtn = document.querySelector('nav a:not(.links-container a)');
-const representativesContainer = document.getElementById('representatives');
+const modal = document.querySelector('.modal');
 const members = [...senators, ...representatives];
+const partyVoteBox = document.querySelector('.party-vote');
+const ul = document.createElement('ul');
 
 searchInput.value = '';
+
+function openModal() {
+    modal.classList.add('is-active');
+}
+function closeModal() {
+    modal.classList.remove('is-active');
+}
+
+document.addEventListener('click', (e) => {
+    if (e.target.className === 'modal-close is-large') {
+        modal.classList.remove('is-active');
+    }
+});
+
+document.addEventListener('click', (e) => {
+    if (e.target.id === 'modal-open') {
+        openModal();
+    }
+});
 
 addListeners(document.querySelector('form'), 'submit', (e) => {
     e.preventDefault();
 });
-
-// addListeners(navBtn, 'click', (e) => {
-//     const icon = document.querySelector('.material-icons');
-//     const politicianNav = document.querySelector('.politicians-nav-list');
-//     if (icon.textContent === 'apps') {
-//         icon.textContent = 'close';
-//     } else {
-//         icon.textContent = 'apps';
-//     }
-//     icon.classList.toggle('active');
-//     politicianNav.classList.toggle('hide');
-// });
-
-// let socialMedia;
-
-// const getSocials = (arr) => {
-//     const socials = arr.reduce((acc, member) => {
-//         const socialMedia = {
-//             name: !member.middle_name
-//                 ? `${member.first_name} ${member.last_name}`
-//                 : `${member.first_name} ${member.middle_name} ${member.last_name}`,
-//             youtube: !member.youtube_account ? '' : member.youtube_account,
-//             facebook: !member.facebook_account ? '' : member.facebook_account,
-//             twitter: !member.twitter_account ? '' : member.twitter_account
-//         };
-//         acc.push(socialMedia);
-//         return acc;
-//     }, []);
-//     return socials;
-// };
-
-// socialMedia = [...getSocials(members)];
-
-// console.log(socialMedia);
 
 const simpleCongress = members.map((member) => {
     const fullURL = `https://www.govtrack.us/static/legislator-photos/${member.govtrack_id}-100px.jpeg`;
@@ -80,9 +61,6 @@ const simpleCongress = members.map((member) => {
     const twitter = !member.twitter_account ? null : member.twitter_account;
     const youtube = !member.youtube_account ? null : member.youtube_account;
 
-    // const socialMedia = member.forEach((m) => console.log(m));
-    // const socialMedia = getSocials(this);
-    // console.log(socialMedia);
     const socialMedia = {
         facebook,
         twitter,
@@ -110,68 +88,21 @@ const simpleCongress = members.map((member) => {
         chamber,
         short_chamber,
         id,
+        partyVote: member.votes_with_party_pct,
         fullURL
     };
 });
 
-// simpleCongress.forEach((member) => console.log(member.socialMedia.facebook));
-
-// console.log(simpleCongress);
-// console.log(getSocials(simpleCongress));
-
-// for (let i = 0; i < getSocials(simpleCongress).length; i += 1) {
-//     const youtube = getSocials(simpleCongress)[i].youtube;
-//     const facebook = getSocials(simpleCongress)[i].facebook;
-//     const twitter = getSocials(simpleCongress)[i].twitter;
-//     console.log(
-//         `${
-//             getSocials(simpleCongress)[i].name
-//         } has these accounts \nYoutube: ${youtube}\n Facebook: ${facebook}\n Twitter: ${twitter}`
-//     );
-// }
-
-const getChamber = (shortChamber) => {
-    const cardContainer = document.querySelector('.card-container');
-    if (shortChamber === 'All') {
-        simpleCongress.forEach((member) => console.log(member));
+const partyVotePercent = simpleCongress.reduce((acc, memberOfCongress) => {
+    if (memberOfCongress.partyVote === 100) {
+        acc.push(memberOfCongress);
     }
+    return acc;
+}, []);
 
-    if (shortChamber === 'Sen.') {
-        const senators = simpleCongress.filter((member) =>
-            member.short_chamber === 'Sen.'
-                ? congressCard(member, cardContainer)
-                : null
-        );
-    }
-
-    if (shortChamber === 'Rep.') {
-        const reps = simpleCongress.filter(
-            (member) => {
-                if (member.short_chamber === 'Rep.') {
-                    congressCard(member, cardContainer);
-                    //congressCard(member, representativesContainer);
-                    //renderDOM(member, representativesContainer, member.fullURL);
-                }
-            }
-            // member.short_chamber === 'Rep.' ? member.fullName : null
-        );
-        console.log(reps);
-    }
-};
-// document.querySelector('.container main').style.display = 'flex';
-
-btns.forEach((btn) => {
-    addListeners(btn, 'click', (e) => {
-        // console.log(e.target.className);
-        if (e.target.className === 'btn btn-senators') {
-            getChamber('Sen.');
-        }
-        if (e.target.className === 'btn btn-reps') {
-            getChamber('Rep.');
-        } else if (e.target.className === 'btn btn-congress') {
-            getChamber('All');
-        }
-    });
+partyVotePercent.forEach((member) => {
+    ul.innerHTML += `<li>${member.fullName}</li>`;
+    partyVoteBox.append(ul);
 });
 
 addListeners(searchInput, 'keyup', (e) => {
@@ -191,7 +122,6 @@ addListeners(searchInput, 'keyup', (e) => {
                 memberLastName === userText ||
                 memberFullName === userText
             ) {
-                console.log(member);
                 render(member, cardContainer);
             }
         });

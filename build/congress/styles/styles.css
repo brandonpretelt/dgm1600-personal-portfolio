@@ -4,101 +4,16 @@
     box-sizing: border-box;
 }
 
-
-/* MATERIAL ICON MENU & NAV */
-nav {
-    display: flex;
-    justify-content: flex-end;
-    margin-inline: 1em;
-    align-items: center;
+html {
+    overflow: hidden;
 }
 
-nav a {
-    display: inline-block;
-    text-decoration: none;
-}
 
-nav .links-container,
-nav .links-container a {
-    padding-inline: 2em;
-}
-
-.material-icons {
-    display: block;
-    font-size: 2rem;
-    color: #000;
-    cursor: pointer;
-    transition: opacity 100ms ease-in-out, background-color 150ms ease-in;
-    padding: 0.2em;
-    border-radius: 50%;
-
-}
-
-.politicians-nav-list {
-    border-radius: 10px;
-    z-index: 1000;
-    position: absolute;
-    top: 75px;
-    right: 30px;
-    width: auto;
-    background-color: hsla(60, 89%, 16%, 0.603);
-    padding: 0.5em;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-    /*   display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
-    gap: 0.5em;
-    box-shadow: 0px 0px 5px rgb(0 0 0 / 0.5);
-}
-
-.politicians-nav-list>a {
-    display: flex;
-    /*   justify-content: center; */
-    align-items: center;
-    flex-direction: column;
-    border-radius: 10px;
-    padding-block: 1em;
-    padding-inline: 0.5em;
-    font-weight: bold;
-    color: #000;
-    /* padding: 1em; */
-    /* background-color: #ccc; */
-    /* background-color: hsla(60, 89%, 16%, 0.603); */
-    transition: background-color 100ms ease-in-out;
-}
-
-.politicians-nav-list>a:hover {
-    opacity: 0.89;
-    border-radius: 10px;
-    background-color: #eee;
-}
-
-.politicians-nav-list img {
-    width: 100px;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgb(0 0 0 / 0.3);
-}
-
-.hide {
-    display: none !important;
-}
-
-.material-icons:hover,
-.active {
-    /*   opacity: 0.2; */
-    background-color: hsla(60, 89%, 16%, 0.603);
-    color: rgb(255 255 255 / 1)
-}
-
-/* END MATERIAL ICON MENU */
 
 body {
-    background-color: #ffe;
+    background-color: #ffe !important;
     font-family: sans-serif;
-    line-height: 1.75;
+    line-height: 1.75 !important;
     letter-spacing: 0.125ch;
 }
 
@@ -106,7 +21,10 @@ body {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    transform: translateY(200px);
+    /* transform: translateY(200px); */
+    height: 100vh;
+    background-color: #ffe !important;
+
 }
 
 .container.reps,
@@ -180,16 +98,18 @@ body {
     width: min(100%, 1000px);
     position: relative;
     background-color: #000;
-    padding: 1em;
+    padding-top: 2em !important;
+    padding: 4em;
     border-radius: 10px;
-    margin-block: 1em;
+    margin-block: 3em;
+    display: flex;
 
 }
 
 .congress-card .card-info {
     display: flex;
     flex-flow: row;
-    float: left;
+    padding-inline: 0.5em;
     color: #fff;
     transform: translateX(-15px);
 }
