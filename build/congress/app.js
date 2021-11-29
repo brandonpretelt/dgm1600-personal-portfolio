@@ -1,11 +1,16 @@
 import { senators } from '../data/senators.js';
 import { representatives } from '../data/representatives.js';
 
-// generic utils
 // TODO: Rewrite to make more generic
+// TODO: Erase commented out code
+// TODO: Check for repeated code
+// TODO: Break up into smaller files, maybe?
+// TODO: Look for an idea for reduce function... mine ain't working :P
+
+// generic utils
 import { addListeners, renderDOM } from '../utils/utils.js';
 
-// congres specific utilities
+// congress specific utilities
 import {
     congressCard,
     PolicticalParty,
