@@ -21,10 +21,9 @@ body {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    margin-block-start: 2em;
+    margin-block-start: 5em;
     height: 100vh;
     background-color: #ffe !important;
-
 }
 
 .container.reps,
@@ -34,6 +33,7 @@ body {
 
 .container h1 {
     font-size: 3rem;
+    margin-block-end: 1em;
 }
 
 .button-container {
@@ -42,12 +42,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-/* .card-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    width: 90vw;
-} */
 
 .btn {
     border: none;
@@ -85,7 +79,6 @@ body {
 #search-form button {
     display: block;
     margin: 1em auto;
-    /* width: 100%; */
     border: none;
     border-radius: 10px;
     padding: 1em;
@@ -121,42 +114,6 @@ body {
 }
 
 
-/* .congress-card {
-    background-color: #000;
-    color: #fff;
-    display: flex;
-    flex-flow: column nowrap;
-    border-radius: 20px;
-    padding: 1em;
-    margin: 1em auto;
-    width: min(90%, 100vw);
-    align-items: center;
-}
-
-.congress-card .card-info,
-.congress-card .congress-card-heading {
-    display: flex;
-}
-
-
-.congress-card a {
-    display: flex;
-    padding: 0.5em 1em;
-    margin-block: 0.5em;
-    justify-content: center;
-    text-decoration: underline;
-    font-size: 1.35rem;
-    font-weight: bold;
-    color: hsl(200, 50%, 50%)
-}
-
-.congress-card a:hover {
-    text-decoration: underline;
-    font-style: oblique;
-    border-radius: 4px;
-    background-color: #fff;
-} */
-
 .democrat {
     color: blue;
 }
@@ -169,15 +126,9 @@ body {
     color: white;
 }
 
-/* .congress-info {
-    align-self: flex-start;
-    justify-self: flex-start;
-} */
 
 .congress-card-heading {
     display: block;
-    /* float: right; */
-    /* flex-direction: row !important; */
 }
 
 .congress-card h1 {
