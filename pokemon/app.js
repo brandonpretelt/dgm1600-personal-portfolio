@@ -1,3 +1,5 @@
+import { addListeners } from '../utils/utils.js';
+
 const pokemonLimit = document.getElementById('enter-pokemon-limit');
 const offsetNumber = document.getElementById('enter-offset-number');
 const btn = document.getElementById('get-pokemon-data');
@@ -28,7 +30,7 @@ const getData = (url) => {
     }
 };
 
-btn.addEventListener('click', () => {
+addListeners(btn, 'click', () => {
     getData(`${apiUrl}${pokemonLimit.value}`).then((data) => {
         let container;
         container = document.createElement('div');
@@ -51,3 +53,27 @@ btn.addEventListener('click', () => {
         }
     });
 });
+
+// btn.addEventListener('click', () => {
+//     getData(`${apiUrl}${pokemonLimit.value}`).then((data) => {
+//         let container;
+//         container = document.createElement('div');
+//         for (const pokemon of data.results) {
+//             getData(pokemon.url).then((pokemon) => {
+//                 // console.log(pokemon.id, pokemon.name, pokemon);
+//                 container.setAttribute('id', 'container');
+
+//                 const img = document.createElement('img');
+//                 const div = document.createElement('div');
+//                 div.setAttribute('id', 'pokemon-img-test');
+//                 console.log(
+//                     pokemon.sprites.other['official-artwork'].front_default
+//                 );
+//                 img.src = `${pokemon.sprites['other']['official-artwork'].front_default}`;
+//                 div.append(img);
+//                 container.append(div);
+//                 document.body.append(container);
+//             });
+//         }
+//     });
+// });
