@@ -24,7 +24,9 @@ const apiUrl = `https://pokeapi.co/api/v2/pokemon/?limit=`;
 // });
 const getData = (url) => {
     try {
-        return fetch(url, { cache: 'force-cache' }).then((data) => data.json());
+        return fetch(url, { cache: 'force-cache' })
+            .then((res) => res.json())
+            .then((data) => data);
     } catch (e) {
         console.log(e, ' error message of sorts');
     }
@@ -34,6 +36,29 @@ addListeners(btn, 'click', () => {
     getData(`${apiUrl}${pokemonLimit.value}`).then((data) => {
         let container;
         container = document.createElement('div');
+        // console.log(typeof data);
+        // const results = Promise.all(data.results);
+        // results.then((rs) => {
+        //     for (const pokemon of rs) {
+        //         getData(pokemon.url).then((pokemon) => {
+        //             const thePokemonPromise = Promise.all(pokemon);
+        //             thePokemonPromise.then((poke) => console.log(poke));
+        //             // console.log(pokemon.id, pokemon.name);
+        //             container.setAttribute('id', 'container');
+
+        //             const img = document.createElement('img');
+        //             const div = document.createElement('div');
+        //             div.setAttribute('id', 'pokemon-img-test');
+        //             console.log(pokemon.id, pokemon.name);
+        //             img.src = `${pokemon.sprites['other']['official-artwork'].front_default}`;
+        //             div.append(img);
+        //             container.append(div);
+        //             document.body.append(container);
+        //         });
+        //     }
+        // });
+        // console.log(resultsArray);
+        // Array.from(results).forEach((result) => console.log(result.id));
         for (const pokemon of data.results) {
             getData(pokemon.url).then((pokemon) => {
                 // console.log(pokemon.id, pokemon.name, pokemon);
@@ -42,9 +67,7 @@ addListeners(btn, 'click', () => {
                 const img = document.createElement('img');
                 const div = document.createElement('div');
                 div.setAttribute('id', 'pokemon-img-test');
-                console.log(
-                    pokemon.sprites.other['official-artwork'].front_default
-                );
+                console.log(pokemon.id, pokemon.name);
                 img.src = `${pokemon.sprites['other']['official-artwork'].front_default}`;
                 div.append(img);
                 container.append(div);
