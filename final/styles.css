@@ -27,9 +27,9 @@ ul a {
 
 /** NAV **/
 
-nav {
-    /* background-color: hsl(0, 0%, 93%); */
-}
+/* nav {
+    background-color: hsl(0, 0%, 93%);
+} */
 
 nav ul {
     display: flex;
@@ -134,7 +134,20 @@ div.btn-container {
 
 .card {
     width: auto;
+    margin: 1em;
     background-color: hsl(0, 0%, 93%);
     padding: 1.75em;
     border-radius: 7px;
+}
+
+.card-info {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0.4em;
+}
+
+.card .card-link {
+    padding-top: 1em;
+    padding-bottom: 0;
+    align-self: flex-end;
 }
