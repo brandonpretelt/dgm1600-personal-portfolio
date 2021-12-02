@@ -1,0 +1,140 @@
+:root {
+    --main-font-family: 'Outfit', sans-serif;
+}
+
+/** RESET and DEFAULTS **/
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: unset;
+    padding: unset;
+}
+
+body {
+    font-family: var(--main-font-family);
+    background-color: hsl(60, 100%, 97%);
+}
+
+ul {
+    list-style: none;
+}
+
+ul a {
+    text-decoration: none;
+}
+
+/** NAV **/
+
+nav {
+    /* background-color: hsl(0, 0%, 93%); */
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2em;
+    padding: 2em;
+}
+
+nav ul li {
+    position: relative;
+    padding-inline: 1em;
+    transition: background-color 100ms ease-in-out;
+}
+
+nav ul a {
+    font-size: 1.55rem;
+    color: hsl(0, 0%, 0%);
+
+}
+
+.active {
+    background-color: hsl(240, 20%, 83%);
+    padding: 0.5em;
+    border-radius: 3px;
+
+}
+
+nav ul li:not(.active)::after {
+    content: '';
+    position: absolute;
+    bottom: -14%;
+    left: 5%;
+    text-align: center;
+    text-decoration: underline;
+    width: 90%;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 200ms ease, opacity 100ms ease-in-out;
+    border-bottom: solid 2px hsl(0, 0%, 0%);
+}
+
+nav ul li:not(.active):hover::after {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* MAIN PORTION */
+
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 10em auto;
+}
+
+.main-hero {
+    height: calc(100vh - 112px);
+}
+
+.project-highlight {
+    height: 100vh;
+}
+
+.hero h1,
+.hero h2 {
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 4rem;
+}
+
+.hero h2 {
+    font-weight: normal;
+    font-size: 2rem;
+}
+
+.hero p {
+    line-height: 1.75;
+    font-size: 1.7rem;
+    margin-top: 2em;
+    width: 65ch;
+    text-align: center;
+}
+
+div.btn-container {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.btn-container button {
+    margin-block-start: 5em;
+    font-size: 1.4rem;
+    padding: 0.5em 2.4em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.card {
+    width: auto;
+    background-color: hsl(0, 0%, 93%);
+    padding: 1.75em;
+    border-radius: 7px;
+}
