@@ -1,10 +1,36 @@
-#container {
-    display: flex;
-    flex-flow: row wrap;
+body {
+    box-sizing: border-box;
 }
 
-#container img {
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2em;
+    padding: 2em;
+    justify-content: flex-start;
+}
+
+.pokemon-card h1,
+.pokemon-card h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.container .pokemon-card {
     width: 200px;
+    padding: 1em;
+    background-color: green;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+}
+
+.container img {
+    background-color: #eee;
+    border-radius: 5px;
+    padding: 1em;
+    width: 100px;
     max-width: 100%;
     object-fit: cover;
 }
