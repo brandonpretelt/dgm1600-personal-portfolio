@@ -3,7 +3,7 @@ import { addListeners } from '../utils/utils.js';
 const pokemonLimit = document.getElementById('enter-pokemon-limit');
 const btn = document.getElementById('get-pokemon-data');
 
-const apiUrl = `https://pokeapi.co/api/v2/pokemon/?limit=`;
+const apiUrl = `https://pokeapi.co/api/v2/pokemon/?limit=25`;
 
 const getData = (url) => {
     try {
@@ -15,7 +15,7 @@ const getData = (url) => {
 };
 
 addListeners(btn, 'click', () => {
-    getData(`${apiUrl}${pokemonLimit.value}`).then((data) => {
+    getData(`${apiUrl}`).then((data) => {
         let container;
         container = document.querySelector('.container');
 
