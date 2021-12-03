@@ -3,19 +3,18 @@ import { addListeners } from '../utils/utils.js';
 const pokemonLimit = document.getElementById('enter-pokemon-limit');
 const btn = document.getElementById('get-pokemon-data');
 
-const apiUrl = `https://pokeapi.co/api/v2/pokemon/?limit=25`;
+const apiUrl = `https://pokeapi.co/api/v2/pokemon/?limit=`;
 
 const getData = (url) => {
     try {
         return fetch(url).then((res) => res.json());
-        // .then((data) => data);
     } catch (e) {
         console.log(e, ' error message of sorts');
     }
 };
 
 addListeners(btn, 'click', () => {
-    getData(`${apiUrl}`).then((data) => {
+    getData(`${apiUrl}${pokemonLimit.value}`).then(async (data) => {
         let container;
         container = document.querySelector('.container');
 
@@ -24,7 +23,7 @@ addListeners(btn, 'click', () => {
         }
 
         for (const pokemon of data.results) {
-            getData(pokemon.url).then((pokemon) => {
+            await getData(pokemon.url).then((pokemon) => {
                 const heading1 = document.createElement('h1');
                 const heading2 = document.createElement('h2');
                 const img = document.createElement('img');
