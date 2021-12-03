@@ -1,5 +1,18 @@
 :root {
     --main-font-family: 'Outfit', sans-serif;
+    --highlight-color-200: hsl(240, 20%, 83%);
+    --highlight-color-400: hsl(240, 40%, 83%);
+    --highlight-color-600: hsl(240, 60%, 83%);
+    --highlight-color-800: hsl(240, 80%, 83%);
+    --background-color: hsl(60, 100%, 97%);
+}
+
+@supports (scroll-behavior: smooth) {
+
+    html {
+        scroll-behavior: smooth;
+    }
+
 }
 
 /** RESET and DEFAULTS **/
@@ -8,13 +21,13 @@
 *::before,
 *::after {
     box-sizing: border-box;
-    margin: unset;
-    padding: unset;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: var(--main-font-family);
-    background-color: hsl(60, 100%, 97%);
+    background-color: var(--background-color);
 }
 
 ul {
@@ -46,17 +59,20 @@ nav ul li {
     transition: background-color 100ms ease-in-out;
 }
 
-nav ul a {
-    font-size: 1.55rem;
-    color: hsl(0, 0%, 0%);
-
-}
-
-.active {
-    background-color: hsl(240, 20%, 83%);
-    padding: 0.5em;
-    border-radius: 3px;
-
+nav ul li:not(.active)::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 5%;
+    text-align: center;
+    text-decoration: underline;
+    width: 90%;
+    transform: scale(0);
+    transform-origin: right;
+    opacity: 0;
+    transition-delay: 400ms;
+    transition: transform 200ms ease, opacity 200ms ease-in-out;
+    border-top: solid 3px var(--highlight-color-800);
 }
 
 nav ul li:not(.active)::after {
@@ -68,15 +84,30 @@ nav ul li:not(.active)::after {
     text-decoration: underline;
     width: 90%;
     transform: scale(0);
+    transform-origin: left;
     opacity: 0;
     transition: transform 200ms ease, opacity 100ms ease-in-out;
-    border-bottom: solid 2px hsl(0, 0%, 0%);
+    border-bottom: solid 3px var(--highlight-color-800);
 }
 
+nav ul li:not(.active):hover::before,
 nav ul li:not(.active):hover::after {
     transform: scale(1.1);
     opacity: 1;
 }
+
+nav ul a {
+    font-size: 1.55rem;
+    color: hsl(0, 0%, 0%);
+
+}
+
+.active {
+    background-color: var(--highlight-color-600);
+    padding: 0.5em 2em;
+    border-radius: 3px;
+}
+
 
 /* MAIN PORTION */
 
@@ -85,7 +116,9 @@ nav ul li:not(.active):hover::after {
     display: flex;
     justify-content: center;
     margin: 10em auto;
+    position: relative;
 }
+
 
 .main-hero {
     height: calc(100vh - 112px);
@@ -117,6 +150,15 @@ nav ul li:not(.active):hover::after {
     text-align: center;
 }
 
+/* #projects {
+    margin-block: calc(100vh - 112px);
+} */
+
+.project-highlight .highlight-title {
+    font-size: 1.5rem;
+    text-align: center;
+}
+
 div.btn-container {
     display: flex;
     justify-content: flex-end;
@@ -132,10 +174,15 @@ div.btn-container {
     cursor: pointer;
 }
 
+.project-highlight {
+    padding-block: 2em;
+}
+
 .card {
     width: auto;
     margin: 1em;
-    background-color: hsl(0, 0%, 93%);
+    background-color: var(--highlight-color-800);
+    /* background-color: hsl(0, 0%, 93%); */
     padding: 1.75em;
     border-radius: 7px;
 }
