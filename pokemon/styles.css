@@ -6,6 +6,7 @@
     --pokemon-black: hsl(240, 3%, 14%);
 
     --main-font: 'Outfit', sans-serif;
+    --poke-limit: calc(151 / 30);
 }
 
 *,
@@ -70,13 +71,23 @@ header img {
 }
 
 .container {
+    display: grid;
+    grid-template-columns: repeat(var(--poke-limit), 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    margin: 0.5rem auto;
+}
+
+/* 
+.container {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     gap: 2em;
     margin: 0.5rem auto;
-}
+} */
 
 
 .container img,
