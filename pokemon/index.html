@@ -5,23 +5,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <title> Pokemon Cards </title>
-    <script src="app.js" type="module" defer></script>
+
 </head>
 
 <body>
-    <div class="test"> test to make sure things are hooked up </div>
-    <h3> Pokemon on Page </h3>
-    <input type="number" min="1" max="151" class="enter-pokemon-limit" id="enter-pokemon-limit"
-        name="enter-pokemon-limit" placeholder="Number of Pokemon on Page">
+    <header>
+        <img src="imgs/pokemon_logo_lrg.png" alt="pokemon-logo" loading="lazy">
+    </header>
+    <main>
+        <!-- this container is for the main part of the assignment -->
+        <section id="pokemon-container">
+            <h3> Gen 1. Pokemon </h3>
+            <input type="text" class="enter-pokemon-limit" id="enter-pokemon-limit" name="enter-pokemon-limit"
+                placeholder="Number of Pokemon on Page">
 
-    <button id="get-pokemon-data">Get Data</button>
-    <div class="container"></div>
+            <button id="get-pokemon-data">Get Data</button>
+            <div class="container"></div>
+        </section>
 
-    <div class="poke-scene"></div>
-    <button class="throw-pokeball-btn"> Throw Pokeball! </button>
-    <button class="pokeball-btn"> Catch a Pokemon! </button>
+        <!-- this is for the minigame thing-->
+        <section id="game-container">
+            <h3> It's all fun n games </h3>
+            <div class="poke-scene"></div>
+            <button class="throw-pokeball-btn"> Throw Pokeball! </button>
+            <button class="pokeball-btn"> Catch a Pokemon! </button>
+        </section>
+    </main>
+    <!-- <div class="test"> test to make sure things are hooked up </div>
+    
+
+    -->
+    <script src="app.js" type="module" defer></script>
 </body>
 
 </html>

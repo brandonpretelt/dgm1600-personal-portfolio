@@ -1,100 +1,56 @@
 // global utils
 import { addListeners } from '../utils/utils.js';
 // pokemon utils
-import { getData, getPokemonId, getEncounters } from './utils/utils.js';
+import {
+    getData,
+    getPokemonId,
+    getEncounters,
+    populateCardFront,
+    populateCardBack,
+    removeChildren
+} from './utils/utils.js';
+
+// TODO: Do a not so fancy game but, it's still fun anyway
+// TODO: Maybe change assignment a bit from the example from class?
+// TODO: Add a Pokemon class.
+// TODO: Learned about LocalStorage from online course, maybe implement that somehow?
 
 const pokemonLimit = document.getElementById('enter-pokemon-limit');
 const btn = document.getElementById('get-pokemon-data');
 
 const apiUrl = `https://pokeapi.co/api/v2/pokemon/`;
 
-// console.log(getEncounters(apiUrl, getPokemonId(151)));
+const populatePokeCard = (pokemon) => {
+    const pokeScene = document.querySelector('.container');
+    pokeScene.className = 'container';
+    const card = document.createElement('div');
+    card.className = 'pokemon-card';
+    card.addEventListener('click', () => card.classList.toggle('is-flipped'));
 
-document.querySelector('.throw-pokeball-btn').addEventListener('click', () => {
-    console.log('You threw a pokeball!');
-    setTimeout(() => {
-        const getPokemon = getData(`${apiUrl}${getPokemonId(151)}`);
-        const pokemonName = getPokemon.then((data) => {
-            const pokeScene = document.querySelector('.poke-scene');
-            const spriteImg = document.createElement('img');
-            const spanNotif = document.createElement('span');
+    const front = populateCardFront(pokemon);
+    const back = populateCardBack(pokemon);
+    card.append(front);
+    card.append(back);
+    pokeScene.append(card);
+};
 
-            const {
-                name,
-                id,
-                location_area_encounters: encounter_area,
-                sprites
-            } = data;
-
-            spriteImg.className = 'pokemon-img';
-
-            // console.log(data.location_area_encounters);
-            console.log(encounter_area);
-            const pokemon = name[0].toUpperCase() + name.slice(1);
-            console.log(
-                data.sprites['other']['official-artwork'].front_default
-            );
-
-            //${pokemon.sprites['other']['official-artwork'].front_default}
-            console.log(`A wild ${pokemon} appeared!!`);
-
-            spriteImg.src = sprites['other']['official-artwork'].front_default;
-            spanNotif.textContent = `A wild ${pokemon} appeared!!`;
-            document.addEventListener('click', (e) => {
-                if (e.target.className === 'pokemon-img') {
-                    let count = 1;
-                    e.target.style.cursor = 'pointer';
-                    if (count === 3) {
-                        console.log('You captured a pokemon!');
-                    }
-                    count++;
-                }
-            });
-            pokeScene.append(spanNotif, spriteImg);
-        });
-    }, 2000);
-});
-
-let count = 1;
-document.querySelector('.pokeball-btn').addEventListener('click', () => {
-    if (count === 3) {
-        alert('A Wild Pokemon appeared!');
-    }
-    console.log(count);
-    count++;
-});
-
-addListeners(btn, 'click', () => {
-    getData(`${apiUrl}?limit=${pokemonLimit.value}`).then(async (data) => {
-        let container;
-        container = document.querySelector('.container');
-
-        while (container.firstChild) {
-            container.removeChild(container.firstChild);
-        }
-
+const loadPokemon = (url, limit = 25, offset = 0) => {
+    removeChildren(document.querySelector('.container'));
+    getData(`${url}?limit=${limit}&offset=${offset}}`).then(async (data) => {
         for (const pokemon of data.results) {
-            await getData(pokemon.url).then((pokemon) => {
-                const heading1 = document.createElement('h1');
-                const heading2 = document.createElement('h2');
-                const img = document.createElement('img');
-                const div = document.createElement('div');
-                div.setAttribute('class', 'pokemon-card');
-                console.log(pokemon.id, pokemon.name);
-                img.src = `${pokemon.sprites['other']['official-artwork'].front_default}`;
-                img.setAttribute('loading', 'lazy');
-                const firstLetterUpper =
-                    pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
-                heading1.textContent = firstLetterUpper;
-                heading2.textContent = pokemon.id;
-                div.prepend(heading2);
-                div.prepend(heading1);
-                div.append(img);
-                container.append(div);
-                // document.body.append(container);
+            await getData(pokemon.url).then((pokemonData) => {
+                populatePokeCard(pokemonData);
             });
         }
-
-        console.log(container.firstChild);
     });
+};
+
+loadPokemon(apiUrl, 12, 0);
+
+btn.addEventListener('click', () => {
+    if (pokemonLimit.value >= 0 && pokemonLimit.value <= 151) {
+        loadPokemon(apiUrl, pokemonLimit.value);
+    } else {
+        alert('The range is too high, please try again');
+    }
 });
