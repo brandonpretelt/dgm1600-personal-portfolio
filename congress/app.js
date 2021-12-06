@@ -126,11 +126,17 @@ addListeners(searchInput, 'keyup', (e) => {
     const cardContainer = document.querySelector('.card-container');
 
     let userText = e.target.value.toLowerCase();
+    const names = simpleCongress.filter((member) => {
+        if (member.fullName) {
+            console.log(member.fullName);
+        }
+    })
+    console.log(names);
     let memberFirstName;
     let memberLastName;
     let memberFullName;
     if (!userText !== '') {
-        simpleCongress.forEach((member) => {
+        simpleCongress.filter((member) => {
             memberFirstName = member.firstName.toLowerCase();
             memberLastName = member.lastName.toLowerCase();
             memberFullName = member.fullName.toLowerCase();
@@ -138,9 +144,9 @@ addListeners(searchInput, 'keyup', (e) => {
                 memberFirstName === userText ||
                 memberLastName === userText ||
                 memberFullName === userText
-            ) {
-                render(member, cardContainer);
-            }
+                ) {
+                    render(member, cardContainer);
+                }
         });
     }
 });
