@@ -111,7 +111,7 @@ header img {
     min-height: 0;
     height: 260px;
     max-height: 100%;
-    box-shadow: 0px 0px 10px var(--pokemon-gray);
+    box-shadow: 0px 0px 10px var(--pokemon-black);
     border-radius: 10px;
     cursor: pointer;
     transition: transform 1s;
@@ -256,6 +256,7 @@ header img {
 .modal-content {
     position: relative;
     z-index: 4;
+    padding: 1em;
 }
 
 .modal-content form {
