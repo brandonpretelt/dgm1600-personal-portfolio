@@ -17,6 +17,22 @@ import {
 
 const pokemonLimit = document.getElementById('enter-pokemon-limit');
 const btn = document.getElementById('get-pokemon-data');
+const modalBtn = document.getElementById('add-pokemon');
+const modal = document.querySelector('.modal');
+const modalClose = document.querySelector('.modal-close');
+
+modalBtn.addEventListener('click', () => {
+    modal.classList.toggle('hide-modal');
+    // if (modal.classList.contains('hide-modal')) {
+    //     console.log(true);
+    //     modal.className = 'modal show-modal';
+    //     modal.classList.remove('hide-modal');
+    // }
+});
+
+modalClose.addEventListener('click', () => {
+    modal.classList.toggle('hide-modal');
+});
 
 const apiUrl = `https://pokeapi.co/api/v2/pokemon/`;
 
