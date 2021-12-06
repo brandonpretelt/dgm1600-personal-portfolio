@@ -48,11 +48,8 @@ const populateCardFront = (pokemon) => {
     const cardCaption = document.createElement('span');
 
     const pokemonName = capitalizeFirstLetter(pokemon.name);
-    // const pokemonName =
-    //     pokemon.name[0] === pokemon.name[0].toUpperCase()
-    //         ? console.log('yes')
-    //         : pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
     cardFront.className = 'card_face front';
+    console.log(pokemon);
     if (pokemon.id >= 9001) {
         cardImg.src = `https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/f918199f90b468c.png`;
     } else {
@@ -71,24 +68,18 @@ const populateCardBack = (pokemon) => {
     if (pokemon.abilities.length <= 3) {
         pokemon.abilities.forEach((ability) => {
             let abilityItem = document.createElement('li');
-            abilityItem.textContent =
-                ability.ability.name[0].toUpperCase() +
-                ability.ability.name.slice(1);
-            // abilityItem.textContent = capitalizeFirstLetter(
-            //     ability.ability.name
-            // );
+            abilityItem.textContent = capitalizeFirstLetter(
+                ability.ability.name
+            );
             cardBack.className = 'card_face back';
             abilityList.appendChild(abilityItem);
         });
     } else {
         pokemon.abilities.forEach((ability) => {
             let abilityItem = document.createElement('li');
-            abilityItem.textContent =
-                ability.ability.name[0].toUpperCase() +
-                ability.ability.name.slice(1);
-            // abilityItem.textContent = capitalizeFirstLetter(
-            //     ability.ability.name
-            // );
+            abilityItem.textContent = capitalizeFirstLetter(
+                ability.ability.name
+            );
             cardBack.className = 'card_face back too-big';
             abilityList.appendChild(abilityItem);
         });
@@ -103,8 +94,6 @@ const removeChildren = (container) => {
     }
 };
 
-// console.log(getEncounters(getPokemonId(151)));
-
 export {
     getData,
     getPokemonId,
@@ -114,5 +103,4 @@ export {
     removeChildren,
     Pokemon,
     createArray
-    // capitalizeFirstLetter
 };

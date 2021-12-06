@@ -3,8 +3,6 @@ import { addListeners } from '../utils/utils.js';
 // pokemon utils
 import {
     getData,
-    getPokemonId,
-    getEncounters,
     populateCardFront,
     populateCardBack,
     removeChildren,
@@ -14,9 +12,9 @@ import {
 } from './utils/utils.js';
 
 // TODO: Do a not so fancy game but, it's still fun anyway
-// TODO: Maybe change assignment a bit from the example from class?
-// TODO: Add a Pokemon class.
 // TODO: Learned about LocalStorage from online course, maybe implement that somehow?
+// ~~ TODO: Maybe change assignment a bit from the example from class?
+// ~~ TODO: Add a Pokemon class.
 
 const pokemonLimit = document.getElementById('enter-pokemon-limit');
 const btn = document.getElementById('get-pokemon-data');
@@ -34,17 +32,13 @@ createNewBtn.addEventListener('click', (e) => {
         (abilities = document
             .querySelector('#abilities')
             .value.replace(/\s/g, ','));
-    console.log(abilities);
     let newPokemon = new Pokemon(
         name,
         parseInt(height),
         300,
         createArray(abilities)
     );
-    console.log(newPokemon);
-    name = '';
-    height = '';
-    abilities = '';
+
     populatePokeCard(newPokemon);
     modal.classList.toggle('hide-modal');
     document.querySelector('#add-new-pokemon').reset();
@@ -54,11 +48,6 @@ createNewBtn.addEventListener('click', (e) => {
 modalBtn.addEventListener('click', () => {
     modal.classList.toggle('hide-modal');
     document.querySelector('html').style.overflow = 'hidden';
-    // if (modal.classList.contains('hide-modal')) {
-    //     console.log(true);
-    //     modal.className = 'modal show-modal';
-    //     modal.classList.remove('hide-modal');
-    // }
 });
 
 modalClose.addEventListener('click', () => {
@@ -93,7 +82,7 @@ const loadPokemon = (url, limit = 25, offset = 0) => {
     });
 };
 
-loadPokemon(apiUrl, 12, 0);
+loadPokemon(apiUrl, 5, 0);
 
 btn.addEventListener('click', () => {
     if (pokemonLimit.value >= 0 && pokemonLimit.value <= 151) {
