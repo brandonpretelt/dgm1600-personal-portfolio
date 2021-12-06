@@ -126,12 +126,7 @@ addListeners(searchInput, 'keyup', (e) => {
     const cardContainer = document.querySelector('.card-container');
 
     let userText = e.target.value.toLowerCase();
-    const names = simpleCongress.filter((member) => {
-        if (member.fullName) {
-            console.log(member.fullName);
-        }
-    })
-    console.log(names);
+   
     let memberFirstName;
     let memberLastName;
     let memberFullName;
