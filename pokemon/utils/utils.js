@@ -53,7 +53,11 @@ const populateCardFront = (pokemon) => {
     //         ? console.log('yes')
     //         : pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
     cardFront.className = 'card_face front';
-    cardImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
+    if (pokemon.id >= 9001) {
+        cardImg.src = `https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/f918199f90b468c.png`;
+    } else {
+        cardImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
+    }
     cardCaption.textContent = `${pokemon.id} ${pokemonName}`;
     cardFront.append(cardImg, cardCaption);
     return cardFront;
