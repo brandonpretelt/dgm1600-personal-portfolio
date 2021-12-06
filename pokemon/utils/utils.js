@@ -1,9 +1,30 @@
+class Pokemon {
+    constructor(name, height, weight, abilities) {
+        (this.id = 9001),
+            (this.name = name),
+            (this.height = height),
+            (this.weight = weight),
+            (this.abilities = abilities);
+    }
+}
+
 const getData = (url) => {
     try {
         return fetch(url).then((res) => res.json());
     } catch (e) {
         console.log(e, ' error message of sorts');
     }
+};
+
+const createArray = (str) => {
+    const newArr = str.split(',');
+    return newArr.map((abilityName) => {
+        return {
+            ability: {
+                name: abilityName
+            }
+        };
+    });
 };
 
 const getPokemonId = (offset) => {
@@ -27,7 +48,10 @@ const populateCardFront = (pokemon) => {
     const cardCaption = document.createElement('span');
 
     const pokemonName = capitalizeFirstLetter(pokemon.name);
-
+    // const pokemonName =
+    //     pokemon.name[0] === pokemon.name[0].toUpperCase()
+    //         ? console.log('yes')
+    //         : pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
     cardFront.className = 'card_face front';
     cardImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
     cardCaption.textContent = `${pokemon.id} ${pokemonName}`;
@@ -43,18 +67,24 @@ const populateCardBack = (pokemon) => {
     if (pokemon.abilities.length <= 3) {
         pokemon.abilities.forEach((ability) => {
             let abilityItem = document.createElement('li');
-            abilityItem.textContent = capitalizeFirstLetter(
-                ability.ability.name
-            );
+            abilityItem.textContent =
+                ability.ability.name[0].toUpperCase() +
+                ability.ability.name.slice(1);
+            // abilityItem.textContent = capitalizeFirstLetter(
+            //     ability.ability.name
+            // );
             cardBack.className = 'card_face back';
             abilityList.appendChild(abilityItem);
         });
     } else {
         pokemon.abilities.forEach((ability) => {
             let abilityItem = document.createElement('li');
-            abilityItem.textContent = capitalizeFirstLetter(
-                ability.ability.name
-            );
+            abilityItem.textContent =
+                ability.ability.name[0].toUpperCase() +
+                ability.ability.name.slice(1);
+            // abilityItem.textContent = capitalizeFirstLetter(
+            //     ability.ability.name
+            // );
             cardBack.className = 'card_face back too-big';
             abilityList.appendChild(abilityItem);
         });
@@ -77,5 +107,8 @@ export {
     getEncounters,
     populateCardFront,
     populateCardBack,
-    removeChildren
+    removeChildren,
+    Pokemon,
+    createArray
+    // capitalizeFirstLetter
 };

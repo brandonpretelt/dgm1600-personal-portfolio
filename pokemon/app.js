@@ -7,7 +7,10 @@ import {
     getEncounters,
     populateCardFront,
     populateCardBack,
-    removeChildren
+    removeChildren,
+    Pokemon,
+    createArray
+    // capitalizeFirstLetter
 } from './utils/utils.js';
 
 // TODO: Do a not so fancy game but, it's still fun anyway
@@ -20,9 +23,37 @@ const btn = document.getElementById('get-pokemon-data');
 const modalBtn = document.getElementById('add-pokemon');
 const modal = document.querySelector('.modal');
 const modalClose = document.querySelector('.modal-close');
+const createNewBtn = document.querySelector('#create-pokemon');
+
+createNewBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    let name, height, abilities;
+    (name = document.querySelector('#name').value),
+        (height = document.querySelector('#height').value),
+        // checked out regex, testing it out here to remove any whitespace and replace with a comma
+        (abilities = document
+            .querySelector('#abilities')
+            .value.replace(/\s/g, ','));
+    console.log(abilities);
+    let newPokemon = new Pokemon(
+        name,
+        parseInt(height),
+        300,
+        createArray(abilities)
+    );
+    console.log(newPokemon);
+    name = '';
+    height = '';
+    abilities = '';
+    populatePokeCard(newPokemon);
+    modal.classList.toggle('hide-modal');
+    document.querySelector('#add-new-pokemon').reset();
+    document.querySelector('html').style.overflow = 'visible';
+});
 
 modalBtn.addEventListener('click', () => {
     modal.classList.toggle('hide-modal');
+    document.querySelector('html').style.overflow = 'hidden';
     // if (modal.classList.contains('hide-modal')) {
     //     console.log(true);
     //     modal.className = 'modal show-modal';
@@ -31,6 +62,7 @@ modalBtn.addEventListener('click', () => {
 });
 
 modalClose.addEventListener('click', () => {
+    document.querySelector('html').style.overflow = 'visible';
     modal.classList.toggle('hide-modal');
 });
 
