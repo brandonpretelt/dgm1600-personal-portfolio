@@ -164,6 +164,7 @@ header img {
     text-align: center;
     font-size: 1.34rem;
     font-family: sans-serif;
+    backface-visibility: hidden;
 }
 
 .container img,
@@ -261,6 +262,12 @@ header img {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+}
+
+form input,
+button {
+    width: 400px;
+    max-width: 100%;
 }
 
 button.modal-close {
