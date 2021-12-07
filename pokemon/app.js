@@ -43,21 +43,22 @@ createNewBtn.addEventListener('click', (e) => {
     populatePokeCard(newPokemon);
     modal.classList.toggle('show-modal');
     document.querySelector('#add-new-pokemon').reset();
-    document.querySelector('html').style.overflow = 'visible';
+    document.querySelector('html').classList.toggle('hide-overflow');
 });
 
 modalBtn.addEventListener('click', () => {
     modal.classList.add('show-modal');
-    document.querySelector('html').style.overflow = 'hidden';
+    document.querySelector('html').classList.toggle('hide-overflow');
 });
 
 modalClose.addEventListener('click', () => {
-    document.querySelector('html').style.overflow = 'visible';
     modal.classList.remove('show-modal');
+    document.querySelector('html').classList.toggle('hide-overflow');
 });
 
 modalBg.addEventListener('click', () => {
     modal.classList.remove('show-modal');
+    document.querySelector('html').style.overflow = 'visible !important';
 });
 
 const apiUrl = `https://pokeapi.co/api/v2/pokemon/`;
