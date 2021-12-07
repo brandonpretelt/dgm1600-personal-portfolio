@@ -6,7 +6,7 @@
     --pokemon-black: hsl(240, 3%, 14%);
 
     --main-font: 'Outfit', sans-serif;
-    --poke-limit: calc(151 / 30);
+    --poke-limit: 5;
 }
 
 *,
