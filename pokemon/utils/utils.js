@@ -1,3 +1,5 @@
+// TODO: Remove capitalize funtion
+
 class Pokemon {
     constructor(name, height, weight, abilities) {
         (this.id = 9001),
