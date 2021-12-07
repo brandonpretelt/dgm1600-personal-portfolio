@@ -20,6 +20,7 @@ const pokemonLimit = document.getElementById('enter-pokemon-limit');
 const btn = document.getElementById('get-pokemon-data');
 const modalBtn = document.getElementById('add-pokemon');
 const modal = document.querySelector('.modal');
+const modalBg = document.querySelector('.modal-background');
 const modalClose = document.querySelector('.modal-close');
 const createNewBtn = document.querySelector('#create-pokemon');
 
@@ -40,19 +41,23 @@ createNewBtn.addEventListener('click', (e) => {
     );
 
     populatePokeCard(newPokemon);
-    modal.classList.toggle('hide-modal');
+    modal.classList.toggle('show-modal');
     document.querySelector('#add-new-pokemon').reset();
     document.querySelector('html').style.overflow = 'visible';
 });
 
 modalBtn.addEventListener('click', () => {
-    modal.classList.toggle('hide-modal');
+    modal.classList.add('show-modal');
     document.querySelector('html').style.overflow = 'hidden';
 });
 
 modalClose.addEventListener('click', () => {
     document.querySelector('html').style.overflow = 'visible';
-    modal.classList.toggle('hide-modal');
+    modal.classList.remove('show-modal');
+});
+
+modalBg.addEventListener('click', () => {
+    modal.classList.remove('show-modal');
 });
 
 const apiUrl = `https://pokeapi.co/api/v2/pokemon/`;
@@ -82,12 +87,13 @@ const loadPokemon = (url, limit = 25, offset = 0) => {
     });
 };
 
-loadPokemon(apiUrl, 5, 0);
+loadPokemon(apiUrl, 25, 0);
 
 btn.addEventListener('click', () => {
-    if (pokemonLimit.value >= 0 && pokemonLimit.value <= 151) {
-        loadPokemon(apiUrl, pokemonLimit.value);
-    } else {
-        alert('The range is too high, please try again');
-    }
+    // if (pokemonLimit.value >= 0 && pokemonLimit.value <= 151) {
+    //     loadPokemon(apiUrl, pokemonLimit.value);
+    // } else {
+    //     alert('The range is too high, please try again');
+    // }
+    loadPokemon(apiUrl, pokemonLimit.value);
 });
