@@ -48,17 +48,17 @@ createNewBtn.addEventListener('click', (e) => {
 
 modalBtn.addEventListener('click', () => {
     modal.classList.add('show-modal');
-    document.querySelector('html').classList.toggle('hide-overflow');
+    document.querySelector('html').classList.add('hide-overflow');
 });
 
 modalClose.addEventListener('click', () => {
     modal.classList.remove('show-modal');
-    document.querySelector('html').classList.toggle('hide-overflow');
+    document.querySelector('html').classList.close('hide-overflow');
 });
 
 modalBg.addEventListener('click', () => {
     modal.classList.remove('show-modal');
-    document.querySelector('html').style.overflow = 'visible !important';
+    document.querySelector('html').classList.close('hide-overflow');
 });
 
 const apiUrl = `https://pokeapi.co/api/v2/pokemon/`;
