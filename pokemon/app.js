@@ -16,6 +16,11 @@ import {
 // TODO: Create pokedex ! maybe
 // ~~ TODO: Clean up code and remove comments
 // TODO: Move flippable cards to this file
+
+// ? below is optional
+// TODO: Add a view pokemon party container
+// TODO: https://stackoverflow.com/questions/59210276/javascript-array-get-first-10-items to display party of 6
+// TODO: add a button to add certain pokemon to party
 // ? This is a sort of game
 
 const pokemonApiUrl = `https://pokeapi.co/api/v2/pokemon/`;
