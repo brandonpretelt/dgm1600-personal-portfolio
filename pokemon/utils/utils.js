@@ -1,14 +1,25 @@
 // TODO: Remove capitalize funtion
 
 class Pokemon {
-    constructor(name, height, weight, abilities) {
-        (this.id = 9001),
+    constructor(name, id, abilities, stats) {
+        (this.id = id),
             (this.name = name),
-            (this.height = height),
-            (this.weight = weight),
-            (this.abilities = abilities);
+            (this.abilities = abilities),
+            (this.stats = stats);
     }
 }
+
+const sortStringArrAscending = (arr) => {
+    return arr.sort((a, b) => {
+        if (a.name < b.name) {
+            return -1;
+        }
+        // if (b.name > a.name) {
+        //     return 1;
+        // }
+        return 0;
+    });
+};
 
 const getData = (url) => {
     try {
@@ -96,5 +107,6 @@ export {
     populateCardBack,
     removeChildren,
     Pokemon,
-    createArray
+    createArray,
+    sortStringArrAscending
 };
