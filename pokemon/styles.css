@@ -6,7 +6,7 @@
     --pokemon-black: hsl(240, 3%, 14%);
 
     --main-font: 'Outfit', sans-serif;
-    --poke-limit: 5;
+    --poke-limit: 1;
 }
 
 *,
@@ -57,8 +57,10 @@ header img {
 }
 
 #pokemon-container h3 {
+    /* padding-top: 3em; */
     text-align: center;
     font-size: 2.25rem;
+    text-shadow: 0px 0px 10px var(--pokemon-black);
 }
 
 #pokemon-container input,
@@ -73,31 +75,62 @@ header img {
     padding-inline-start: 0.45em;
 }
 
+#pokemon-container button {
+    box-shadow: 0px 0px 10px var(--pokemon-black);
+}
+
+
+
 #game-container {
     background-color: var(--pokemon-gray);
     color: hsl(0, 0%, 0%);
 
 }
 
-.container {
+/* .container {
     display: grid;
     grid-template-columns: repeat(var(--poke-limit), 1fr);
     justify-content: center;
     align-items: center;
     gap: 2em;
     margin: 0.5rem auto;
-}
+} */
 
-/* 
+
 .container {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     gap: 2em;
     margin: 0.5rem auto;
-} */
+}
 
+.container>* {
+    display: flex;
+    flex-direction: column;
+}
+
+#pokemon-container .capture-button {
+    width: 200px !important;
+    margin-top: 1em;
+
+}
+
+.wild-pokemon {
+    color: #000;
+    background-color: var(--pokemon-red);
+    padding: 1em;
+}
+
+.wild-pokemon em {
+    font-style: normal !important;
+    display: inline-block;
+}
+
+em::first-letter {
+    text-transform: capitalize;
+}
 
 .container img,
 .front img {
