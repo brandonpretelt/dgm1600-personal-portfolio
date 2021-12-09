@@ -9,10 +9,12 @@ import {
     // capitalizeFirstLetter
 } from './utils/utils.js';
 
-// TODO: Create game container
-// TODO: Create game button
+// ~~ TODO: Create game container
+// ~~ TODO: Create game button
 // TODO: Create pokeball button
 // TODO: Create pokedex
+// TODO: Clean up code and remove comments
+// ? This is a sort of game
 
 const pokemonApiUrl = `https://pokeapi.co/api/v2/pokemon/`;
 const startGameBtn = document.querySelector('#game-start');
@@ -58,7 +60,45 @@ const loadPokedex = () => {
         pokemonData = JSON.parse(localStorage.getItem('capturedPokemon'));
         console.log(pokemonData);
         pokemonData.forEach((pokemon) => {
-            console.log(pokemon.name[0].toUpperCase() + pokemon.name.slice(1));
+            // ! temporary solution, replace with CSS
+            const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+            const hp = pokemon.stats.map((stat) => {
+                return {
+                    hp: stat.base_stat
+                };
+                /*              
+    let hpStat =
+                    stat.stat.name === 'hp' ? console.log(stat.base_stat) : ''; */
+                // if (stat.stat.name === 'hp') {
+                //     return stat.base_stat;
+                // }
+                /*            if (stat.stat.name === 'hp') {
+                    return stat;
+                } */
+                // console.log(hpStat);
+            });
+            console.log(hp[0].hp);
+            // console.log(hp[0].base_stat);
+            //const stats = pokemon.stats[0].base_stat;
+            // console.log(stats);
+            // console.log(pokemon.stats['base_stat']);
+            const id = pokemon.id;
+            const nameDiv = document.createElement('div');
+            const nameHeading = document.createElement('h2');
+            nameHeading.textContent = `${id}: ${name}`;
+            nameDiv.append(nameHeading);
+
+            const statsDiv = document.createElement('div');
+            const statsSpan = document.createElement('span');
+            // console.log(pokemon.stats);
+            statsSpan.style.color = '#000';
+            // console.log(hp);
+            statsSpan.textContent = `HP: ${hp[0].hp}`;
+            statsDiv.append(statsSpan);
+
+            container.append(nameDiv, statsDiv);
+
+            // console.log(pokemon.name[0].toUpperCase() + pokemon.name.slice(1));
         });
     } else {
         pokemonData = [];
@@ -70,7 +110,7 @@ pokedexBtn.addEventListener('click', () => {
 });
 
 const wildPokemonAppeared = () => {
-    getData(`${pokemonApiUrl}${getRandomId(151)}`).then(async (data) => {
+    getData(`${pokemonApiUrl}${getRandomId(500)}`).then(async (data) => {
         const { name, id, sprites, stats } = await data;
 
         /*         const div = document.createElement('div');
