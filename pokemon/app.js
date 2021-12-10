@@ -47,7 +47,7 @@ document.querySelector('#searchPokemon').addEventListener('input', () => {
                         .value.toUpperCase() === pokemon.name.toUpperCase()
                 ) {
                     pokedexContainer.style.setProperty('width', 'auto');
-                    // populatePokedexCard(pokemon);
+                    populatePokedexCard(pokemon);
                     // if (document.querySelectorAll('.pokemon-card')) {
                     //     console.log();
                     //     document
