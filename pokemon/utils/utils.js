@@ -1,12 +1,16 @@
 // TODO: Remove capitalize funtion
 
 class Pokemon {
-    constructor(name, id, abilities, stats) {
+    constructor(name, id, abilities, stats, sprites) {
         (this.id = id),
             (this.name = name),
             (this.abilities = abilities),
-            (this.stats = stats);
+            (this.stats = stats),
+            (this.sprites = sprites);
     }
+    pokemonParty = function () {
+        console.log(this.name);
+    };
 }
 
 const sortStringArrAscending = (arr) => {
@@ -56,14 +60,14 @@ const populateCardFront = (pokemon) => {
     const cardImg = document.createElement('img');
     const cardCaption = document.createElement('span');
 
-    const pokemonName = pokemon.name;
+    const pokemonName = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
     cardFront.className = 'card_face front';
+
     console.log(pokemon);
     if (pokemon.id >= 9001) {
         cardImg.src = `https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/f918199f90b468c.png`;
-    } else {
-        cardImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
     }
+    cardImg.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
     cardCaption.textContent = `${pokemon.id} ${pokemonName}`;
     cardFront.append(cardImg, cardCaption);
     return cardFront;
@@ -72,24 +76,38 @@ const populateCardFront = (pokemon) => {
 const populateCardBack = (pokemon) => {
     const cardBack = document.createElement('div');
     const label = document.createElement('h4');
-    const abilityList = document.createElement('ul');
-    label.textContent = 'Abilities';
-    if (pokemon.abilities.length <= 3) {
-        pokemon.abilities.forEach((ability) => {
-            let abilityItem = document.createElement('li');
-            abilityItem.textContent = ability.ability.name;
-            cardBack.className = 'card_face back';
-            abilityList.appendChild(abilityItem);
-        });
-    } else {
-        pokemon.abilities.forEach((ability) => {
-            let abilityItem = document.createElement('li');
-            abilityItem.textContent = ability.ability.name;
-            cardBack.className = 'card_face back too-big';
-            abilityList.appendChild(abilityItem);
-        });
-    }
-    cardBack.append(label, abilityList);
+    const statList = document.createElement('ul');
+    // const addToMainParty = document.createElement('button');
+
+    cardBack.className = 'card_face back';
+    label.textContent = 'Stats';
+
+    // addToMainParty.style.width = '100px';
+    // addToMainParty.textContent = 'add to main party';
+    // addToMainParty.className = 'addToMainParty';
+
+    pokemon.stats.filter((stat) => {
+        if (stat.stat.name === 'hp') {
+            let statItem = document.createElement('li');
+
+            statItem.textContent = `${stat.stat.name.toUpperCase()}: ${
+                stat.base_stat
+            }`;
+
+            statList.append(statItem);
+        }
+        if (stat.stat.name === 'attack' || stat.stat.name === 'defense') {
+            let statItem = document.createElement('li');
+
+            statItem.textContent = `${
+                stat.stat.name[0].toUpperCase() + stat.stat.name.slice(1)
+            }: ${stat.base_stat}`;
+
+            statList.append(statItem);
+        }
+    });
+
+    cardBack.append(label, statList);
     return cardBack;
 };
 

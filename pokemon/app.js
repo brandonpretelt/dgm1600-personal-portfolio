@@ -4,24 +4,14 @@ import {
     populateCardFront,
     populateCardBack,
     removeChildren,
-    Pokemon,
-    createArray,
-    sortStringArrAscending
-    // capitalizeFirstLetter
+    Pokemon
 } from './utils/utils.js';
-
-// ~~ TODO: Create game container
-// ~~ TODO: Create game button
-// TODO: Create pokeball button ! maybe
-// TODO: Create pokedex ! maybe
-// ~~ TODO: Clean up code and remove comments
-// TODO: Move flippable cards to this file
 
 // ? below is optional
 // TODO: Add a view pokemon party container
 // TODO: https://stackoverflow.com/questions/59210276/javascript-array-get-first-10-items to display party of 6
 // TODO: add a button to add certain pokemon to party
-// ? This is a sort of game
+// TODO: Clean up the code... ugly ugly ugly
 
 const pokemonApiUrl = `https://pokeapi.co/api/v2/pokemon/`;
 const startGameBtn = document.querySelector('#game-start');
@@ -36,8 +26,69 @@ const startGame = () => {
     wildPokemonAppeared();
 };
 
+document.querySelector('.modal-background').addEventListener('click', () => {
+    document.querySelector('html').classList.remove('hide-overflow');
+    modal.classList.remove('show-modal');
+});
+
+document.querySelector('#searchPokemon').addEventListener('input', () => {
+    if (document.querySelector('#searchPokemon').value !== '') {
+        if (localStorage.getItem('capturedPokemon') !== null) {
+            const pokemonData = JSON.parse(
+                localStorage.getItem('capturedPokemon')
+            );
+            // console.log(parseInt(pokemonData.length / 5));
+            pokemonData.forEach((pokemon) => {
+                if (
+                    document.querySelector('#searchPokemon').value ===
+                        pokemon.name ||
+                    document
+                        .querySelector('#searchPokemon')
+                        .value.toUpperCase() === pokemon.name.toUpperCase()
+                ) {
+                    pokedexContainer.style.setProperty('width', 'auto');
+                    populatePokedexCard(pokemon);
+                    if (document.querySelectorAll('.pokemon-card')) {
+                        console.log();
+                        document
+                            .querySelector(':root')
+                            .style.setProperty(
+                                '--poke-limit',
+                                document.querySelectorAll('.pokemon-card')
+                                    .length
+                            );
+                    }
+                }
+            });
+        }
+    }
+});
+
+document.querySelector('#searchPokemon').addEventListener('focus', () => {
+    document.querySelector('#searchPokemon').value = '';
+    removeChildren(pokedexContainer);
+});
+
+document.querySelector('#searchPokemon').addEventListener('blur', () => {
+    document.querySelector('#searchPokemon').value = '';
+});
+
 const getChancesOfCapture = () => {
     return Math.floor(Math.random() * 6) + 1;
+};
+
+const populatePokedexCard = (pokemon) => {
+    const pokedexContainer = document.querySelector('.pokedexContainer');
+
+    const card = document.createElement('div');
+    card.className = 'pokemon-card';
+    card.addEventListener('click', () => card.classList.toggle('is-flipped'));
+
+    const front = populateCardFront(pokemon);
+    const back = populateCardBack(pokemon);
+    card.append(front);
+    card.append(back);
+    pokedexContainer.append(card);
 };
 
 const addToParty = (pokemon) => {
@@ -80,37 +131,7 @@ const loadPokedex = () => {
         pokemonData = JSON.parse(localStorage.getItem('capturedPokemon'));
         console.log(parseInt(pokemonData.length / 5));
         pokemonData.forEach((pokemon) => {
-            // ! temporary solution, replace with CSS
-            // console.log(pokemon.sprites);
-            const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
-
-            const pokemonStats = pokemon.stats.map((stat) => {
-                return {
-                    hp: stat.base_stat
-                };
-            });
-
-            const pokedexDiv = document.createElement('div');
-            const id = pokemon.id;
-            const nameDiv = document.createElement('div');
-            const nameHeading = document.createElement('h2');
-            const pokemonImg = document.createElement('img');
-            nameHeading.textContent = `${id}: ${name}`;
-            nameDiv.append(nameHeading);
-
-            const statsDiv = document.createElement('div');
-            const statsSpan = document.createElement('span');
-
-            statsSpan.style.color = '#000';
-
-            statsSpan.textContent = `HP: ${pokemonStats[0].hp}`;
-            pokemonImg.src = `${pokemon.sprites.other['official-artwork'].front_default}`;
-            statsDiv.append(statsSpan);
-            pokedexDiv.append(pokemonImg, nameDiv, statsDiv);
-            pokedexDiv.className = 'pokedex';
-            pokedexDiv.style.backgroundColor = 'var(--pokemon-red)';
-            pokedexDiv.style.padding = '1rem';
-            pokedexContainer.append(pokedexDiv);
+            populatePokedexCard(pokemon);
         });
     } else {
         pokemonData = [];
@@ -123,19 +144,21 @@ pokedexBtn.addEventListener('click', () => {
 
 const wildPokemonAppeared = () => {
     getData(`${pokemonApiUrl}${getRandomId(500)}`).then(async (data) => {
-        const { name, id, sprites, stats } = await data;
-
-        // const newPokemon = new Pokemon(name, id, sprites, stats, abilities);
+        const { name, id, sprites, stats, abilities } = await data;
+        const newPokemon = new Pokemon(name, id, sprites, stats, abilities);
+        newPokemon.pokemonParty();
         container.innerHTML = `
-            <div class="wild-pokemon">
+            <div class="wild-pokemon pokemon-card">
+                <div class="card-card_face front">
                 <p>A wild <em>${name}</em> appeared!</p>
                 <img src=${sprites.other['official-artwork'].front_default} alt='${name}' aria-label="${name}" loading="lazy">
-                
+                </div>
             </div>
         `;
         const wildPkemon = document.querySelector('.wild-pokemon');
         const captureBtn = document.createElement('button');
         wildPkemon.append(captureBtn);
+        captureBtn.style.marginTop = '1em';
         captureBtn.textContent = 'Capture!';
         captureBtn.className = 'capture-pokemon';
 
@@ -146,7 +169,7 @@ const wildPokemonAppeared = () => {
                 (e) => {
                     e.stopPropagation();
                     let count = 0;
-                    addToParty({ name, id, stats, sprites });
+                    addToParty({ name, id, stats, sprites, abilities });
                     if (e.target.className === 'capture-pokemon') {
                         console.log('oops');
                     }
