@@ -13,16 +13,15 @@ class Pokemon {
     };
 }
 
-const sortStringArrAscending = (arr) => {
-    return arr.sort((a, b) => {
-        if (a.name < b.name) {
-            return -1;
-        }
-        // if (b.name > a.name) {
-        //     return 1;
-        // }
-        return 0;
-    });
+const pokemonGenerations = {
+    gen1: 151,
+    gen2: 251,
+    gen3: 386,
+    gen4: 493,
+    gen5: 649,
+    gen6: 721,
+    gen7: 809,
+    gen8: 898
 };
 
 const getData = (url) => {
@@ -42,6 +41,55 @@ const createArray = (str) => {
             }
         };
     });
+};
+
+const getRandomId = (id) => {
+    // TODO: added function so user can select different gen pokemon
+    return Math.floor(Math.random() * id) + 1;
+};
+
+const saveToStorage = (pokemon, modal) => {
+    let capturedPokemon;
+    if (localStorage.getItem('capturedPokemon') === null) {
+        capturedPokemon = [];
+    } else {
+        capturedPokemon = JSON.parse(localStorage.getItem('capturedPokemon'));
+        if (capturedPokemon.includes(pokemon)) {
+            console.log('Already caught this pokemon');
+        }
+    }
+    if (!capturedPokemon.includes(pokemon)) {
+        capturedPokemon.push(pokemon);
+        localStorage.setItem(
+            'capturedPokemon',
+            JSON.stringify(capturedPokemon)
+        );
+        modal.classList.add('show-modal');
+        document.querySelector('.modal-msg').textContent = 'You caught it!';
+        document.querySelector('html').classList.add('hide-overflow');
+    } else {
+        console.log('some placeholder');
+    }
+};
+
+const loadFromStorage = (func) => {
+    func = func || undefined;
+    let pokemonData;
+    if (func === undefined) {
+        if (localStorage.getItem('capturedPokemon') !== null) {
+            pokemonData = JSON.parse(localStorage.getItem('capturedPokemon'));
+        }
+        return pokemonData;
+    } else {
+        if (localStorage.getItem('capturedPokemon') !== null) {
+            pokemonData = JSON.parse(localStorage.getItem('capturedPokemon'));
+            pokemonData.forEach((pokemon) => {
+                func(pokemon);
+            });
+        } else {
+            pokemonData = [];
+        }
+    }
 };
 
 const getPokemonId = (offset) => {
@@ -77,14 +125,9 @@ const populateCardBack = (pokemon) => {
     const cardBack = document.createElement('div');
     const label = document.createElement('h4');
     const statList = document.createElement('ul');
-    // const addToMainParty = document.createElement('button');
 
     cardBack.className = 'card_face back';
     label.textContent = 'Stats';
-
-    // addToMainParty.style.width = '100px';
-    // addToMainParty.textContent = 'add to main party';
-    // addToMainParty.className = 'addToMainParty';
 
     pokemon.stats.filter((stat) => {
         if (stat.stat.name === 'hp') {
@@ -117,6 +160,18 @@ const removeChildren = (container) => {
     }
 };
 
+const removeOnFocus = () => {
+    document.querySelector('#searchPokemon').addEventListener('focus', () => {
+        document.querySelector('#searchPokemon').value = '';
+        // removeChildren(container);
+    });
+};
+const removeOnBlur = () => {
+    document.querySelector('#searchPokemon').addEventListener('blur', () => {
+        document.querySelector('#searchPokemon').value = '';
+    });
+};
+
 export {
     getData,
     getPokemonId,
@@ -125,6 +180,10 @@ export {
     populateCardBack,
     removeChildren,
     Pokemon,
-    createArray,
-    sortStringArrAscending
+    pokemonGenerations,
+    removeOnFocus,
+    removeOnBlur,
+    saveToStorage,
+    loadFromStorage,
+    getRandomId
 };
