@@ -33,7 +33,8 @@ const getData = (url) => {
 };
 
 const createArray = (str) => {
-    const newArr = str.split(',');
+    const newStr = str.replace(/\w/g, ',');
+    const newArr = newStr.split(',');
     return newArr.map((abilityName) => {
         return {
             ability: {

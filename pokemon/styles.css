@@ -110,6 +110,10 @@ header img {
 
 }
 
+.card-card_face.front {
+    cursor: default !important;
+}
+
 .wild-pokemon {
     color: #000;
     background-color: var(--pokemon-red);

@@ -102,13 +102,20 @@ pokedexBtn.addEventListener('click', () => {
 
 const wildPokemonAppeared = () => {
     getData(`${pokemonApiUrl}${getRandomId(151)}`).then(async (data) => {
-        const { name, id, sprites, stats, abilities } = await data;
-
+        const { name, id, abilities, stats, sprites } = await data;
+        const appearedPokemon = new Pokemon(
+            name,
+            id,
+            abilities,
+            stats,
+            sprites
+        );
+        console.log(appearedPokemon.name, ' from Class');
         container.innerHTML = `
             <div class="wild-pokemon pokemon-card">
                 <div class="card-card_face front">
-                <p>A wild <em>${name}</em> appeared!</p>
-                <img src=${sprites.other['official-artwork'].front_default} alt='${name}' aria-label="${name}" loading="lazy">
+                <p>A wild <em>${appearedPokemon.name}</em> appeared!</p>
+                <img src=${appearedPokemon.sprites.other['official-artwork'].front_default} alt='${appearedPokemon.name}' aria-label="${appearedPokemon.name}" loading="lazy">
                 </div>
             </div>
         `;
@@ -120,7 +127,7 @@ const wildPokemonAppeared = () => {
         captureBtn.className = 'capture-pokemon';
         wildPkemon.append(captureBtn);
         captureBtn.addEventListener('click', () => {
-            addToParty({ name, id, stats, sprites, abilities });
+            addToParty(appearedPokemon);
             removeChildren(container);
             removeChildren(pokedexContainer);
         });
