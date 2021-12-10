@@ -47,17 +47,17 @@ document.querySelector('#searchPokemon').addEventListener('input', () => {
                         .value.toUpperCase() === pokemon.name.toUpperCase()
                 ) {
                     pokedexContainer.style.setProperty('width', 'auto');
-                    populatePokedexCard(pokemon);
-                    if (document.querySelectorAll('.pokemon-card')) {
-                        console.log();
-                        document
-                            .querySelector(':root')
-                            .style.setProperty(
-                                '--poke-limit',
-                                document.querySelectorAll('.pokemon-card')
-                                    .length
-                            );
-                    }
+                    // populatePokedexCard(pokemon);
+                    // if (document.querySelectorAll('.pokemon-card')) {
+                    //     console.log();
+                    //     document
+                    //         .querySelector(':root')
+                    //         .style.setProperty(
+                    //             '--poke-limit',
+                    //             document.querySelectorAll('.pokemon-card')
+                    //                 .length
+                    //         );
+                    // }
                 }
             });
         }
