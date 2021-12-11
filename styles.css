@@ -1,0 +1,228 @@
+:root {
+    --main-font-family: 'Outfit', sans-serif;
+    --highlight-color-200: hsl(240, 20%, 83%);
+    --highlight-color-400: hsl(240, 40%, 83%);
+    --highlight-color-600: hsl(240, 60%, 83%);
+    --highlight-color-800: hsl(240, 80%, 83%);
+    --background-color: hsl(60, 100%, 97%);
+}
+
+@supports (scroll-behavior: smooth) {
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+}
+
+/** RESET and DEFAULTS **/
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--main-font-family);
+    background-color: var(--background-color);
+}
+
+ul {
+    list-style: none;
+}
+
+ul a {
+    text-decoration: none;
+}
+
+/** NAV **/
+
+/* nav {
+    background-color: hsl(0, 0%, 93%);
+} */
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2em;
+    padding: 2em;
+}
+
+nav ul li {
+    position: relative;
+    padding-inline: 1em;
+    transition: background-color 100ms ease-in-out;
+}
+
+nav ul li:not(.active)::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 5%;
+    text-align: center;
+    text-decoration: underline;
+    width: 90%;
+    transform: scale(0);
+    transform-origin: right;
+    opacity: 0;
+    transition-delay: 400ms;
+    transition: transform 200ms ease, opacity 200ms ease-in-out;
+    border-top: solid 3px var(--highlight-color-800);
+}
+
+nav ul li:not(.active)::after {
+    content: '';
+    position: absolute;
+    bottom: -14%;
+    left: 5%;
+    text-align: center;
+    text-decoration: underline;
+    width: 90%;
+    transform: scale(0);
+    transform-origin: left;
+    opacity: 0;
+    transition: transform 200ms ease, opacity 100ms ease-in-out;
+    border-bottom: solid 3px var(--highlight-color-800);
+}
+
+nav ul li:not(.active):hover::before,
+nav ul li:not(.active):hover::after {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+nav ul a {
+    font-size: 1.55rem;
+    color: hsl(0, 0%, 0%);
+
+}
+
+.active {
+    background-color: var(--highlight-color-600);
+    padding: 0.5em 2em;
+    border-radius: 3px;
+}
+
+
+/* MAIN PORTION */
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.card-container :first-child {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+}
+
+
+.container {
+    /* width: 100%; */
+    display: flex;
+    justify-content: center;
+    margin: 10em auto;
+    position: relative;
+}
+
+
+.main-hero {
+    height: calc(100vh - 112px);
+    max-height: 100%;
+}
+
+.project-highlight {
+    height: 100vh;
+}
+
+.hero {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+
+.hero h1,
+.hero h2 {
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 4rem;
+}
+
+.hero h2 {
+    font-weight: normal;
+    font-size: 2rem;
+}
+
+.hero p {
+    line-height: 1.75;
+    font-size: 1.7rem;
+    margin-top: 2em;
+    width: 65ch;
+    text-align: center;
+}
+
+/* #projects {
+    margin-block: calc(100vh - 112px);
+} */
+
+#projects,
+#contact {
+    padding-top: 5em;
+    height: calc(100vh - 112px);
+}
+
+.project-highlight .highlight-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+div.btn-container {
+    display: flex;
+    justify-content: center;
+
+}
+
+.btn-container button {
+    margin-block-start: 3.5em;
+    font-size: 2rem;
+    padding: 0.5em 2.5em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: hsl(10, 75%, 100%);
+    background-color: var(--highlight-color-800);
+}
+
+.project-highlight {
+    padding-block: 2em;
+}
+
+.card {
+    width: auto;
+    margin: 1em;
+    background-color: var(--highlight-color-800);
+    /* background-color: hsl(0, 0%, 93%); */
+    padding: 1.75em;
+    border-radius: 7px;
+}
+
+.card-info {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0.4em;
+}
+
+.card .card-link {
+    padding-top: 1em;
+    padding-bottom: 0;
+    align-self: flex-end;
+}
