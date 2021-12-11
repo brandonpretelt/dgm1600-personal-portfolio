@@ -1,4 +1,4 @@
-import { projects } from './data/projects.js';
+import { projects } from './project-data/projects.js';
 import { renderCard } from './final-utils/index.js';
 const projectHighlight = document.querySelector('.project-highlight');
 const projectsBtn = document.querySelector('button');
