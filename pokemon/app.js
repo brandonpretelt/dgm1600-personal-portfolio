@@ -35,11 +35,11 @@ const searchPokemon = document.querySelector('#searchPokemon');
 const startGame = () => {
     removeChildren(pokedexContainer);
     wildPokemonAppeared();
+    // modalGenSelection.classList.toggle('show-modal');
 };
 
 modalBg.addEventListener('click', () => {
     document.querySelector('html').classList.remove('hide-overflow');
-    modal.classList.remove('show-modal');
 });
 
 searchPokemon.addEventListener('input', () => {
@@ -110,7 +110,6 @@ const wildPokemonAppeared = () => {
             stats,
             sprites
         );
-        console.log(appearedPokemon.name, ' from Class');
         container.innerHTML = `
             <div class="wild-pokemon pokemon-card">
                 <div class="card-card_face front">

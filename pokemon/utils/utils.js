@@ -1,6 +1,6 @@
 // TODO: Remove capitalize funtion
 
-class Pokemon {
+export class Pokemon {
     constructor(name, id, abilities, stats, sprites) {
         (this.id = id),
             (this.name = name),
@@ -8,12 +8,9 @@ class Pokemon {
             (this.stats = stats),
             (this.sprites = sprites);
     }
-    pokemonParty = function () {
-        console.log(this.name);
-    };
 }
 
-const pokemonGenerations = {
+export const pokemonGenerations = {
     gen1: 151,
     gen2: 251,
     gen3: 386,
@@ -24,7 +21,7 @@ const pokemonGenerations = {
     gen8: 898
 };
 
-const getData = (url) => {
+export const getData = (url) => {
     try {
         return fetch(url).then((res) => res.json());
     } catch (e) {
@@ -32,7 +29,7 @@ const getData = (url) => {
     }
 };
 
-const createArray = (str) => {
+export const createArray = (str) => {
     const newStr = str.replace(/\w/g, ',');
     const newArr = newStr.split(',');
     return newArr.map((abilityName) => {
@@ -44,12 +41,12 @@ const createArray = (str) => {
     });
 };
 
-const getRandomId = (id) => {
+export const getRandomId = (id) => {
     // TODO: added function so user can select different gen pokemon
     return Math.floor(Math.random() * id) + 1;
 };
 
-const saveToStorage = (pokemon, modal) => {
+export const saveToStorage = (pokemon, modal) => {
     let capturedPokemon;
     if (localStorage.getItem('capturedPokemon') === null) {
         capturedPokemon = [];
@@ -73,7 +70,7 @@ const saveToStorage = (pokemon, modal) => {
     }
 };
 
-const loadFromStorage = (func) => {
+export const loadFromStorage = (func) => {
     func = func || undefined;
     let pokemonData;
     if (func === undefined) {
@@ -93,18 +90,18 @@ const loadFromStorage = (func) => {
     }
 };
 
-const getPokemonId = (offset) => {
+export const getPokemonId = (offset) => {
     return Math.floor(Math.random() * offset);
 };
 
-const getEncounters = (url, pokemon) => {
+export const getEncounters = (url, pokemon) => {
     getData(`${url}${pokemon}`).then(async (data) => {
         const area = await data.location_area_encounters;
         return area;
     });
 };
 
-const populateCardFront = (pokemon) => {
+export const populateCardFront = (pokemon) => {
     const cardFront = document.createElement('div');
     const cardImg = document.createElement('img');
     const cardCaption = document.createElement('span');
@@ -122,7 +119,7 @@ const populateCardFront = (pokemon) => {
     return cardFront;
 };
 
-const populateCardBack = (pokemon) => {
+export const populateCardBack = (pokemon) => {
     const cardBack = document.createElement('div');
     const label = document.createElement('h4');
     const statList = document.createElement('ul');
@@ -155,36 +152,20 @@ const populateCardBack = (pokemon) => {
     return cardBack;
 };
 
-const removeChildren = (container) => {
+export const removeChildren = (container) => {
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
 };
 
-const removeOnFocus = () => {
+export const removeOnFocus = () => {
     document.querySelector('#searchPokemon').addEventListener('focus', () => {
         document.querySelector('#searchPokemon').value = '';
         // removeChildren(container);
     });
 };
-const removeOnBlur = () => {
+export const removeOnBlur = () => {
     document.querySelector('#searchPokemon').addEventListener('blur', () => {
         document.querySelector('#searchPokemon').value = '';
     });
-};
-
-export {
-    getData,
-    getPokemonId,
-    getEncounters,
-    populateCardFront,
-    populateCardBack,
-    removeChildren,
-    Pokemon,
-    pokemonGenerations,
-    removeOnFocus,
-    removeOnBlur,
-    saveToStorage,
-    loadFromStorage,
-    getRandomId
 };
