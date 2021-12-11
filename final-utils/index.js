@@ -1,4 +1,4 @@
-const renderCard = (title, info, url, container) => {
+const renderCard = (title, info, url, container, imgUrl) => {
     const card = document.createElement('div');
     card.className = 'card';
 
@@ -11,6 +11,11 @@ const renderCard = (title, info, url, container) => {
     const cardInfo = document.createElement('div');
     const cardPara = document.createElement('p');
     const cardLink = document.createElement('a');
+    const cardImg = document.createElement('img');
+
+    // https://source.unsplash.com/random
+
+    cardImg.className = 'card-img-preview';
     cardLink.className = 'card-link';
     cardInfo.className = 'card-info';
     cardPara.textContent = info;
@@ -20,6 +25,12 @@ const renderCard = (title, info, url, container) => {
     cardInfo.append(cardPara, cardLink);
     card.append(cardTitle, cardInfo);
     container.append(card);
+
+    if (imgUrl !== undefined) {
+        cardImg.src = imgUrl;
+        card.insertBefore(cardImg, cardInfo);
+        // card.append(cardTitle, cardImg, cardInfo);
+    }
 };
 
 export { renderCard };

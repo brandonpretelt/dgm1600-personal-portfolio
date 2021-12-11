@@ -38,6 +38,13 @@ ul a {
     text-decoration: none;
 }
 
+img {
+    /* width: 200px; */
+    /* height: 0; */
+    max-width: 100%;
+    object-fit: cover;
+}
+
 /** NAV **/
 
 /* nav {
@@ -114,7 +121,22 @@ nav ul a {
 .card-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    padding-inline: 1em;
+}
+
+.card {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.card>.card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-grow: 1;
+
 }
 
 .card-container :first-child {
@@ -122,6 +144,24 @@ nav ul a {
     grid-row: 1 / span 2;
 }
 
+.card-container> :first-child .card-img-preview {
+    place-self: center;
+    transform: translateY(100px);
+}
+
+/* .card-container :nth-child(4),
+.card-container :nth-child(5) {
+    grid-row: 1 / span 2;
+} */
+
+/* .card-container>:nth-child(3),
+.card-container> :nth-child(2) {
+    grid-row: 3;
+} */
+
+.card-img-preview {
+    padding-block: 1em;
+}
 
 .container {
     /* width: 100%; */
@@ -175,8 +215,12 @@ nav ul a {
 
 #projects,
 #contact {
-    padding-top: 5em;
+    padding-top: 2em;
     height: calc(100vh - 112px);
+}
+
+#contact {
+    display: none;
 }
 
 .project-highlight .highlight-title {

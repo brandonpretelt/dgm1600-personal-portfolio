@@ -14,7 +14,8 @@ projects.forEach((project) => {
         project.name,
         project.description,
         project.url,
-        projectCardContainer
+        projectCardContainer,
+        project.imgUrl
     );
 });
 
