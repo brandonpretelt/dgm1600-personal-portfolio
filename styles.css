@@ -5,6 +5,8 @@
     --highlight-color-600: hsl(240, 60%, 83%);
     --highlight-color-800: hsl(240, 80%, 83%);
     --background-color: hsl(60, 100%, 97%);
+    --highlight-color-test: hsla(60, 3%, 24%, 1);
+    --highlight-color-test2: hsla(60, 8%, 43%, 0.75);
 }
 
 @supports (scroll-behavior: smooth) {
@@ -47,9 +49,17 @@ img {
 
 /** NAV **/
 
-/* nav {
-    background-color: hsl(0, 0%, 93%);
-} */
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    transition: background-color 800ms ease-in-out;
+}
+
+.on-scroll {
+    background-color: hsl(100, 27%, 73%);
+}
 
 nav ul {
     display: flex;
@@ -66,7 +76,7 @@ nav ul li {
     transition: background-color 100ms ease-in-out;
 }
 
-nav ul li:not(.active)::before {
+nav ul li::before {
     content: '';
     position: absolute;
     top: -5px;
@@ -79,7 +89,44 @@ nav ul li:not(.active)::before {
     opacity: 0;
     transition-delay: 400ms;
     transition: transform 200ms ease, opacity 200ms ease-in-out;
-    border-top: solid 3px var(--highlight-color-800);
+    border-top: solid 3px var(--highlight-color-test);
+}
+
+nav ul li::after {
+    content: '';
+    position: absolute;
+    bottom: -14%;
+    left: 5%;
+    text-align: center;
+    text-decoration: underline;
+    width: 90%;
+    transform: scale(0);
+    transform-origin: left;
+    opacity: 0;
+    transition: transform 200ms ease, opacity 100ms ease-in-out;
+    border-bottom: solid 3px var(--highlight-color-test);
+}
+
+nav ul li:hover::before,
+nav ul li:hover::after {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+/* nav ul li:not(.active)::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 5%;
+    text-align: center;
+    text-decoration: underline;
+    width: 90%;
+    transform: scale(0);
+    transform-origin: right;
+    opacity: 0;
+    transition-delay: 400ms;
+    transition: transform 200ms ease, opacity 200ms ease-in-out;
+    border-top: solid 3px var(--highlight-color-test);
 }
 
 nav ul li:not(.active)::after {
@@ -94,25 +141,31 @@ nav ul li:not(.active)::after {
     transform-origin: left;
     opacity: 0;
     transition: transform 200ms ease, opacity 100ms ease-in-out;
-    border-bottom: solid 3px var(--highlight-color-800);
+    border-bottom: solid 3px var(--highlight-color-test);
 }
 
 nav ul li:not(.active):hover::before,
 nav ul li:not(.active):hover::after {
     transform: scale(1.1);
     opacity: 1;
-}
+} */
 
 nav ul a {
     font-size: 1.55rem;
-    color: hsl(0, 0%, 0%);
+    /* color: hsl(0, 0%, 0%); */
+    color: var(--highlight-color-test);
 
 }
 
 .active {
-    background-color: var(--highlight-color-600);
+    /* background-color: var(--highlight-color-600); */
+    background-color: var(--highlight-color-test2);
     padding: 0.5em 2em;
     border-radius: 3px;
+}
+
+.active>a {
+    color: #fff !important;
 }
 
 
@@ -123,6 +176,8 @@ nav ul a {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
     padding-inline: 1em;
+    margin: 0 auto;
+    width: 90%;
 }
 
 .card {
@@ -175,6 +230,7 @@ nav ul a {
 .main-hero {
     height: calc(100vh - 112px);
     max-height: 100%;
+    padding-block: calc(2em - 80px);
 }
 
 .project-highlight {
@@ -243,17 +299,19 @@ div.btn-container {
     border-radius: 10px;
     cursor: pointer;
     color: hsl(10, 75%, 100%);
-    background-color: var(--highlight-color-800);
+    background-color: hsl(100, 27%, 73%);
+    /* background-color: var(--highlight-color-800); */
 }
 
 .project-highlight {
-    padding-block: 2em;
+    padding-block: calc(2em + 80px);
 }
 
 .card {
     width: auto;
     margin: 1em;
-    background-color: var(--highlight-color-800);
+    background-color: hsl(100, 27%, 73%);
+    /* background-color: var(--highlight-color-800); */
     /* background-color: hsl(0, 0%, 93%); */
     padding: 1.75em;
     border-radius: 7px;

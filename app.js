@@ -1,13 +1,13 @@
 import { projects } from './project-data/projects.js';
 import { renderCard } from './final-utils/index.js';
 const projectHighlight = document.querySelector('.project-highlight');
-const projectsBtn = document.querySelector('button');
+// const projectsBtn = document.querySelector('button');
 const projectCardContainer = document.createElement('div');
 projectCardContainer.className = 'card-container';
 
-projectsBtn.addEventListener('click', () => {
-    window.location = '#projects';
-});
+// projectsBtn.addEventListener('click', () => {
+//     window.location = '#projects';
+// });
 
 projects.forEach((project) => {
     renderCard(
@@ -20,3 +20,13 @@ projects.forEach((project) => {
 });
 
 projectHighlight.append(projectCardContainer);
+
+document.addEventListener('scroll', () => {
+    console.log(document.documentElement);
+    console.log(document.documentElement.scrollTop);
+    if (document.documentElement.scrollTop > 10) {
+        document.querySelector('nav').classList.add('on-scroll');
+    } else {
+        document.querySelector('nav').classList.remove('on-scroll');
+    }
+});
