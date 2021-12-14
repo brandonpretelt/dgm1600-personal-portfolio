@@ -35,7 +35,8 @@ const genSelection = document.getElementById('gen-selection');
 let genNum;
 
 const startGame = () => {
-    removeChildren(pokedexContainer);
+    searchPokemon.style.display = 'block';
+    removeChildren(container);
     wildPokemonAppeared();
 };
 
@@ -121,7 +122,7 @@ searchPokemon.addEventListener('input', () => {
     }
 });
 
-removeOnFocus(pokedexContainer);
+removeOnFocus(container);
 removeOnBlur();
 
 const populatePokedexCard = (pokemon) => {
