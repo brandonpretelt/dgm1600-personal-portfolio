@@ -1,10 +1,10 @@
 export const projects = [
-    {
-        name: 'First Portfolio Upgrade',
-        description: 'A Cool Star Wars Landing Page',
-        url: '/old/index.html',
-        imgUrl: '/imgs/portfolio.png'
-    },
+    // {
+    //     name: 'First Portfolio Upgrade',
+    //     description: 'A Cool Star Wars Landing Page',
+    //     url: '/old/index.html',
+    //     imgUrl: '/imgs/portfolio.png'
+    // },
     {
         name: 'SW Films',
         description: 'A Star Wars Films viewer',
