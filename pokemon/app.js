@@ -4,8 +4,8 @@ import {
     populateCardFront,
     populateCardBack,
     removeChildren,
-    Pokemon,
     pokemonGenerations,
+    Pokemon,
     removeOnFocus,
     removeOnBlur,
     loadFromStorage,
@@ -31,12 +31,74 @@ const modalPop = document.querySelector('.modal');
 const modalClose = document.querySelector('.modal-close');
 const modalBg = document.querySelector('.modal-background');
 const searchPokemon = document.querySelector('#searchPokemon');
+const genSelection = document.getElementById('gen-selection');
+let randomNum;
 
 const startGame = () => {
     removeChildren(pokedexContainer);
     wildPokemonAppeared();
     // modalGenSelection.classList.toggle('show-modal');
 };
+
+// selection.addEventListener('change', () => {
+
+// })
+
+genSelection.addEventListener('change', () => {
+    const option = document.querySelectorAll('option');
+    option.forEach((item) => {
+        if (item.selected === true) {
+            switch (item.value) {
+                case 'Gen 1':
+                    const limit = pokemonGenerations.gen1;
+                    const offset = pokemonGenerations.gen1;
+                    // console.log(limit, offset);
+                    randomNum = pokemonGenerations.gen1;
+                    return randomNum;
+
+                case 'Gen 2':
+                    console.log(pokemonGenerations.gen2);
+                    randomNum = pokemonGenerations.gen2;
+                    return randomNum;
+
+                case 'Gen 3':
+                    console.log(pokemonGenerations.gen3);
+                    randomNum = pokemonGenerations.gen3;
+                    return randomNum;
+
+                case 'Gen 4':
+                    console.log(pokemonGenerations.gen4);
+                    randomNum = pokemonGenerations.gen4;
+
+                    return randomNum;
+                case 'Gen 5':
+                    console.log(pokemonGenerations.gen5);
+                    randomNum = pokemonGenerations.gen5;
+                    return randomNum;
+
+                case 'Gen 6':
+                    console.log(pokemonGenerations.gen6);
+                    randomNum = pokemonGenerations.gen6;
+                    return randomNum;
+
+                case 'Gen 7':
+                    console.log(pokemonGenerations.gen7);
+                    randomNum = pokemonGenerations.gen7;
+                    return randomNum;
+
+                case 'Gen 8':
+                    console.log(pokemonGenerations.gen8);
+                    randomNum = pokemonGenerations.gen8;
+                    return randomNum;
+
+                default:
+                    console.log('hi!');
+                    randomNum = 151;
+                    return randomNum;
+            }
+        }
+    });
+});
 
 modalBg.addEventListener('click', () => {
     document.querySelector('html').classList.remove('hide-overflow');
@@ -101,16 +163,49 @@ pokedexBtn.addEventListener('click', () => {
 });
 
 const wildPokemonAppeared = () => {
-    getData(`${pokemonApiUrl}${getRandomId(151)}`).then(async (data) => {
-        const { name, id, abilities, stats, sprites } = await data;
-        const appearedPokemon = new Pokemon(
-            name,
-            id,
-            abilities,
-            stats,
-            sprites
-        );
-        container.innerHTML = `
+    if (randomNum === undefined || randomNum === 'NaN') {
+        getData(`${pokemonApiUrl}${getRandomId(151)}`).then(async (data) => {
+            const { name, id, abilities, stats, sprites } = await data;
+            const appearedPokemon = new Pokemon(
+                name,
+                id,
+                abilities,
+                stats,
+                sprites
+            );
+            container.innerHTML = `
+                <div class="wild-pokemon pokemon-card">
+                    <div class="card-card_face front">
+                    <p>A wild <em>${appearedPokemon.name}</em> appeared!</p>
+                    <img src=${appearedPokemon.sprites.other['official-artwork'].front_default} alt='${appearedPokemon.name}' aria-label="${appearedPokemon.name}" loading="lazy">
+                    </div>
+                </div>
+            `;
+            const wildPkemon = document.querySelector('.wild-pokemon');
+            const captureBtn = document.createElement('button');
+            wildPkemon.append(captureBtn);
+            captureBtn.style.marginTop = '1em';
+            captureBtn.textContent = 'Capture!';
+            captureBtn.className = 'capture-pokemon';
+            wildPkemon.append(captureBtn);
+            captureBtn.addEventListener('click', () => {
+                addToParty(appearedPokemon);
+                removeChildren(container);
+                removeChildren(pokedexContainer);
+            });
+        });
+    } else {
+        getData(`${pokemonApiUrl}${getRandomId(randomNum)}`).then(
+            async (data) => {
+                const { name, id, abilities, stats, sprites } = await data;
+                const appearedPokemon = new Pokemon(
+                    name,
+                    id,
+                    abilities,
+                    stats,
+                    sprites
+                );
+                container.innerHTML = `
             <div class="wild-pokemon pokemon-card">
                 <div class="card-card_face front">
                 <p>A wild <em>${appearedPokemon.name}</em> appeared!</p>
@@ -118,19 +213,21 @@ const wildPokemonAppeared = () => {
                 </div>
             </div>
         `;
-        const wildPkemon = document.querySelector('.wild-pokemon');
-        const captureBtn = document.createElement('button');
-        wildPkemon.append(captureBtn);
-        captureBtn.style.marginTop = '1em';
-        captureBtn.textContent = 'Capture!';
-        captureBtn.className = 'capture-pokemon';
-        wildPkemon.append(captureBtn);
-        captureBtn.addEventListener('click', () => {
-            addToParty(appearedPokemon);
-            removeChildren(container);
-            removeChildren(pokedexContainer);
-        });
-    });
+                const wildPkemon = document.querySelector('.wild-pokemon');
+                const captureBtn = document.createElement('button');
+                wildPkemon.append(captureBtn);
+                captureBtn.style.marginTop = '1em';
+                captureBtn.textContent = 'Capture!';
+                captureBtn.className = 'capture-pokemon';
+                wildPkemon.append(captureBtn);
+                captureBtn.addEventListener('click', () => {
+                    addToParty(appearedPokemon);
+                    removeChildren(container);
+                    removeChildren(pokedexContainer);
+                });
+            }
+        );
+    }
 };
 
 startGameBtn.addEventListener('click', () => startGame(), true);
