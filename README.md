@@ -19,12 +19,14 @@
 # Personal Portfolio - Congress 
 ## Requirements for Upgrade 
 
-- [ ] 
-    - [ ] 
-- [ ] 
+- [x] Array methods
+    - [x] [map](https://github.com/brandonpretelt/dgm1600-personal-portfolio/blob/bbd57ca77916757102cda8e966eb17bbfbc44e79/congress/app.js#L56)
+    - [x] [reduce](https://github.com/brandonpretelt/dgm1600-personal-portfolio/blob/bbd57ca77916757102cda8e966eb17bbfbc44e79/congress/app.js#L105) 
+    - [x] [filter](https://github.com/brandonpretelt/dgm1600-personal-portfolio/blob/bbd57ca77916757102cda8e966eb17bbfbc44e79/congress/app.js#L134)
+    
+- [x] Bulma modal 
 - [x] Push to git
 - [x] Netlify it
-- [ ] 
 
 # Personal Portfolio Project - Upgrade #1
 ## Requirements for Upgrade 
