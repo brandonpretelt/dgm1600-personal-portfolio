@@ -1,4 +1,4 @@
-import { projects } from './project-data/projects.js';
+// import { projects } from './project-data/projects.js';
 import { renderCard } from './final-utils/index.js';
 const projectHighlight = document.querySelector('.project-highlight');
 // const projectsBtn = document.querySelector('button');
@@ -8,6 +8,16 @@ projectCardContainer.className = 'card-container';
 // projectsBtn.addEventListener('click', () => {
 //     window.location = '#projects';
 // });
+
+// fetch('http://localhost:3001/api/projects')
+//     .then((res) => res.json())
+//     .then((data) => {
+//         const { data: results } = data;
+//         results.forEach((result) => {
+//             const { name, description, url, imgUrl } = result;
+//             renderCard(name, description, url, projectCardContainer, imgUrl);
+//         });
+//     });
 
 projects.forEach((project) => {
     renderCard(
