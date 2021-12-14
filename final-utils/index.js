@@ -4,9 +4,14 @@ const renderCard = (title, info, url, container, imgUrl) => {
 
     const cardTitle = document.createElement('div');
     const cardH2 = document.createElement('h2');
+    const cardH2Link = document.createElement('a');
     cardTitle.className = 'card-title';
+    cardH2Link.append(cardH2);
+    cardH2Link.href = url;
+    cardH2Link.setAttribute('target', '_blank');
+    cardH2Link.className = 'card-title-link';
     cardH2.textContent = title;
-    cardTitle.append(cardH2);
+    cardTitle.append(cardH2Link);
 
     const cardInfo = document.createElement('div');
     const cardPara = document.createElement('p');

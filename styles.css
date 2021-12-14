@@ -330,3 +330,45 @@ div.btn-container {
     padding-bottom: 0;
     align-self: flex-end;
 }
+
+.card-title-link {
+    text-decoration: none !important;
+    cursor: pointer;
+    color: var(--highlight-color-tes2);
+}
+
+.card-title {
+    position: relative;
+}
+
+.card-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: 25%;
+    right: 25%;
+    text-align: center;
+    text-decoration: underline;
+    width: 50%;
+    transform: scale(0);
+    transform-origin: left;
+    opacity: 0;
+    transition: transform 200ms ease, opacity 100ms ease-in-out;
+    border-bottom: solid 3px var(--highlight-color-test);
+    /*     content: '';
+    position: absolute;
+    top: 0;
+    width: 50%;
+    left: 25%;
+    bottom: -5px;
+    transform: scale(0);
+    transform-origin: left;
+    opacity: 0;
+    border-bottom: solid 2px black;
+    transition: transform 200ms ease-in-out, opacity 100ms ease-in-out; */
+}
+
+.card-title:hover::after {
+    transform: scaleX(1);
+    opacity: 1;
+}
