@@ -49,6 +49,11 @@ header img {
     width: 500px;
 }
 
+.info {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
 #pokemon-container {
     background: linear-gradient(to bottom, var(--pokemon-red), var(--pokemon-black), var(--pokemon-gray) 50%);
     margin: 0 auto;

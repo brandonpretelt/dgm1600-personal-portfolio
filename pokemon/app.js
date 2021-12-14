@@ -10,6 +10,7 @@ import {
     removeOnBlur,
     loadFromStorage,
     saveToStorage,
+    // createArray,
     getRandomId
 } from './utils/utils.js';
 
@@ -32,6 +33,8 @@ const modalClose = document.querySelector('.modal-close');
 const modalBg = document.querySelector('.modal-background');
 const searchPokemon = document.querySelector('#searchPokemon');
 const genSelection = document.getElementById('gen-selection');
+// const createNewBtn = document.querySelector('#create-pokemon');
+
 let genNum;
 
 const startGame = () => {
@@ -95,6 +98,7 @@ genSelection.addEventListener('change', () => {
 });
 
 modalBg.addEventListener('click', () => {
+    modalPop.classList.remove('show-modal');
     document.querySelector('html').classList.remove('hide-overflow');
 });
 
@@ -213,5 +217,23 @@ const wildPokemonAppeared = () => {
         loadWildPokemon(genNum);
     }
 };
+
+// createNewBtn.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     let name, height, stats;
+//     (name = prompt("What is your pokemon's name?")),
+//         (height = prompt('And its height?')),
+//         checked out regex, testing it out here to remove any whitespace and replace with a comma
+//         (stats = prompt('Create some stats.'));
+//     stats.replace(/\s/g, ',');
+//     let newPokemon = new Pokemon(
+//         name,
+//         parseInt(height),
+//         300,
+//         createArray(stats)
+//     );
+
+//     populatePokedexCard(newPokemon);
+// });
 
 startGameBtn.addEventListener('click', () => startGame(), true);
