@@ -109,7 +109,7 @@ export const populateCardFront = (pokemon) => {
     const pokemonName = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
     cardFront.className = 'card_face front';
 
-    console.log(pokemon);
+    // console.log(pokemon);
     if (pokemon.id >= 9001) {
         cardImg.src = `https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/f918199f90b468c.png`;
     }

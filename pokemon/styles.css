@@ -65,13 +65,17 @@ header img {
 #pokemon-container input,
 #pokemon-container button {
     width: 400px;
-    margin: 0 auto;
-    margin-block-end: 1em;
+    margin: 1em auto;
     border: none;
     border-radius: 5px;
     font-size: 1.43rem;
     padding-block: 0.25em;
     padding-inline-start: 0.45em;
+}
+
+#pokemon-container select {
+    padding: 1em;
+    font-size: 1.15rem;
 }
 
 #pokemon-container button {
@@ -93,7 +97,7 @@ header img {
 
 .container {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
     gap: 2em;
