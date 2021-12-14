@@ -113,52 +113,13 @@ nav ul li:hover::after {
     opacity: 1;
 }
 
-/* nav ul li:not(.active)::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: 5%;
-    text-align: center;
-    text-decoration: underline;
-    width: 90%;
-    transform: scale(0);
-    transform-origin: right;
-    opacity: 0;
-    transition-delay: 400ms;
-    transition: transform 200ms ease, opacity 200ms ease-in-out;
-    border-top: solid 3px var(--highlight-color-test);
-}
-
-nav ul li:not(.active)::after {
-    content: '';
-    position: absolute;
-    bottom: -14%;
-    left: 5%;
-    text-align: center;
-    text-decoration: underline;
-    width: 90%;
-    transform: scale(0);
-    transform-origin: left;
-    opacity: 0;
-    transition: transform 200ms ease, opacity 100ms ease-in-out;
-    border-bottom: solid 3px var(--highlight-color-test);
-}
-
-nav ul li:not(.active):hover::before,
-nav ul li:not(.active):hover::after {
-    transform: scale(1.1);
-    opacity: 1;
-} */
-
 nav ul a {
     font-size: 1.55rem;
-    /* color: hsl(0, 0%, 0%); */
     color: var(--highlight-color-test);
 
 }
 
 .active {
-    /* background-color: var(--highlight-color-600); */
     background-color: var(--highlight-color-test2);
     padding: 0.5em 2em;
     border-radius: 3px;
@@ -174,8 +135,7 @@ nav ul a {
 .card-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    padding-inline: 1em;
+    /* grid-template-rows: repeat(3, 1fr); */
     margin: 0 auto;
     width: 90%;
 }
@@ -183,6 +143,11 @@ nav ul a {
 .card {
     display: flex;
     flex-flow: column nowrap;
+    width: auto;
+    margin: 1em;
+    background-color: hsl(100, 27%, 73%);
+    padding: 1em;
+    border-radius: 7px;
 }
 
 .card>.card-info {
@@ -204,22 +169,11 @@ nav ul a {
     transform: translateY(100px);
 }
 
-/* .card-container :nth-child(4),
-.card-container :nth-child(5) {
-    grid-row: 1 / span 2;
-} */
-
-/* .card-container>:nth-child(3),
-.card-container> :nth-child(2) {
-    grid-row: 3;
-} */
-
 .card-img-preview {
     padding-block: 1em;
 }
 
 .container {
-    /* width: 100%; */
     display: flex;
     justify-content: center;
     margin: 10em auto;
@@ -228,7 +182,7 @@ nav ul a {
 
 
 .main-hero {
-    height: calc(100vh - 112px);
+    height: calc(65vh - 112px);
     max-height: 100%;
     padding-block: calc(2em - 80px);
 }
@@ -248,11 +202,13 @@ nav ul a {
     text-align: center;
 }
 
-.hero h1 {
+.hero h1,
+#contact h1 {
     font-size: 4rem;
 }
 
-.hero h2 {
+.hero h2,
+#contact h2 {
     font-weight: normal;
     font-size: 2rem;
 }
@@ -265,18 +221,59 @@ nav ul a {
     text-align: center;
 }
 
-/* #projects {
-    margin-block: calc(100vh - 112px);
-} */
+#projects {
+    margin-block-end: calc(60vh - 112px);
+}
 
 #projects,
 #contact {
     padding-top: 2em;
-    height: calc(100vh - 112px);
+
 }
 
 #contact {
-    display: none;
+    padding-top: 8em;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 60vh;
+}
+
+.social-links ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    border-radius: 10px;
+}
+
+.social-links li {
+    margin: 1em;
+}
+
+.social-links ul li a {
+    border-radius: 10px;
+    margin: 1em;
+}
+
+.social-links a {
+    display: block;
+}
+
+.social-links img {
+    border-radius: 10px;
+    padding: 1em;
+    background-color: #000;
+    display: block;
+    width: 100px;
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.contact-me p,
+.contact-me a:not(li > a) {
+    font-size: 1.4rem;
 }
 
 .project-highlight .highlight-title {
@@ -307,20 +304,25 @@ div.btn-container {
     padding-block: calc(2em + 80px);
 }
 
-.card {
-    width: auto;
-    margin: 1em;
-    background-color: hsl(100, 27%, 73%);
-    /* background-color: var(--highlight-color-800); */
-    /* background-color: hsl(0, 0%, 93%); */
-    padding: 1.75em;
-    border-radius: 7px;
-}
-
 .card-info {
     display: flex;
     flex-flow: column nowrap;
     padding: 0.4em;
+}
+
+.card-container .card:first-child .card-info {
+    padding: 0;
+    margin: 3em 0;
+}
+
+.card-container .card:first-child .card-title {
+    transform: translateY(50px);
+}
+
+.card .card-title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 .card .card-link {
