@@ -1,18 +1,19 @@
-# Final
-## Requirements for Upgrade 
-
-- [ ] 
-    - [ ] 
-- [ ] 
-- [x] Push to git
-- [x] Netlify it
 
 # Personal Portfolio - Pokemon Cards
 ## Requirements for Upgrade 
 
-- [ ] 
-    - [ ] 
-- [ ] 
+- [ ] Array methods
+    - [ ] [map]() 
+    - [x] [filter](https://github.com/brandonpretelt/dgm1600-personal-portfolio/blob/128b113595a03132c9dada7c1e5d68034bdbd4e0/pokemon/utils/utils.js#L130)
+    - [ ] [reduce]()
+- [x] Event Listeners
+    - [x] click
+    - [x] [input](https://github.com/brandonpretelt/dgm1600-personal-portfolio/blob/128b113595a03132c9dada7c1e5d68034bdbd4e0/pokemon/app.js#L105)
+    - [x] [change](https://github.com/brandonpretelt/dgm1600-personal-portfolio/blob/128b113595a03132c9dada7c1e5d68034bdbd4e0/pokemon/app.js#L46)
+
+- [x] Fetch
+- [x] CSS Animations
+- [x] Flex
 - [x] Push to git
 - [x] Netlify it
 
