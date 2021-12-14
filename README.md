@@ -1,4 +1,4 @@
-# Personal Portfolio Project - Upgrade #5
+# Final
 ## Requirements for Upgrade 
 
 - [ ] 
@@ -7,7 +7,7 @@
 - [x] Push to git
 - [x] Netlify it
 
-# Personal Portfolio Project - Upgrade #4
+# Personal Portfolio - Pokemon Cards
 ## Requirements for Upgrade 
 
 - [ ] 
@@ -16,7 +16,7 @@
 - [x] Push to git
 - [x] Netlify it
 
-# Personal Portfolio Project - Upgrade #3
+# Personal Portfolio - Congress 
 ## Requirements for Upgrade 
 
 - [ ] 
@@ -24,16 +24,7 @@
 - [ ] 
 - [x] Push to git
 - [x] Netlify it
-
-# Personal Portfolio Project - Upgrade #2
-## Requirements for Upgrade 
-
 - [ ] 
-    - [ ] 
-- [ ] 
-- [x] Push to git
-- [x] Netlify it
-
 
 # Personal Portfolio Project - Upgrade #1
 ## Requirements for Upgrade 
