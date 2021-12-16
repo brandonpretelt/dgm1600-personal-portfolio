@@ -2,11 +2,12 @@
 
 export class Pokemon {
     constructor(name, id, abilities, stats, sprites) {
-        (this.id = id ? id : 9001),
+        (this.id = id !== undefined ? id : 9001),
             (this.name = name),
             (this.abilities = abilities),
             (this.stats = stats),
-            (this.sprites = sprites ? sprites : console.log('no image'));
+            (this.sprites =
+                sprites !== undefined ? sprites : console.log('no image'));
     }
 }
 
@@ -30,6 +31,7 @@ export const getData = (url) => {
 };
 
 export const createArray = (str) => {
+    // learned regex in tutorial, wanted to implement here
     const newStr = str.replace(/\w/g, ',');
     const newArr = newStr.split(',');
     return newArr.map((abilityName) => {
@@ -41,9 +43,65 @@ export const createArray = (str) => {
     });
 };
 
+export const simplifyStats = (arr) => {
+    return arr.reduce((acc, item) => {
+        let simpleObj = {};
+        if (item.stats) {
+            item.stats.reduce((acc, statItem) => {
+                if (statItem.name) {
+                    simpleObj.stats = {
+                        name: statItem.name,
+                        base_stat: item.base_stat
+                    };
+                    acc.push(simpleObj);
+                }
+                return acc;
+            });
+            acc.push(item);
+        }
+        return acc;
+    }, []);
+};
+
+export const createStatsArray = (str) => {
+    // learned regex in tutorial, wanted to implement here
+    console.log(str);
+    const newStr = str.replace(/\w/g, ',');
+    console.log(newStr);
+    const newArr = newStr.split(',');
+    console.log(newArr);
+    const stats = newArr.map((statsName) => {
+        return {
+            stat: {
+                name: statsName
+            }
+        };
+    });
+    console.log(stats);
+};
+
 export const getRandomId = (id) => {
     // TODO: added function so user can select different gen pokemon
     return Math.floor(Math.random() * id) + 1;
+};
+
+export const createPokedexArray = (newPokemon) => {
+    const pokemonArr = [];
+    pokemonArr.push(newPokemon);
+
+    return pokemonArr.map((pokemon) => {
+        return {
+            name: pokemon.name,
+            id: pokemon.id,
+            abilities: pokemon.abilities,
+            stats: pokemon.stats,
+            sprites: pokemon.sprites
+        };
+    });
+};
+
+export const modalMsg = (modal, msg, msgContainer) => {
+    return modal.classList.add('show-modal'), (msgContainer.textContent = msg);
 };
 
 export const saveToStorage = (pokemon, modal) => {
@@ -58,12 +116,16 @@ export const saveToStorage = (pokemon, modal) => {
     }
     if (!capturedPokemon.includes(pokemon)) {
         capturedPokemon.push(pokemon);
+        console.log(capturedPokemon);
         localStorage.setItem(
             'capturedPokemon',
             JSON.stringify(capturedPokemon)
         );
-        modal.classList.add('show-modal');
-        document.querySelector('.modal-msg').textContent = 'You caught it!';
+        modalMsg(
+            modal,
+            'You caught it!!!',
+            document.querySelector('.modal-msg')
+        );
         document.querySelector('html').classList.add('hide-overflow');
     } else {
         console.log('some placeholder');

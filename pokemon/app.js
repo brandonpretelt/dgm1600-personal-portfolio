@@ -10,8 +10,9 @@ import {
     removeOnBlur,
     loadFromStorage,
     saveToStorage,
-    // createArray,
-    getRandomId
+    createPokedexArray,
+    getRandomId,
+    simplifyStats
 } from './utils/utils.js';
 
 // ? below is optional
@@ -33,7 +34,7 @@ const modalClose = document.querySelector('.modal-close');
 const modalBg = document.querySelector('.modal-background');
 const searchPokemon = document.querySelector('#searchPokemon');
 const genSelection = document.getElementById('gen-selection');
-// const createNewBtn = document.querySelector('#create-pokemon');
+const searchByName = document.querySelector('#search-by-name');
 
 let genNum;
 
@@ -218,22 +219,39 @@ const wildPokemonAppeared = () => {
     }
 };
 
-// createNewBtn.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     let name, height, stats;
-//     (name = prompt("What is your pokemon's name?")),
-//         (height = prompt('And its height?')),
-//         checked out regex, testing it out here to remove any whitespace and replace with a comma
-//         (stats = prompt('Create some stats.'));
-//     stats.replace(/\s/g, ',');
-//     let newPokemon = new Pokemon(
-//         name,
-//         parseInt(height),
-//         300,
-//         createArray(stats)
-//     );
+searchByName.addEventListener('input', (e) => {
+    e.preventDefault();
+    const getPokemonNameOrId = searchByName.value;
+    if (getPokemonNameOrId !== '') {
+        getData(`${pokemonApiUrl}${getPokemonNameOrId}`).then(async (data) => {
+            const results = await data;
+            const pokemon = createPokedexArray(results);
+            // console.log(pokemon[0].name);
+            // console.log(pokemon[0].stats[0].stat);
+            console.log(simplifyStats(pokemon));
+            // console.log(simpleStats);
+            // console.log(simpleStats);
+            // removeChildren(container);
+            // container.innerHTML = `
+            // <div class="pokemon-card">
+            //     <div class="card_face front">
+            //         <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png'>
+            //         <span>${pokemon.id} ${pokemon.name}</span>
+            //     </div>
 
-//     populatePokedexCard(newPokemon);
-// });
+            //     <div class="card_face back">
+            //         <h4>Stats</h4>
+            //         <ul>
+            //             <li>${pokemon.base_stat}</li>
+
+            //         </ul>
+            //     </div>
+
+            // </div>
+            // `;
+            //`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
+        });
+    }
+});
 
 startGameBtn.addEventListener('click', () => startGame(), true);
