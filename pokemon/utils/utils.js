@@ -2,10 +2,10 @@
 
 export class Pokemon {
     constructor(name, id, abilities, stats, sprites) {
-        (this.id = id ? id : 9001),
-            (this.name = name),
-            (this.abilities = abilities),
-            (this.stats = stats),
+            this.id = id ? id : 9001;
+            this.name = name;
+            this.abilities = abilities;
+            this.stats = stats;
             (this.sprites = sprites ? sprites : console.log('no image'));
     }
 }
